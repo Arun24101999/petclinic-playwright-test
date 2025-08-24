@@ -1,0 +1,32 @@
+[
+    {
+        "role": "AWC Manager",
+        "firstName": "ArunkumarRagavan",
+        "lastName": "R",
+        "gender": "Female",
+        "language": "Tamil",
+        "mobileNumber": "7094753145",
+        "email": "arunkumar.r@medyaan.com",
+        "maritalStatus": "Single",
+        "emergencyContactNo": "7094753146",
+        "address": "rjpm",
+        "emirateValue": "Abu Dhabi",
+        "emirateId": "784-1987-1234567-1",
+        "trnNo": "55145"
+    },
+    {
+        "role": "AWC Manager",
+        "firstName": "ArunkumarRagavan",
+        "lastName": "R",
+        "mobileNumber": "7094753145",
+        "email": "arunkumar.r@medyaan.com",
+        "emergencyContactNo": "7094753146",
+        "emirateId": "784-1987-1234567-1",
+        "trnNo": "55145"
+    },
+    {
+        "date": "11",
+        "month": "Jan",
+        "year": "2003"
+    }
+]
