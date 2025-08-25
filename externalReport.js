@@ -1,30 +1,33 @@
 const fs = require('fs');
 const xml2js = require('xml2js');
- 
+
 const parser = new xml2js.Parser();
- 
+
 // Report Meta Info
-const reportTitle = "Playwright Automation Report";
-const environment = "QA";
+const reportTitle = "PetClinic Automation Report";
+const environment = "QA-Staging";
 const version = "v1.0.0";
- 
+
 // Timestamp
 const now = new Date();
 const timestamp = now.toLocaleString();
- 
+
 fs.readFile('reports/results.xml', (err, data) => {
   if (err) throw err;
- 
+
   parser.parseString(data, (err, result) => {
     if (err) throw err;
- 
-    const testSuites = result.testsuites.testsuite;
- 
+
+    // Handle both <testsuites> and <testsuite> root cases
+    const testSuites = result.testsuites
+      ? result.testsuites.testsuite
+      : [result.testsuite];
+
     let html = `
-    <html>
-    <head>
-      <title>${reportTitle}</title>
-      <style>
+<html>
+<head>
+<title>${reportTitle}</title>
+<style>
         body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
         h1 { text-align: center; margin-bottom: 5px; }
         .meta { text-align: center; font-size: 14px; margin-bottom: 20px; color: #444; }
@@ -33,48 +36,69 @@ fs.readFile('reports/results.xml', (err, data) => {
         th { background: #333; color: white; }
         .pass { color: green; font-weight: bold; }
         .fail { color: red; font-weight: bold; }
-      </style>
-    </head>
-    <body>
-      <h1>${reportTitle}</h1>
-      <div class="meta">
+        .skipped {color: #d19e06ff ; font-weight: bold;}
+</style>
+</head>
+<body>
+<h1>${reportTitle}</h1>
+<div class="meta">
         Environment: ${environment} | Version: ${version} | Generated: ${timestamp}
-      </div>
-      <table>
-        <tr>
-          <th>Test Case ID</th>
-          <th>Date & Time</th>
-          <th>Test Case Type</th>
-          <th>Description</th>
-          <th>Status</th>
-        </tr>`;
- 
+</div>
+<table>
+<tr>
+<th>Test Scenario ID</th>
+<th>Test Case ID</th>
+<th>Test Case Type</th>
+<th>Description</th>
+<th>Date & Time</th>
+<th>Status</th>
+</tr>`;
+
     testSuites.forEach(suite => {
+      if (!suite.testcase) return; // skip if no testcases
+
       suite.testcase.forEach(tc => {
-        const fullName = tc.$.name;   // "TC_Login_001 - Login with valid credentials"
- 
-        // Split into ID and Description
-        const [testId, description] = fullName.split(" - ");
- 
-        const status = tc.failure ? "Fail" : "Pass";
- 
-        // You can assign type dynamically (example: smoke for login tests)
+        const fullName = tc.$.name || "Unknown";
+        const parts = fullName.split("›").map(p => p.trim());
+
+        // Scenario ID part
+        const scenarioId = parts[0] || "";
+
+        // Extract test case part
+        const testCasePart = parts[1] || "";
+
+        // Split into ID and description
+        const [testId, description = "No description"] = testCasePart.split(" - ").map(p => p.trim());
+
+        const combinedID_TestcaseID = `${scenarioId.split(" - ")[0]}_${testId}`;
+
+
+        let status = "Pass";
+        if (tc.skipped) {
+          status = "Skipped";
+        } else if (tc.failure) {
+          status = "Fail";
+        }
+
+
+        // Assign type dynamically (example: smoke for login tests)
         let type = "Functional";
-        if (description.includes("login")) type = "Smoke";
- 
+        if (description.toLowerCase().includes("login")) type = "Smoke";
+
         html += `
-        <tr>
-          <td>${testId}</td>
-          <td>${timestamp}</td>
-          <td>${type}</td>
-          <td>${description}</td>
-          <td class="${status.toLowerCase()}">${status}</td>
-        </tr>`;
+            <tr>
+            <td>${scenarioId}</td>
+            <td>${combinedID_TestcaseID}</td>
+            <td>${type}</td>
+            <td>${description}</td>
+            <td>${timestamp}</td>
+            <td class="${status.toLowerCase()}">${status}</td>
+            </tr>`;
       });
     });
- 
+
     html += `</table></body></html>`;
- 
+
     fs.writeFileSync("reports/report.html", html);
     console.log("✅ UI Report generated: reports/report.html");
   });

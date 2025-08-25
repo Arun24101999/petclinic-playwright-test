@@ -98,7 +98,7 @@ class UsersPage {
     await this.page.waitForTimeout(2000);
     await this.UploadOtherDocuments.click();
     const fileChooser = await fileChooserPromise;
-    await fileChooser.setFiles('./Images/ATS Resume.pdf');
+    await fileChooser.setFiles('./Images/profilepic.jpg');
     await this.page.waitForTimeout(2000);
 
   }

@@ -5,9 +5,9 @@ const LoginDataset = JSON.parse(JSON.stringify(require('../../utils/LoginPageUti
 const { Url } = LoginDataset[0];
 
 
-test.describe('Login Test', () => {
+test.describe('TS01 - Login Test', () => {
    // Login with valid Credentials
-    test('log in with valid credentials', async ({ page }) => {
+    test('TC001 - log in with valid credentials', async ({ page }) => {
         const loginPage = new LoginPage(page);
         await loginPage.gotoLoginPage(Url);
         await page.waitForTimeout(2000);
@@ -19,7 +19,7 @@ test.describe('Login Test', () => {
 
     })
 
-    test('log in with Invalid Username ', async ({ page }) => {
+    test('TC002 - log in with Invalid Username ', async ({ page }) => {
         const loginPage = new LoginPage(page);
         await loginPage.gotoLoginPage(Url);
         await page.waitForTimeout(2000);
@@ -30,7 +30,7 @@ test.describe('Login Test', () => {
 
     })
 
-    test('log in with Invalid Password ', async ({ page }) => {
+    test('TC003 - log in with Invalid Password ', async ({ page }) => {
        const loginPage = new LoginPage(page);
         await loginPage.gotoLoginPage(Url);
         await page.waitForTimeout(2000);
@@ -40,7 +40,7 @@ test.describe('Login Test', () => {
         await expect(value).toContain("Invalid Credentials");
     })
 
-    test('log in with Invalid Credentials ', async ({ page }) => {
+    test('TC004 - log in with Invalid Credentials ', async ({ page }) => {
        const loginPage = new LoginPage(page);
         await loginPage.gotoLoginPage(Url);
         await page.waitForTimeout(1000);

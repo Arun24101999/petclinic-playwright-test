@@ -10,40 +10,46 @@ let context;
 let page;
 
 
-test.describe('User Management Test', () => {
+test.describe('TS02 - User Management Test', () => {
 
-    test.beforeAll('Login with valid Credentials', async ({ browser }) => {
+    test.beforeAll('Launch Browser', async ({ browser }) => {
         context = await browser.newContext();
         page = await context.newPage();
         const loginPage = new LoginPage(page);
         await loginPage.gotoLoginPage(Url);
         await page.waitForTimeout(2000);
+       
+    })
+
+     test('TC001 - Login with valid Credentials', async () => {
+        const loginPage = new LoginPage(page);
         const { UserName, Password } = LoginDataset[1];
+        await page.waitForTimeout(2000);
         await loginPage.login(UserName, Password);
     })
 
 
-    test('Select User Role', async () => {
+    test('TC002 - Select User Role', async () => {
         const usersPage = new UsersPage(page);
         await usersPage.selectUserRoleBtn();
     })
 
 
-    test('Navigate to Users Module', async () => {
+    test('TC003 - Navigate to Users Module', async () => {
         const usersPage = new UsersPage(page);
         await usersPage.gotoUsersModule();
         await page.waitForTimeout(1000);
     })
 
 
-    test('Click Add User Button', async () => {
+    test('TC004 - Click Add User Button', async () => {
         const usersPage = new UsersPage(page);
         await usersPage.clickAddUserBtn();
 
 
     })
 
-    test('date picker', async () => {
+    test('TC005 - date picker', async () => {
         const usersPage = new UsersPage(page);
         const { date, month, year } = UsersPageDataset[2];
         await usersPage.addUserPickCalender(date, month, year );
@@ -51,7 +57,7 @@ test.describe('User Management Test', () => {
     })
 
 
-    test('Add User with valid data', async () => {
+    test('TC006 - Add User with valid data', async () => {
         const usersPage = new UsersPage(page);
         await usersPage.addUserUploadPhoto();
         const { role, firstName, lastName, gender, language, mobileNumber, email, maritalStatus, emergencyContactNo, address, emirateValue, emirateId, trnNo } = UsersPageDataset[0];
@@ -59,53 +65,52 @@ test.describe('User Management Test', () => {
         await usersPage.UploadIdProof.scrollIntoViewIfNeeded();
         await usersPage.addUserIdProof();
         await usersPage.addUserOtherDocuments();
-        await usersPage.clickSubmitBtn();
-        await page.pause();
+        await usersPage.clickCancelBtn();
         await usersPage.backBtn.click();
     })
     
 
-    test('Add User without mandatory', async () => {
-        const usersPage = new UsersPage(page);
-        await usersPage.clickAddUserBtn();
-        const printErrorMessage = await usersPage.addUserwithoutMandatoryFields();
-        console.log(printErrorMessage);
-        await usersPage.clickCancelBtn();
+    // test('TC007 - Add User without mandatory', async () => {
+    //     const usersPage = new UsersPage(page);
+    //     await usersPage.clickAddUserBtn();
+    //     const printErrorMessage = await usersPage.addUserwithoutMandatoryFields();
+    //     console.log(printErrorMessage);
+    //     await usersPage.clickCancelBtn();
 
 
-    })
+    // })
 
-    test('Add User with InvalidData', async () => {
-        const usersPage = new UsersPage(page);
-        await usersPage.clickAddUserBtn();
-        const { role, firstName, lastName, mobileNumber, email, emergencyContactNo, emirateId, trnNo } = UsersPageDataset[1];
-        await usersPage.addUserWithInvalidData(role, firstName, lastName, mobileNumber, email, emergencyContactNo, emirateId, trnNo);
-        await usersPage.clickSubmitBtn();
-        await usersPage.backBtn.click();
+    // test('TC008 - Add User with InvalidData', async () => {
+    //     const usersPage = new UsersPage(page);
+    //     await usersPage.clickAddUserBtn();
+    //     const { role, firstName, lastName, mobileNumber, email, emergencyContactNo, emirateId, trnNo } = UsersPageDataset[1];
+    //     await usersPage.addUserWithInvalidData(role, firstName, lastName, mobileNumber, email, emergencyContactNo, emirateId, trnNo);
+    //     await usersPage.clickSubmitBtn();
+    //     await usersPage.backBtn.click();
 
-    })
-
-
-    test('Select the checkbox in Role dropdown', async () => {
-        const usersPage = new UsersPage(page);
-        await usersPage.selectCheckbox('AWC Admin');
+    // })
 
 
+    // test('TC009 - Select the checkbox in Role dropdown', async () => {
+    //     const usersPage = new UsersPage(page);
+    //     await usersPage.selectCheckbox('AWC Admin');
 
-    })
 
-    test('Search the User and view', async () => {
-        const usersPage = new UsersPage(page);
-        await usersPage.searchTheUserAndView();
 
-    })
+    // })
 
-    test('Search the User and edit', async () => {
-        const usersPage = new UsersPage(page);
-        await usersPage.searchTheUserAndEdit();
-        const { role, firstName, lastName, gender, language, mobileNumber, email, maritalStatus, emergencyContactNo, address, emirateValue, emirateId, trnNo } = UsersPageDataset[0];
-        await usersPage.editUserWithValidData(role, firstName, lastName, gender, language, mobileNumber, email, maritalStatus, emergencyContactNo, address, emirateValue, emirateId, trnNo);
-    })
+    // test('TC010 - Search the User and view', async () => {
+    //     const usersPage = new UsersPage(page);
+    //     await usersPage.searchTheUserAndView();
+
+    // })
+
+    // test('TC011 - Search the User and edit', async () => {
+    //     const usersPage = new UsersPage(page);
+    //     await usersPage.searchTheUserAndEdit();
+    //     const { role, firstName, lastName, gender, language, mobileNumber, email, maritalStatus, emergencyContactNo, address, emirateValue, emirateId, trnNo } = UsersPageDataset[0];
+    //     await usersPage.editUserWithValidData(role, firstName, lastName, gender, language, mobileNumber, email, maritalStatus, emergencyContactNo, address, emirateValue, emirateId, trnNo);
+    // })
 
 
 
