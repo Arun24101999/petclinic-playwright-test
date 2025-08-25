@@ -1,0 +1,91 @@
+<testsuites id="" name="" tests="10" failures="3" skipped="3" errors="0" time="64.451635">
+<testsuite name="Admin\UserTest.spec.js" timestamp="2025-08-25T07:05:17.078Z" hostname="chromium" tests="10" failures="3" skipped="3" time="44.423" errors="0">
+<testcase name="User Management Test › Select User Role" classname="Admin\UserTest.spec.js" time="5.229">
+</testcase>
+<testcase name="User Management Test › Navigate to Users Module" classname="Admin\UserTest.spec.js" time="1.221">
+</testcase>
+<testcase name="User Management Test › Click Add User Button" classname="Admin\UserTest.spec.js" time="2.136">
+</testcase>
+<testcase name="User Management Test › date picker" classname="Admin\UserTest.spec.js" time="8.464">
+</testcase>
+<testcase name="User Management Test › Add User with valid data" classname="Admin\UserTest.spec.js" time="15.871">
+<failure message="UserTest.spec.js:54:5 Add User with valid data" type="FAILURE">
+<![CDATA[  [chromium] › Admin\UserTest.spec.js:54:5 › User Management Test › Add User with valid data ───────
+
+    Error: ENOENT: no such file or directory, stat 'C:\Users\ArunkumarRagavan\PetClinic_VScode\Images\ATS Resume.pdf'
+
+       at ..\POM_Admin\UsersPage.js:101
+
+       99 |     await this.UploadOtherDocuments.click();
+      100 |     const fileChooser = await fileChooserPromise;
+    > 101 |     await fileChooser.setFiles('./Images/ATS Resume.pdf');
+          |     ^
+      102 |     await this.page.waitForTimeout(2000);
+      103 |
+      104 |   }
+        at UsersPage.addUserOtherDocuments (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_Admin\UsersPage.js:101:5)
+        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\Admin\UserTest.spec.js:61:9
+
+    Error Context: ..\test-results\Admin-UserTest-User-Management-Test-Add-User-with-valid-data-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\Admin-UserTest-User-Management-Test-Add-User-with-valid-data-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="User Management Test › Add User without mandatory" classname="Admin\UserTest.spec.js" time="11.502">
+<failure message="UserTest.spec.js:68:5 Add User without mandatory" type="FAILURE">
+<![CDATA[  [chromium] › Admin\UserTest.spec.js:68:5 › User Management Test › Add User without mandatory ─────
+
+    Error: locator.click: Target page, context or browser has been closed
+    Call log:
+      - waiting for locator('//button[@class=\'btn primary-btn addroom-btn-size btn-secondary\']')
+
+
+       at ..\POM_Admin\UsersPage.js:72
+
+      70 |
+      71 |   async clickAddUserBtn() {
+    > 72 |     await this.addUserBtn.click();
+         |                           ^
+      73 |     await this.page.waitForTimeout(2000);
+      74 |   }
+      75 |
+        at UsersPage.clickAddUserBtn (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_Admin\UsersPage.js:72:27)
+        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\Admin\UserTest.spec.js:70:25
+]]>
+</failure>
+</testcase>
+<testcase name="User Management Test › Add User with InvalidData" classname="Admin\UserTest.spec.js" time="0">
+<failure message="UserTest.spec.js:78:5 Add User with InvalidData" type="FAILURE">
+<![CDATA[  [chromium] › Admin\UserTest.spec.js:78:5 › User Management Test › Add User with InvalidData ──────
+
+    Error: page.waitForTimeout: Target page, context or browser has been closed
+
+      18 |         const loginPage = new LoginPage(page);
+      19 |         await loginPage.gotoLoginPage(Url);
+    > 20 |         await page.waitForTimeout(2000);
+         |                    ^
+      21 |         const { UserName, Password } = LoginDataset[1];
+      22 |         await loginPage.login(UserName, Password);
+      23 |     })
+        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\Admin\UserTest.spec.js:20:20
+]]>
+</failure>
+</testcase>
+<testcase name="User Management Test › Select the checkbox in Role dropdown" classname="Admin\UserTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="User Management Test › Search the User and view" classname="Admin\UserTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="User Management Test › Search the User and edit" classname="Admin\UserTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+</testsuites>
