@@ -26,7 +26,7 @@ test.describe('Login Test', () => {
         const { UserName, Password } = LoginDataset[2];  
         await loginPage.login(UserName, Password);
         const value = await loginPage.getErrorMessage();
-        await expect(value).toContain("Invalid Credentials");
+        await expect(value).toContain("Email or Mobilenumber not found");
 
     })
 
