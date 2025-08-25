@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
-const { LoginPage } = require('../POM_Admin/LoginPage');
+const { LoginPage } = require('../../POM_Admin/LoginPage');
 
-const LoginDataset = JSON.parse(JSON.stringify(require('../utils/LoginPageUtils.json')));
+const LoginDataset = JSON.parse(JSON.stringify(require('../../utils/LoginPageUtils.json')));
 const { Url } = LoginDataset[0];
 
 

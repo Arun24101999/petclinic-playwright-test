@@ -1,10 +1,10 @@
 const { test, expect } = require('@playwright/test');
-const { LoginPage } = require('../POM_Admin/LoginPage');
-const { UsersPage } = require('../POM_Admin/UsersPage');
+const { LoginPage } = require('../../POM_Admin/LoginPage');
+const { UsersPage } = require('../../POM_Admin/UsersPage');
 
-const LoginDataset = JSON.parse(JSON.stringify(require('../Utils/LoginPageUtils.json')));
+const LoginDataset = JSON.parse(JSON.stringify(require('../../Utils/LoginPageUtils.json')));
 const { Url } = LoginDataset[0];
-const UsersPageDataset = JSON.parse(JSON.stringify(require('../Utils/UserPageUtils.json')));
+const UsersPageDataset = JSON.parse(JSON.stringify(require('../../Utils/UserPageUtils.json')));
 let context;
 let page;
 
