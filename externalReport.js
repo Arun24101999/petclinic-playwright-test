@@ -4,7 +4,7 @@ const xml2js = require('xml2js');
 const parser = new xml2js.Parser();
 
 // Report Meta Info
-const reportTitle = "PetClinic Automation Report";
+const reportTitle = "PetClinic Test Automation Report";
 const environment = "QA-Staging";
 const version = "v1.0.0";
 
