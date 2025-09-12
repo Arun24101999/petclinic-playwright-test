@@ -1,35 +1,21 @@
-<testsuites id="" name="" tests="10" failures="1" skipped="0" errors="0" time="80.817119">
-<testsuite name="Admin\LoginTest.spec.js" timestamp="2025-08-25T12:10:59.546Z" hostname="chromium" tests="4" failures="0" skipped="0" time="23.717" errors="0">
-<testcase name="TS01 - Login Test › TC001 - log in with valid credentials" classname="Admin\LoginTest.spec.js" time="5.746">
+<testsuites id="" name="" tests="5" failures="2" skipped="0" errors="0" time="88.80778099999999">
+<testsuite name="AdminTest\AdoptionTest.spec.js" timestamp="2025-09-11T12:58:56.987Z" hostname="chromium" tests="5" failures="2" skipped="0" time="76.586" errors="0">
+<testcase name="TS02 - Adoption Requests Module Tests › TC001 - Login with valid Credentials" classname="AdminTest\AdoptionTest.spec.js" time="6.133">
 </testcase>
-<testcase name="TS01 - Login Test › TC002 - log in with Invalid Username " classname="Admin\LoginTest.spec.js" time="6.335">
+<testcase name="TS02 - Adoption Requests Module Tests › TC002 - Select User Role" classname="AdminTest\AdoptionTest.spec.js" time="5.17">
 </testcase>
-<testcase name="TS01 - Login Test › TC003 - log in with Invalid Password " classname="Admin\LoginTest.spec.js" time="7.095">
+<testcase name="TS02 - Adoption Requests Module Tests › TC003 - Naviagate to Adoption Module" classname="AdminTest\AdoptionTest.spec.js" time="5.269">
 </testcase>
-<testcase name="TS01 - Login Test › TC004 - log in with Invalid Credentials " classname="Admin\LoginTest.spec.js" time="4.541">
-</testcase>
-</testsuite>
-<testsuite name="Admin\UserTest.spec.js" timestamp="2025-08-25T12:10:59.546Z" hostname="chromium" tests="6" failures="1" skipped="0" time="49.29" errors="0">
-<testcase name="TS02 - User Management Test › TC001 - Login with valid Credentials" classname="Admin\UserTest.spec.js" time="2.134">
-</testcase>
-<testcase name="TS02 - User Management Test › TC002 - Select User Role" classname="Admin\UserTest.spec.js" time="5.166">
-</testcase>
-<testcase name="TS02 - User Management Test › TC003 - Navigate to Users Module" classname="Admin\UserTest.spec.js" time="1.304">
-</testcase>
-<testcase name="TS02 - User Management Test › TC004 - Click Add User Button" classname="Admin\UserTest.spec.js" time="2.172">
-</testcase>
-<testcase name="TS02 - User Management Test › TC005 - date picker" classname="Admin\UserTest.spec.js" time="8.508">
-</testcase>
-<testcase name="TS02 - User Management Test › TC006 - Add User with valid data" classname="Admin\UserTest.spec.js" time="30.006">
-<failure message="UserTest.spec.js:60:5 TC006 - Add User with valid data" type="FAILURE">
-<![CDATA[  [chromium] › Admin\UserTest.spec.js:60:5 › TS02 - User Management Test › TC006 - Add User with valid data 
+<testcase name="TS02 - Adoption Requests Module Tests › TC008 - Select Foster Active" classname="AdminTest\AdoptionTest.spec.js" time="30.002">
+<failure message="AdoptionTest.spec.js:171:5 TC008 - Select Foster Active" type="FAILURE">
+<![CDATA[  [chromium] › AdminTest\AdoptionTest.spec.js:171:5 › TS02 - Adoption Requests Module Tests › TC008 - Select Foster Active 
 
     Test timeout of 30000ms exceeded.
 
     Error: locator.click: Test ended.
     Call log:
-      - waiting for locator('//*[name()=\'svg\'][@class=\'fa-xs back-arrow svg-inline--fa fa-arrow-left fa-w-14\']')
-        - locator resolved to <svg role="img" focusable="false" data-prefix="fas" aria-hidden="true" viewBox="0 0 448 512" data-icon="arrow-left" xmlns="http://www.w3.org/2000/svg" class="fa-xs back-arrow svg-inline--fa fa-arrow-left fa-w-14">…</svg>
+      - waiting for locator('[class=\'btn primary-btn submit-btn-size btn-secondary\']')
+        - locator resolved to <button type="button" class="btn primary-btn submit-btn-size btn-secondary">…</button>
       - attempting click action
         2 × waiting for element to be visible, enabled and stable
           - element is not visible
@@ -39,27 +25,63 @@
           - element is not visible
         - retrying click action
           - waiting 100ms
-        18 × waiting for element to be visible, enabled and stable
+        49 × waiting for element to be visible, enabled and stable
            - element is not visible
          - retrying click action
            - waiting 500ms
 
 
-      67 |         await usersPage.addUserOtherDocuments();
-      68 |         await usersPage.clickCancelBtn();
-    > 69 |         await usersPage.backBtn.click();
-         |                                 ^
-      70 |     })
-      71 |     
-      72 |
-        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\Admin\UserTest.spec.js:69:33
+       at ..\POM_AdminPages\AdoptionPage.js:255
 
-    Error Context: ..\test-results\Admin-UserTest-TS02---User-cd832----Add-User-with-valid-data-chromium\error-context.md
+      253 |
+      254 |   async clickCompleteBtn() {
+    > 255 |     await this.completeBtn.click();
+          |                            ^
+      256 |   }
+      257 |
+      258 |   async pickCalenderStartDate(date, month, year) {
+        at AdoptionPage.clickCompleteBtn (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_AdminPages\AdoptionPage.js:255:28)
+        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\AdminTest\AdoptionTest.spec.js:175:28
+
+    Error Context: ..\test-results\AdminTest-AdoptionTest-TS0-60688-C008---Select-Foster-Active-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[error
+
+[[ATTACHMENT|..\test-results\AdminTest-AdoptionTest-TS0-60688-C008---Select-Foster-Active-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Select Trial Active" classname="AdminTest\AdoptionTest.spec.js" time="30.012">
+<failure message="AdoptionTest.spec.js:180:5 TC009 - Select Trial Active" type="FAILURE">
+<![CDATA[  [chromium] › AdminTest\AdoptionTest.spec.js:180:5 › TS02 - Adoption Requests Module Tests › TC009 - Select Trial Active 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test ended.
+    Call log:
+      - waiting for locator('.v-slide-group__wrapper>div>div~div').nth(5)
+
+
+       at ..\POM_AdminPages\AdoptionPage.js:194
+
+      192 |   async clickTrialActive(searchValue, givenPetName, givenCustomerName) {
+      193 |
+    > 194 |     await this.selectTrialActive.click();
+          |                                  ^
+      195 |     await this.page.waitForTimeout(1000);
+      196 |     await this.activeSearch.fill(searchValue);
+      197 |     await this.page.waitForTimeout(2000);
+        at AdoptionPage.clickTrialActive (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_AdminPages\AdoptionPage.js:194:34)
+        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\AdminTest\AdoptionTest.spec.js:183:28
+
+    Error Context: ..\test-results\AdminTest-AdoptionTest-TS0-38401-TC009---Select-Trial-Active-chromium\error-context.md
 ]]>
 </failure>
 <system-out>
 <![CDATA[
-[[ATTACHMENT|..\test-results\Admin-UserTest-TS02---User-cd832----Add-User-with-valid-data-chromium\error-context.md]]
+[[ATTACHMENT|..\test-results\AdminTest-AdoptionTest-TS0-38401-TC009---Select-Trial-Active-chromium\error-context.md]]
 ]]>
 </system-out>
 </testcase>
