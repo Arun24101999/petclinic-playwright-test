@@ -1,87 +1,33 @@
-<testsuites id="" name="" tests="5" failures="2" skipped="0" errors="0" time="88.80778099999999">
-<testsuite name="AdminTest\AdoptionTest.spec.js" timestamp="2025-09-11T12:58:56.987Z" hostname="chromium" tests="5" failures="2" skipped="0" time="76.586" errors="0">
-<testcase name="TS02 - Adoption Requests Module Tests › TC001 - Login with valid Credentials" classname="AdminTest\AdoptionTest.spec.js" time="6.133">
+<testsuites id="" name="" tests="3" failures="1" skipped="0" errors="0" time="21.777712">
+<testsuite name="AdminTest\StorageLocation.spec.js" timestamp="2025-09-12T10:28:14.930Z" hostname="chromium" tests="3" failures="1" skipped="0" time="14.403" errors="0">
+<testcase name="TS03 - Storage Location › TC001 - Login with valid Credentials" classname="AdminTest\StorageLocation.spec.js" time="6.132">
 </testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC002 - Select User Role" classname="AdminTest\AdoptionTest.spec.js" time="5.17">
+<testcase name="TS03 - Storage Location › TC002 - Select User Role" classname="AdminTest\StorageLocation.spec.js" time="6.363">
 </testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC003 - Naviagate to Adoption Module" classname="AdminTest\AdoptionTest.spec.js" time="5.269">
-</testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC008 - Select Foster Active" classname="AdminTest\AdoptionTest.spec.js" time="30.002">
-<failure message="AdoptionTest.spec.js:171:5 TC008 - Select Foster Active" type="FAILURE">
-<![CDATA[  [chromium] › AdminTest\AdoptionTest.spec.js:171:5 › TS02 - Adoption Requests Module Tests › TC008 - Select Foster Active 
+<testcase name="TS03 - Storage Location › Tc003 - storagelocation" classname="AdminTest\StorageLocation.spec.js" time="1.908">
+<failure message="StorageLocation.spec.js:42:5 Tc003 - storagelocation" type="FAILURE">
+<![CDATA[  [chromium] › AdminTest\StorageLocation.spec.js:42:5 › TS03 - Storage Location › Tc003 - storagelocation 
 
-    Test timeout of 30000ms exceeded.
+    TypeError: Cannot read properties of undefined (reading 'waitForTimeout')
 
-    Error: locator.click: Test ended.
-    Call log:
-      - waiting for locator('[class=\'btn primary-btn submit-btn-size btn-secondary\']')
-        - locator resolved to <button type="button" class="btn primary-btn submit-btn-size btn-secondary">…</button>
-      - attempting click action
-        2 × waiting for element to be visible, enabled and stable
-          - element is not visible
-        - retrying click action
-        - waiting 20ms
-        2 × waiting for element to be visible, enabled and stable
-          - element is not visible
-        - retrying click action
-          - waiting 100ms
-        49 × waiting for element to be visible, enabled and stable
-           - element is not visible
-         - retrying click action
-           - waiting 500ms
+       at ..\POM_AdminPages\StorageLocationPage.js:40
 
+      38 |
+      39 |         await this.addStorageLocationBtn.click();
+    > 40 |         await this.page.waitForTimeout(1000);
+         |                         ^
+      41 |         await this.storageLocation.fill("new store");
+      42 |         await this.page.waitForTimeout(1000);
+      43 |         await this.storageUser.click();
+        at StorageLocation.clickAddStorageLocation (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_AdminPages\StorageLocationPage.js:40:25)
+        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\AdminTest\StorageLocation.spec.js:45:5
 
-       at ..\POM_AdminPages\AdoptionPage.js:255
-
-      253 |
-      254 |   async clickCompleteBtn() {
-    > 255 |     await this.completeBtn.click();
-          |                            ^
-      256 |   }
-      257 |
-      258 |   async pickCalenderStartDate(date, month, year) {
-        at AdoptionPage.clickCompleteBtn (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_AdminPages\AdoptionPage.js:255:28)
-        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\AdminTest\AdoptionTest.spec.js:175:28
-
-    Error Context: ..\test-results\AdminTest-AdoptionTest-TS0-60688-C008---Select-Foster-Active-chromium\error-context.md
-]]>
-</failure>
-<system-out>
-<![CDATA[error
-
-[[ATTACHMENT|..\test-results\AdminTest-AdoptionTest-TS0-60688-C008---Select-Foster-Active-chromium\error-context.md]]
-]]>
-</system-out>
-</testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Select Trial Active" classname="AdminTest\AdoptionTest.spec.js" time="30.012">
-<failure message="AdoptionTest.spec.js:180:5 TC009 - Select Trial Active" type="FAILURE">
-<![CDATA[  [chromium] › AdminTest\AdoptionTest.spec.js:180:5 › TS02 - Adoption Requests Module Tests › TC009 - Select Trial Active 
-
-    Test timeout of 30000ms exceeded.
-
-    Error: locator.click: Test ended.
-    Call log:
-      - waiting for locator('.v-slide-group__wrapper>div>div~div').nth(5)
-
-
-       at ..\POM_AdminPages\AdoptionPage.js:194
-
-      192 |   async clickTrialActive(searchValue, givenPetName, givenCustomerName) {
-      193 |
-    > 194 |     await this.selectTrialActive.click();
-          |                                  ^
-      195 |     await this.page.waitForTimeout(1000);
-      196 |     await this.activeSearch.fill(searchValue);
-      197 |     await this.page.waitForTimeout(2000);
-        at AdoptionPage.clickTrialActive (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_AdminPages\AdoptionPage.js:194:34)
-        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\AdminTest\AdoptionTest.spec.js:183:28
-
-    Error Context: ..\test-results\AdminTest-AdoptionTest-TS0-38401-TC009---Select-Trial-Active-chromium\error-context.md
+    Error Context: ..\test-results\AdminTest-StorageLocation--1a021-ion-Tc003---storagelocation-chromium\error-context.md
 ]]>
 </failure>
 <system-out>
 <![CDATA[
-[[ATTACHMENT|..\test-results\AdminTest-AdoptionTest-TS0-38401-TC009---Select-Trial-Active-chromium\error-context.md]]
+[[ATTACHMENT|..\test-results\AdminTest-StorageLocation--1a021-ion-Tc003---storagelocation-chromium\error-context.md]]
 ]]>
 </system-out>
 </testcase>

@@ -146,7 +146,7 @@ test.describe('TS02 - Adoption Requests Module Tests', () => {
     // test('TC010 - Accept the Return', async () => {
     //     const adoptionPage = new AdoptionPage(page);
     //     await page.waitForTimeout(2000);
-    //     await adoptionPage.clickReturnRequest('Holy','Holy','Ej Pradeep');
+    //     await adoptionPage.clickReturnRequest('Holy', 'Holy', 'Ej Pradeep');
     //     await adoptionPage.clickRejectBtn("Natural");
     //     await adoptionPage.submitBtn.click();
     //     await adoptionPage.clickConfirmationNo();
@@ -157,33 +157,73 @@ test.describe('TS02 - Adoption Requests Module Tests', () => {
     //     await adoptionPage.backBtn.click();
     // })
 
-    //  test('TC011 - Reject the Return', async () => {
+    // test('TC011 - Reject the Return', async () => {
     //     const adoptionPage = new AdoptionPage(page);
     //     await page.waitForTimeout(2000);
-    //     await adoptionPage.clickReturnRequest('Holy','Holy','Ej Pradeep');
+    //     await adoptionPage.clickReturnRequest('Holy', 'Holy', 'Ej Pradeep');
     //     await adoptionPage.clickRejectBtn("Natural");
     //     await adoptionPage.submitBtn.click();
     //     await adoptionPage.clickConfirmationNo();
-    //      await adoptionPage.closeIcon.click();
+    //     await adoptionPage.closeIcon.click();
     //     await adoptionPage.backBtn.click();
     // })
 
-    test('TC008 - Select Foster Active', async () => {
+    // test('TC008 - Select Foster Active', async () => {
+    //     const adoptionPage = new AdoptionPage(page);
+    //     await page.waitForTimeout(1000);
+    //     await adoptionPage.clickFosterActive('latin', 'Latin', 'Arun Muthu Sukumar M');
+    //     await adoptionPage.clickCompleteBtn();
+    //     await adoptionPage.clickConfirmationNo();
+    //     await adoptionPage.backBtn.click();
+    // })
+
+    // test('TC009 - Select Trial Active', async () => {
+    //     const adoptionPage = new AdoptionPage(page);
+    //     await page.waitForTimeout(1000);
+    //     await adoptionPage.clickTrialActive('joy', 'Joy', 'Tamilselvi A');
+    //     await page.waitForTimeout(1000);
+    //     await adoptionPage.clickCompleteBtn();
+    //     await adoptionPage.clickConfirmationNo();
+    //     await adoptionPage.backBtn.click();
+    // })
+
+    test('TC009 - Select Adoption History Module', async () => {
         const adoptionPage = new AdoptionPage(page);
         await page.waitForTimeout(1000);
-        await adoptionPage.clickFosterActive('latin', 'Latin', 'Arun Muthu Sukumar M');
-        await adoptionPage.clickCompleteBtn();
-        await adoptionPage.confirmationMessageNo();
-        await adoptionPage.backBtn.click();
+        await adoptionPage.navigateToAdoptionHistory();
     })
 
-    test('TC009 - Select Trial Active', async () => {
+    test('TC009 - Select Adoption History', async () => {
         const adoptionPage = new AdoptionPage(page);
-        await page.waitForTimeout(2000);
-        await adoptionPage.clickTrialActive('joy', 'Joy', 'Tamilselvi A');
-        await adoptionPage.clickCompleteBtn();
-        await adoptionPage.confirmationMessageNo();
-        await adoptionPage.backBtn.click();
+        await page.waitForTimeout(1000);
+        await adoptionPage.selectAdoptionHistory.click();
+        await page.waitForTimeout(1000);
+        const getStatusMessage=await adoptionPage.clickAdoptionHistory('Lasseo','Ribhadharshini B','Lasseo');
+        console.log("adoption history status is:",getStatusMessage);
+    })
+    test('TC009 - Select Foster History', async () => {
+        const adoptionPage = new AdoptionPage(page);
+        await page.waitForTimeout(1000);
+        await adoptionPage.selectFosterHistory.click();
+        await page.waitForTimeout(1000);
+        const getStatusMessage=await adoptionPage.clickAdoptionHistory('laliya','Tamilselvi A','Laliya');
+        console.log("foster history status is:",getStatusMessage);
+    })
+    test('TC009 - Select Trial History', async () => {
+        const adoptionPage = new AdoptionPage(page);
+        await page.waitForTimeout(1000);
+        await adoptionPage.selectTrialHistory.click();
+        await page.waitForTimeout(1000);
+        const getStatusMessage=await adoptionPage.clickAdoptionHistory('thing','Arunkumar R','Thing');
+        console.log("trial history status is:",getStatusMessage);
+    })
+    test('TC009 - Select Return History', async () => {
+        const adoptionPage = new AdoptionPage(page);
+        await page.waitForTimeout(1000);
+        await adoptionPage.selectReturnHistory.click();
+        await page.waitForTimeout(1000);
+        const getStatusMessage=await adoptionPage.clickAdoptionHistory('benz','Arun Muthu Sukumar M','Benz');
+        console.log("return history status is:",getStatusMessage);
     })
 
 

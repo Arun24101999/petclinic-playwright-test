@@ -20,7 +20,7 @@ class AdoptionPage {
     this.selectTrialActive = page.locator(".v-slide-group__wrapper>div>div~div").nth(5);
     //Request Columns
     this.search = page.locator("#FosterFilter");
-  
+
     this.getCustomerName = page.locator("(//div[@ref='leftContainer']/following-sibling::div/div/div)[1]/div/div[@col-id='name']");
     this.getPetName = page.locator("(//div[@ref='leftContainer']/following-sibling::div/div/div)[1]/div/div[@col-id='petname']");
     this.viewAdoptionRequest = page.locator("//div[@role='gridcell'][normalize-space()='Tamilselvi A']/following-sibling::div[@col-id='action']/div/div/div/div/button");
@@ -37,13 +37,22 @@ class AdoptionPage {
     this.completeBtn = page.locator("[class='btn primary-btn submit-btn-size btn-secondary']");
 
     //Active Column
-    this.activeSearch=page.locator("#fosterOrderFilter");
-    this.getPetNameActiveColumn=page.locator("//h4[text()='Active']/../../../div/following-sibling::div//div[@ref='centerContainer']/div/div/div/div[@col-id='name']/following-sibling::div[@col-id='petname']");
+    this.activeSearch = page.locator("#fosterOrderFilter");
+    this.getPetNameActiveColumn = page.locator("//h4[text()='Active']/../../../div/following-sibling::div//div[@ref='centerContainer']/div/div/div/div[@col-id='name']/following-sibling::div[@col-id='petname']");
     //Calender locators
     this.startDate = page.locator("//input[@id='dateStart']");
     this.endDate = page.locator("//input[@id='dateEnd']")
     this.year = page.locator(".el-date-picker__header span").nth(0);
     this.month = page.locator(".el-date-picker__header span").nth(1);
+
+    //Adoption History Elements
+    this.adoptionHistoryBtn = page.locator("//div[contains(text(),'History')]");
+    this.selectAdoptionHistory = page.locator("(//div[@role='tab'])[1]");
+    this.selectFosterHistory = page.locator("(//div[@role='tab'])[2]");
+    this.selectTrialHistory = page.locator("(//div[@role='tab'])[3]");
+    this.selectReturnHistory = page.locator("(//div[@role='tab'])[4]");
+    this.searchAdoptionHistory = page.locator("//input[@id='managerHistoryquickFilter']");
+    this.backIcon=page.locator("//*[name()='svg' and @class='arrow-icon svg-inline--fa fa-arrow-left fa-w-14']");
   }
 
 
@@ -77,9 +86,9 @@ class AdoptionPage {
         }
         else {
           return console.log("error");
-      }
+        }
 
-    }
+      }
 
     }
 
@@ -172,43 +181,38 @@ class AdoptionPage {
     await this.activeSearch.fill(searchValue);
     await this.page.waitForTimeout(2000);
 
-      for (let j = 0; j < await this.getPetName.count(); j++) {
-        const petName = await this.getPetNameActiveColumn.nth(j).textContent();
+    for (let j = 0; j < await this.getPetNameActiveColumn.count(); j++) {
+      const petName = await this.getPetNameActiveColumn.nth(j).textContent();
 
-        if (petName.includes(givenPetName)) {
-          await this.page.locator(`//h4[text()='Active']/../../../div/following-sibling::div//div[@ref='centerContainer']/div/div/div/div[text()='${customerName}']/following-sibling::div[text()='${petName}']/following-sibling::div[@col-id='action']/div/div//button`).click();
+      if (petName.includes(givenPetName)) {
+        await this.page.locator(`//h4[text()='Active']/../../../div/following-sibling::div//div[@ref='centerContainer']/div/div/div/div[text()='${givenCustomerName}']/following-sibling::div[text()='${petName}']/following-sibling::div[@col-id='action']/div/div//button`).click();
 
-        }
-        else {
-          return console.log("error");
-        }
       }
-
+      else {
+        return console.log("error");
+      }
     }
 
-    
+  }
+
+
 
   async clickTrialActive(searchValue, givenPetName, givenCustomerName) {
 
     await this.selectTrialActive.click();
-    await this.page.waitForTimeout(1000);
-    await this.activeSearch.fill(searchValue);
     await this.page.waitForTimeout(2000);
+    await this.activeSearch.fill(searchValue);
+    await this.page.waitForTimeout(1000);
 
-    for (let i = 0; i < await this.getCustomerName.count(); i++) {
-      const customerName = await this.getCustomerName.nth(i).textContent();
+    for (let i = 0; i < await this.getPetNameActiveColumn.count(); i++) {
+      const petName = await this.getPetNameActiveColumn.nth(i).textContent();
 
-      for (let j = 0; j < await this.getPetName.count(); j++) {
-        const petName = await this.getPetName.nth(j).textContent();
-
-        if (customerName.includes(givenCustomerName) && petName.includes(givenPetName)) {
-          await this.page.locator(`//div[@role='gridcell'][normalize-space()='${customerName}']/following-sibling::div[text()='${petName}']/following-sibling::div[@col-id='action']/div/div/div/div/button`).click();
-        }
-        else {
-          return console.log("error");
-        }
+      if (petName.includes(givenPetName)) {
+        await this.page.locator(`//h4[text()='Active']/../../../div/following-sibling::div//div[@ref='centerContainer']/div/div/div/div[text()='${givenCustomerName}']/following-sibling::div[text()='${petName}']/following-sibling::div[@col-id='action']/div/div//button`).click();
       }
-
+      else {
+        return console.log("error");
+      }
     }
 
   }
@@ -281,6 +285,47 @@ class AdoptionPage {
 
   }
 
+
+  //---------------------------------------Adoption History-------------------------------------------------------
+
+
+  async navigateToAdoptionHistory() {
+
+    await this.adoptionHistoryBtn.click();
+    await this.page.waitForTimeout(1000);
+    await this.selectReturnHistory.hover();
+  }
+
+  async clickAdoptionHistory(searchValue, givenCustomerName, givenPetName) {
+
+    await this.page.waitForTimeout(2000);
+    await this.searchAdoptionHistory.fill(searchValue);
+    await this.page.waitForTimeout(2000);
+
+    for (let i = 0; i < await this.getCustomerName.count(); i++) {
+      const customerName = await this.getCustomerName.nth(i).textContent();
+
+      for (let j = 0; j < await this.getPetName.count(); j++) {
+        const petName = await this.getPetName.nth(j).textContent();
+
+        if (customerName.includes(givenCustomerName) && petName.includes(givenPetName)) {
+          await this.page.locator(`//div[@class='pt-0 col-12']//div[@ref='eBodyViewport']//div[text()='${customerName}']/following-sibling::div[text()='${petName}']/following-sibling::div//button`).click();
+           await this.page.waitForTimeout(2000);
+          await this.backIcon.click();
+          await this.page.waitForTimeout(2000);
+          const getStatusMessage = await this.page.locator(`//div[@class='pt-0 col-12']//div[@ref='eBodyViewport']//div[text()='${customerName}']/following-sibling::div[text()='${petName}']/following-sibling::div//span`).textContent();
+          return getStatusMessage;
+        }
+        else {
+          return console.log("error");
+        }
+      }
+
+    }
+
+
+
+  }
 
 
 }
