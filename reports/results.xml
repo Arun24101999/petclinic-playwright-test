@@ -1,18 +1,12 @@
-<testsuites id="" name="" tests="7" failures="0" skipped="0" errors="0" time="66.763095">
-<testsuite name="AdminTest\StorageLocationTest.spec.js" timestamp="2025-09-16T07:59:49.232Z" hostname="chromium" tests="7" failures="0" skipped="0" time="60.68" errors="0">
-<testcase name="TS03 - Storage Location › TC001 - Login with valid Credentials" classname="AdminTest\StorageLocationTest.spec.js" time="6.149">
+<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="29.196675">
+<testsuite name="AdminTest\ServiceMasterTest.spec.js" timestamp="2025-09-17T09:39:59.080Z" hostname="chromium" tests="4" failures="0" skipped="0" time="21.724" errors="0">
+<testcase name="TS04 - Service Master › TC001 - Login with valid Credentials" classname="AdminTest\ServiceMasterTest.spec.js" time="6.144">
 </testcase>
-<testcase name="TS03 - Storage Location › TC002 - Select User Role" classname="AdminTest\StorageLocationTest.spec.js" time="7.305">
+<testcase name="TS04 - Service Master › TC002 - Select User Role" classname="AdminTest\ServiceMasterTest.spec.js" time="7.146">
 </testcase>
-<testcase name="TS03 - Storage Location › TC003 - Navigate to StorageLocation Page" classname="AdminTest\StorageLocationTest.spec.js" time="2.456">
+<testcase name="TS04 - Service Master › TC003 - Navigate to ServiceMaster " classname="AdminTest\ServiceMasterTest.spec.js" time="6.034">
 </testcase>
-<testcase name="TS03 - Storage Location › TC004 - add storagelocation with valid data" classname="AdminTest\StorageLocationTest.spec.js" time="11.184">
-</testcase>
-<testcase name="TS03 - Storage Location › TC005 - edit storagelocation" classname="AdminTest\StorageLocationTest.spec.js" time="10.499">
-</testcase>
-<testcase name="TS03 - Storage Location › TC006 - view storagelocation" classname="AdminTest\StorageLocationTest.spec.js" time="5.164">
-</testcase>
-<testcase name="TS03 - Storage Location › TC007 - delete storagelocation" classname="AdminTest\StorageLocationTest.spec.js" time="17.923">
+<testcase name="TS04 - Service Master › TC007 - Select Category " classname="AdminTest\ServiceMasterTest.spec.js" time="2.4">
 </testcase>
 </testsuite>
 </testsuites>
