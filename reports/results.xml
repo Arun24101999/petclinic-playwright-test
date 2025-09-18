@@ -1,0 +1,20 @@
+<testsuites id="" name="" tests="8" failures="0" skipped="0" errors="0" time="105.44859000000001">
+<testsuite name="AdminTest\TreatmentMasterTest.spec.js" timestamp="2025-09-18T10:59:44.577Z" hostname="chromium" tests="8" failures="0" skipped="0" time="99.268" errors="0">
+<testcase name="TS05 - Service Category › TC001 - Login with valid Credentials" classname="AdminTest\TreatmentMasterTest.spec.js" time="6.127">
+</testcase>
+<testcase name="TS05 - Service Category › TC002 - Select User Role" classname="AdminTest\TreatmentMasterTest.spec.js" time="7.236">
+</testcase>
+<testcase name="TS05 - Service Category › TC003 - Navigate to TreatmentMaster " classname="AdminTest\TreatmentMasterTest.spec.js" time="5.342">
+</testcase>
+<testcase name="TS05 - Service Category › TC004 - Add Treatment Master" classname="AdminTest\TreatmentMasterTest.spec.js" time="18.909">
+</testcase>
+<testcase name="TS05 - Service Category › TC005 - Cancel the add Treatment Master" classname="AdminTest\TreatmentMasterTest.spec.js" time="23.068">
+</testcase>
+<testcase name="TS05 - Service Category › TC006 - edit Treatment Master" classname="AdminTest\TreatmentMasterTest.spec.js" time="22.903">
+</testcase>
+<testcase name="TS05 - Service Category › TC008 - view Treatment Master" classname="AdminTest\TreatmentMasterTest.spec.js" time="6.158">
+</testcase>
+<testcase name="TS05 - Service Category › TC007 - delete Treatment Master" classname="AdminTest\TreatmentMasterTest.spec.js" time="9.525">
+</testcase>
+</testsuite>
+</testsuites>
