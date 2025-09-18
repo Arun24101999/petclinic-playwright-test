@@ -40,7 +40,6 @@ class ServiceMasterPage {
 
     }
 
-    //label[text()='Vaccination']/preceding-sibling::input
 
     async navigateToServiceMaster() {
         await this.serviceModule.hover();

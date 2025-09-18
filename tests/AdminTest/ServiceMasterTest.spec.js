@@ -46,53 +46,56 @@ test.describe('TS04 - Service Master', () => {
     })
 
 
-    // test('TC004 - add ServiceMaster ', async () => {
-    //     const serviceMasterPage = new ServiceMasterPage(page);
-    //     await serviceMasterPage.addServiceMaster('new service','Massage','25','30','Kidney Disease');
-    //     await serviceMasterPage.clickSubmitBtn();
-    //     await serviceMasterPage.closeIcon.click();
-    //     await serviceMasterPage.clickSubmitBtn();
-    //     await serviceMasterPage.clickConfirmationNo();
-    //     await serviceMasterPage.clickSubmitBtn()
-    //     await serviceMasterPage.clickConfirmationYes();
-    // })
+    test('TC004 - add ServiceMaster ', async () => {
+        const serviceMasterPage = new ServiceMasterPage(page);
+        await serviceMasterPage.addServiceMaster('new service','Massage','25','30','Kidney Disease');
+        await serviceMasterPage.clickSubmitBtn();
+        await serviceMasterPage.closeIcon.click();
+        await serviceMasterPage.clickSubmitBtn();
+        await serviceMasterPage.clickConfirmationNo();
+        await serviceMasterPage.clickSubmitBtn()
+        await serviceMasterPage.clickConfirmationYes();
+        await serviceMasterPage.validateToastMessage('Service Master created succesfully');
+    })
 
 
-    // test('TC005 - edit ServiceMaster ', async () => {
-    //     const serviceMasterPage = new ServiceMasterPage(page);
-    //     await serviceMasterPage.searchValue('Massage');
-    //     await serviceMasterPage.clickEditBtn('Massage','new service');
-    //     await serviceMasterPage.editServiceMaster('testing','50','40','Bacterial Infections');
-    //     await page.waitForTimeout(2000);
-    //     await serviceMasterPage.clickSubmitBtn()
-    //     await serviceMasterPage.clickConfirmationYes();
-    // })
+    test('TC005 - edit ServiceMaster ', async () => {
+        const serviceMasterPage = new ServiceMasterPage(page);
+        await serviceMasterPage.searchValue('Massage');
+        await serviceMasterPage.clickEditBtn('Massage','new service');
+        await serviceMasterPage.editServiceMaster('testing','50','40','Bacterial Infections');
+        await page.waitForTimeout(2000);
+        await serviceMasterPage.clickSubmitBtn()
+        await serviceMasterPage.clickConfirmationYes();
+        await serviceMasterPage.validateToastMessage('Service Master updated succesfully');
+    })
 
-    // test('TC006 - cancel ServiceMaster ', async () => {
-    //     const serviceMasterPage = new ServiceMasterPage(page);
-    //     await serviceMasterPage.addServiceMaster('new service','test','25','30','Kidney Disease');
-    //     await page.waitForTimeout(2000);
-    //     await serviceMasterPage.clickCancelBtn();
-    //     await serviceMasterPage.closeIcon.click();
-    //     await serviceMasterPage.clickCancelBtn();
-    //     await serviceMasterPage.clickConfirmationNo();
-    //     await serviceMasterPage.clickCancelBtn()
-    //     await serviceMasterPage.clickConfirmationYes();
-    // })
+    test('TC006 - cancel ServiceMaster ', async () => {
+        const serviceMasterPage = new ServiceMasterPage(page);
+        await serviceMasterPage.addServiceMaster('new service','test','25','30','Kidney Disease');
+        await page.waitForTimeout(2000);
+        await serviceMasterPage.clickCancelBtn();
+        await serviceMasterPage.closeIcon.click();
+        await serviceMasterPage.clickCancelBtn();
+        await serviceMasterPage.clickConfirmationNo();
+        await serviceMasterPage.clickCancelBtn()
+        await serviceMasterPage.clickConfirmationYes();
+    })
 
-    // test('TC007 - delete ServiceMaster ', async () => {
-    //     const serviceMasterPage = new ServiceMasterPage(page);
-    //     await serviceMasterPage.searchValue('Massage');
-    //     await page.waitForTimeout(2000);
-    //     await serviceMasterPage.clickDeleteBtn('massage','new service');
-    //     await serviceMasterPage.closeIcon.click();
-    //     await serviceMasterPage.clickDeleteBtn('massage','new service');
-    //     await serviceMasterPage.clickConfirmationNo();
-    //     await serviceMasterPage.clickDeleteBtn('massage','new service');
-    //     await serviceMasterPage.clickConfirmationYes();
-    // })
+    test('TC007 - delete ServiceMaster ', async () => {
+        const serviceMasterPage = new ServiceMasterPage(page);
+        await serviceMasterPage.searchValue('Massage');
+        await page.waitForTimeout(2000);
+        await serviceMasterPage.clickDeleteBtn('massage','new service');
+        await serviceMasterPage.closeIcon.click();
+        await serviceMasterPage.clickDeleteBtn('massage','new service');
+        await serviceMasterPage.clickConfirmationNo();
+        await serviceMasterPage.clickDeleteBtn('massage','new service');
+        await serviceMasterPage.clickConfirmationYes();
+        await serviceMasterPage.validateToastMessage('Service Master deleted succesfully');
+    })
 
-    test('TC007 - Select Category ', async () => {
+    test('TC008 - Select Category ', async () => {
         const serviceMasterPage = new ServiceMasterPage(page);
         await serviceMasterPage.selectCategory('Exotics');
     })
