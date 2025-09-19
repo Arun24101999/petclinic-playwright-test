@@ -102,7 +102,7 @@ test.describe('TS05 - Service Category', () => {
         await page.waitForTimeout(1000);
     })
 
-    test('TC007 - delete Service Category ', async () => {
+    test('TC009 - delete Service Category ', async () => {
         const serviceCategoryPage = new ServiceCategoryPage(page);
         await serviceCategoryPage.searchValue('testtwo');
          await page.waitForTimeout(1000);

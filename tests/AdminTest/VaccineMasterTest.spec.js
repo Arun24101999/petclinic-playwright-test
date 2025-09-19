@@ -102,7 +102,7 @@ test.describe('TS05 - Service Category', () => {
         await page.waitForTimeout(1000);
     })
 
-    test('TC007 - delete Vaccine Master', async () => {
+    test('TC009 - delete Vaccine Master', async () => {
         const vaccineMasterPage = new VaccineMasterPage(page);
         await vaccineMasterPage.searchValue('deotetra');
         await page.waitForTimeout(1000);
