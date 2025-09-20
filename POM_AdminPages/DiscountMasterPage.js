@@ -23,9 +23,10 @@ class DiscountMasterPage {
         this.discountType = page.locator("#discountType");
         this.discountValue = page.locator("#discountValue");
         this.discountCode = page.locator("#discountCode");
-        this.remarkNo = page.locator("//label//span[contains(text(),'No')]");
-        this.remarkYes = page.locator("//label//span[contains(text(),'Yes')]");
-        this.allocationNeed = page.locator("#description");
+        this.remarkNo = page.locator("//label[text()='Remark']/../div//label/span[text()='No']");
+        this.remarkYes = page.locator("//label[text()='Remark']/../div//label/span[text()='Yes']");
+        this.allocationNeedYes = page.locator("//label[text()='Allocation Need']/../div//label/span[text()='Yes']");
+        this.allocationNeedNo = page.locator("//label[text()='Allocation Need']/../div//label/span[text()='Yes']");
         this.validFrom = page.locator("#validFrom");
         this.validTo = page.locator("#validTo");
         this.remarkName = page.locator("#remarkableDesc");
@@ -48,6 +49,7 @@ class DiscountMasterPage {
         await this.discountModule.hover();
         await this.page.waitForTimeout(2000);
         await this.selectDiscountModule.scrollIntoViewIfNeeded();
+        await this.page.waitForTimeout(1000);
         await this.selectDiscountModule.click();
         await this.page.waitForTimeout(1000);
         await this.selectDiscountMaster.click();
@@ -57,19 +59,63 @@ class DiscountMasterPage {
     async clickAddDiscountBtn() {
         await this.addDiscountBtn.click();
         await this.page.waitForTimeout(2000);
-
-
     }
 
     async addDiscountMaster(discountName, discountType, discountValue, discountCode, remarkName, description) {
         await this.discountName.fill(discountName);
+        await this.page.waitForTimeout(1000);
         await this.discountType.selectOption({ label: discountType });
+        await this.page.waitForTimeout(1000);
         await this.discountValue.fill(discountValue);
+        await this.page.waitForTimeout(1000);
         await this.discountCode.fill(discountCode);
+        await this.page.waitForTimeout(1000);
         await this.remarkName.fill(remarkName);
+        await this.page.waitForTimeout(1000);
+        await this.discription.fill(description);
 
-        await this.description.fill(description);
+    }
 
+    async editDiscountMaster(discountName, discountType, discountValue, discountCode, remarkName, description) {
+        await this.discountName.fill(discountName);
+        await this.page.waitForTimeout(1000);
+        await this.discountType.selectOption({ label: discountType });
+        await this.page.waitForTimeout(1000);
+        await this.discountValue.fill(discountValue);
+        await this.page.waitForTimeout(1000);
+        await this.discountCode.fill(discountCode);
+        await this.page.waitForTimeout(1000);
+        await this.remarkName.fill(remarkName);
+        await this.page.waitForTimeout(1000);
+        await this.discription.fill(description);
+
+    }
+
+    async remarkbtn(Value) {
+        if (Value === 'Yes') {
+            await this.remarkYes.click();
+            await this.page.waitForTimeout(1000);
+
+        } else {
+            await this.remarkNo.click();
+            await this.page.waitForTimeout(1000);
+        }
+    }
+
+    async allocationNeedbtn(Value) {
+        if (Value === 'Yes') {
+            await this.allocationNeedYes.click();
+            await this.page.waitForTimeout(1000);
+
+        } else {
+            await this.allocationNeedNo.click();
+            await this.page.waitForTimeout(1000);
+        }
+    }
+
+    async clickAddDiscountBtn() {
+        await this.addDiscountBtn.click();
+        await this.page.waitForTimeout(2000);
     }
 
     async editVaccineMaster(vaccineName, targetDisease, description) {
@@ -136,6 +182,43 @@ class DiscountMasterPage {
 
 
     }
+
+    async calenderValidFrom(date, month, year) {
+        await this.page.waitForTimeout(1000);
+        await this.validFrom.click();
+        await this.page.waitForTimeout(2000);
+
+        const locatorYear = await this.page.locator("//span[@role='button']").nth(3);
+        const getYear = locatorYear.textContent();
+        await this.page.waitForTimeout(2000);
+        const locatorMonth = await this.page.locator("//span[@role='button']").nth(4);
+
+        const getMonth = locatorMonth.textContent();
+        return getMonth;
+       await this.page.locator(`td[class='available today current'] div span`).click();
+        if (year.includes(getYear)) {
+            if (month.includes(getMonth)) {
+                const clickDate = await this.page.locator(`//span[contains(text(),'${date}')]`).nth(2);
+                clickDate.click();
+
+            }
+        }
+    }
+
+
+    // async calenderValidTo(date, month, year) {
+    //     await this.page.waitForTimeout(1000);
+    //     await this.validTo.click();
+    //     const getYear = await this.page.locator("(//div[@x-placement='top-start']//span[@role='button'])[1]").textContent();
+    //     const getMonth = await this.page.locator("div[x-placement='top-start'] div[class='el-date-picker__header'] span~span").textContent();
+
+    //     if (year.includes(getYear)) {
+    //         if (month.includes(getMonth)) {
+    //             await this.page.locator(`//span[contains(text(),'${date}')]`).nth(2).click();
+
+    //         }
+    //     }
+    // }
 
 
 }

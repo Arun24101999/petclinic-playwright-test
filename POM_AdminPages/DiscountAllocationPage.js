@@ -39,43 +39,63 @@ class DiscountAllocationPage {
     }
 
 
-    async navigateToDiscountMaster() {
+    async navigateToDiscountAllocation() {
         await this.discountModule.hover();
         await this.page.waitForTimeout(2000);
-        await this.page.scrollIntoViewIfNeeded(this.selectDiscountModule);
+        await this.selectDiscountModule.scrollIntoViewIfNeeded();
         await this.selectDiscountModule.click();
         await this.page.waitForTimeout(1000);
-        await this.selectDiscountMaster.click();
+        await this.selectDiscountAllocation.click();
     }
 
 
-    async clickAddDiscountBtn() {
-        await this.addDiscountBtn.click();
+    async clickAddAllocationBtn() {
+        await this.addAllocationBtn.click();
         await this.page.waitForTimeout(2000);
 
 
     }
 
-    async addDiscountMaster(discountName, discountType, discountValue, discountCode,remarkName,description) {
-        await this.discountName.fill(discountName);
-        await this.page.selectOption(this.discountType,{label: `${discountType}`});
-          await this.discountValue.fill(discountValue);
-        await this.discountCode.fill(discountCode);
-          await this.remarkName.fill(remarkName);
+
+    async addDiscountAllocation(search,discountName, orderType, ruleAgainst, ruleAgainstId, timeFrame,count) {
+        await this.discountName.click();
+        await this.discountName.fill(search);
+        await this.page.waitForTimeout(3000);
+        const getDiscountlist = await this.page.locator("#search-input-suggestions-one>ul>li>b");
+        for (let j = 0; j < await getDiscountlist.count(); j++) {
+            const getDiscountText = await getDiscountlist.nth(j).textContent();
+            if (getDiscountText.includes(discountName)) {
+                await this.page.locator(`//b[contains(text(),'${getDiscountText}')]/..`).click();
+
+            }
+        }
+
+        await this.orderType.selectOption({ label: orderType });
+        await this.ruleAgainst.selectOption({ label: ruleAgainst });
+        const getRuleAgainst = await this.ruleAgainst.textContent();
+        // if (getRuleAgainst.includes('Single')) {
+        //     await this.ruleAgainstId.fill(ruleAgainstId);
+        // }
+
+        await this.timeFrame.selectOption({ label: timeFrame });
+        await this.allocationCount.fill(count);
+    }
+
+
+    async editDiscountAllocation( orderType, ruleAgainst, ruleAgainstId, timeFrame,count) {
         
-        await this.description.fill(description);
+    
+        await this.orderType.selectOption({ label: orderType });
+        await this.ruleAgainst.selectOption({ label: ruleAgainst });
+        const getRuleAgainst = await this.ruleAgainst.textContent();
+        // if (getRuleAgainst.includes('Single')) {
+        //     await this.ruleAgainstId.fill(ruleAgainstId);
+        // }
 
+        await this.timeFrame.selectOption({ label: timeFrame });
+        await this.allocationCount.fill(count);
     }
 
-    async editVaccineMaster(vaccineName, targetDisease, description) {
-        await this.page.waitForTimeout(1000);
-        await this.vaccineName.fill(vaccineName);
-        await this.page.waitForTimeout(2000);
-        await this.targetDisease.fill(targetDisease);
-        await this.page.waitForTimeout(2000);
-        await this.description.fill(description);
-
-    }
 
 
     async clickSubmitBtn() {
@@ -90,23 +110,23 @@ class DiscountAllocationPage {
     }
 
 
-    async clickViewBtn(givenDiscountName) {
+    async clickViewBtn(givenDiscountName, givenOrderType) {
         await this.page.waitForTimeout(1000);
-        await this.page.locator(`//div[text()='${givenDiscountName}']/following-sibling::div//button[@class='btn view-btn btn-secondary']`).click();
+        await this.page.locator(`//div[text()='${givenDiscountName}']/following-sibling::div[text()='${givenOrderType}']/following-sibling::div//button[@class='btn view-btn btn-secondary']`).click();
 
     }
 
 
-    async clickDeleteBtn(givenDiscountName) {
+    async clickDeleteBtn(givenDiscountName, givenOrderType) {
         await this.page.waitForTimeout(1000);
-        await this.page.locator(`//div[text()='${givenDiscountName}']/following-sibling::div//button[@class='btn delete-btn btn-secondary']`).click();
+        await this.page.locator(`//div[text()='${givenDiscountName}']/following-sibling::div[text()='${givenOrderType}']/following-sibling::div//button[@class='btn delete-btn btn-secondary']`).click();
 
 
     }
 
-    async clickEditBtn(givenDiscountName) {
+    async clickEditBtn(givenDiscountName, givenOrderType) {
         await this.page.waitForTimeout(1000);
-        await this.page.locator(`//div[text()='${givenDiscountName}']/following-sibling::div//button[@class='btn edit-btn btn-secondary']`).click();
+        await this.page.locator(`//div[text()='${givenDiscountName}']/following-sibling::div[text()='${givenOrderType}']/following-sibling::div//button[@class='btn edit-btn btn-secondary']`).click();
 
     }
 

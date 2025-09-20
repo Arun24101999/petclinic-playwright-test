@@ -44,74 +44,77 @@ test.describe('TS05 - Service Category', () => {
         await page.waitForTimeout(2000);
     })
 
-    test('TC004 - Add discount Master', async () => {
+    // test('TC004 - Add discount Master', async () => {
+    //     const discountMasterPage = new DiscountMasterPage(page);
+    //     await discountMasterPage.clickAddDiscountBtn();
+    //     await discountMasterPage.addDiscountMaster('discountName', 'Amount', '20', 'GST20', 'Arun', 'description');
+    //     await discountMasterPage.remarkbtn('Yes');
+    //     await discountMasterPage.allocationNeedbtn('Yes');
+    //     await discountMasterPage.clickSubmitBtn();
+    //     await discountMasterPage.closeIcon.click();
+    //     await discountMasterPage.clickSubmitBtn();
+    //     await discountMasterPage.clickConfirmationNo();
+    //     await discountMasterPage.clickSubmitBtn();
+    //     await discountMasterPage.clickConfirmationYes();
+    //     await discountMasterPage.validateToastMessage('Discount master created successfully');
+    //     await page.waitForTimeout(2000);
+    // })
+
+    test('TC005 - Cancel the add discount Master', async () => {
         const discountMasterPage = new DiscountMasterPage(page);
         await discountMasterPage.clickAddDiscountBtn();
-        await discountMasterPage.addDiscountMaster('discountName', 'Amount', '20', 'GST20','Arun','description');
-        await treatmentMasterPage.clickSubmitBtn();
-        await treatmentMasterPage.closeIcon.click();
-        await treatmentMasterPage.clickSubmitBtn();
-        await treatmentMasterPage.clickConfirmationNo();
-        await treatmentMasterPage.clickSubmitBtn();
-        await treatmentMasterPage.clickConfirmationYes();
-        await treatmentMasterPage.validateToastMessage('Treatment details created successfully')
+        await discountMasterPage.addDiscountMaster('discountName', 'Amount', '20', 'GST20', 'Arun', 'description');
+        await discountMasterPage.remarkbtn('Yes');
+        await discountMasterPage.allocationNeedbtn('Yes');
+        await discountMasterPage.clickCancelBtn();
+        await discountMasterPage.closeIcon.click();
+        await discountMasterPage.clickCancelBtn();
+        await discountMasterPage.clickConfirmationNo();
+        await discountMasterPage.clickCancelBtn();
+        await discountMasterPage.clickConfirmationYes();
         await page.waitForTimeout(2000);
     })
 
-    // test('TC005 - Cancel the add Treatment Master', async () => {
-    //     const treatmentMasterPage = new TreatmentMasterPage(page);
-    //     await treatmentMasterPage.clickAddTreatmentBtn();
-    //     await treatmentMasterPage.backBtn.click();
+    // test('TC006 - edit discount Master', async () => {
+    //   const discountMasterPage = new DiscountMasterPage(page);
+    //     await discountMasterPage.searchValue('new discount');
     //     await page.waitForTimeout(1000);
-    //     await treatmentMasterPage.clickAddTreatmentBtn();
+    //     await discountMasterPage.clickEditBtn('New Discount Name');
     //     await page.waitForTimeout(1000);
-    //     await treatmentMasterPage.addTreatmentMaster('testtwo', 'newtest', 'Testtwo functionality using automation');
-    //     await treatmentMasterPage.clickCancelBtn();
-    //     await treatmentMasterPage.clickConfirmationNo();
-    //     await treatmentMasterPage.clickCancelBtn();
-    //     await treatmentMasterPage.closeIcon.click();
-    //     await treatmentMasterPage.clickCancelBtn();
-    //     await treatmentMasterPage.clickConfirmationYes();
+    //     await discountMasterPage.editDiscountMaster('discountName', 'Amount', '20', 'GST20', 'Arun', 'description');
+    //     await discountMasterPage.remarkbtn('No');
+    //     await discountMasterPage.allocationNeedbtn('No');
+    //     await discountMasterPage.clickSubmitBtn();
+    //     await discountMasterPage.clickConfirmationNo();
+    //     await discountMasterPage.clickSubmitBtn();
+    //     await discountMasterPage.closeIcon.click();
+    //     await discountMasterPage.clickSubmitBtn();
+    //     await discountMasterPage.clickConfirmationYes();
+    //     await discountMasterPage.validateToastMessage('Discount master updated successfully');
     //     await page.waitForTimeout(2000);
     // })
 
-    // test('TC006 - edit Treatment Master', async () => {
-    //    const treatmentMasterPage = new TreatmentMasterPage(page);
-    //     await treatmentMasterPage.searchValue('Neotetra');
-    //     await page.waitForTimeout(1000);
-    //     await treatmentMasterPage.clickEditBtn('Neotetra');
-    //     await page.waitForTimeout(1000);
-    //     await treatmentMasterPage.editTreatmentMaster('deotetra', 'testvalue', 'Testtwo functionality using automation');
-    //     await treatmentMasterPage.clickSubmitBtn();
-    //     await treatmentMasterPage.clickConfirmationNo();
-    //     await treatmentMasterPage.clickSubmitBtn();
-    //     await treatmentMasterPage.closeIcon.click();
-    //     await treatmentMasterPage.clickSubmitBtn();
-    //     await treatmentMasterPage.clickConfirmationYes();
-    //     await treatmentMasterPage.validateToastMessage('Treatment details updated successfully');
-    //     await page.waitForTimeout(2000);
-    // })
+    test('TC008 - view discount Master', async () => {
+       const discountMasterPage = new DiscountMasterPage(page);
+        await discountMasterPage.searchValue('New Discount Name');
+        await page.waitForTimeout(1000);
+        await discountMasterPage.clickViewBtn('New Discount Name');
+        await page.waitForTimeout(1000);
+        await discountMasterPage.backBtn.click();
+        await page.waitForTimeout(2000);
+    })
 
-    // test('TC008 - view Treatment Master', async () => {
-    //    const treatmentMasterPage = new TreatmentMasterPage(page);
-    //     await treatmentMasterPage.searchValue('deotetra');
-    //     await page.waitForTimeout(1000);
-    //     await treatmentMasterPage.clickViewBtn('deotetra');
-    //     await page.waitForTimeout(1000);
-    //     await treatmentMasterPage.backBtn.click();
-    //     await page.waitForTimeout(1000);
-    // })
-
-    // test('TC009 - delete Treatment Master', async () => {
-    //    const treatmentMasterPage = new TreatmentMasterPage(page);
-    //     await treatmentMasterPage.searchValue('deotetra');
-    //     await page.waitForTimeout(1000);
-    //     await treatmentMasterPage.clickDeleteBtn('deotetra');
-    //     await treatmentMasterPage.clickConfirmationYes();
-    //     await page.waitForTimeout(1000);
-    //     await treatmentMasterPage.validateToastMessage('Treatment details deleted successfully');
-    //     await page.waitForTimeout(2000);
-    // })
+    test('TC009 - delete Treatment Master', async () => {
+         const discountMasterPage = new DiscountMasterPage(page);
+        await discountMasterPage.searchValue('test discount');
+        await page.waitForTimeout(1000);
+        await discountMasterPage.clickDeleteBtn('test discount');
+        await page.waitForTimeout(1000);
+        await discountMasterPage.clickConfirmationYes();
+        await page.waitForTimeout(1000);
+        await discountMasterPage.validateToastMessage('Discount master deleted successfully');
+        await page.waitForTimeout(2000);
+    })
 
 
 })
