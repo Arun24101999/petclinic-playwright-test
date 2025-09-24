@@ -1,32 +1,18 @@
-<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="0" time="38.88339">
-<testsuite name="AdminTest\DiscountHistoryTest.spec.js" timestamp="2025-09-20T14:49:48.294Z" hostname="chromium" tests="5" failures="0" skipped="0" time="29.697" errors="0">
-<testcase name="TS05 - Service Category › TC001 - Login with valid Credentials" classname="AdminTest\DiscountHistoryTest.spec.js" time="6.161">
+<testsuites id="" name="" tests="7" failures="0" skipped="0" errors="0" time="59.844133">
+<testsuite name="AdminTest\MaterialCategoryTest.spec.js" timestamp="2025-09-24T04:16:47.619Z" hostname="chromium" tests="7" failures="0" skipped="0" time="53.691" errors="0">
+<testcase name="TS03 - Material Category › TC001 - Login with valid Credentials" classname="AdminTest\MaterialCategoryTest.spec.js" time="6.147">
 </testcase>
-<testcase name="TS05 - Service Category › TC002 - Select User Role" classname="AdminTest\DiscountHistoryTest.spec.js" time="7.147">
+<testcase name="TS03 - Material Category › TC002 - Select User Role" classname="AdminTest\MaterialCategoryTest.spec.js" time="7.14">
 </testcase>
-<testcase name="TS05 - Service Category › TC003 - Navigate to discount Allocation " classname="AdminTest\DiscountHistoryTest.spec.js" time="6.229">
+<testcase name="TS03 - Material Category › TC003 - Navigate to Material category" classname="AdminTest\MaterialCategoryTest.spec.js" time="4.312">
 </testcase>
-<testcase name="TS05 - Service Category › TC004 - View to discount history " classname="AdminTest\DiscountHistoryTest.spec.js" time="3.026">
-<system-out>
-<![CDATA[no of discount entries [33m9[39m
-]]>
-</system-out>
+<testcase name="TS03 - Material Category › TC004 - add category with valid data" classname="AdminTest\MaterialCategoryTest.spec.js" time="12.093">
 </testcase>
-<testcase name="TS05 - Service Category › TC005 - get discount history details based on user Id" classname="AdminTest\DiscountHistoryTest.spec.js" time="7.134">
-<system-out>
-<![CDATA[[
-  { [32m'Pet ID'[39m: [32m'27227'[39m },
-  { [32m'Order ID'[39m: [32m'73'[39m },
-  { [32m'Order Type'[39m: [32m'op'[39m },
-  { [32m'Discount Name'[39m: [32m'FreeDiscount'[39m },
-  { [32m'Discount Code'[39m: [32m'FD50P'[39m },
-  { [32m'Discount Type'[39m: [32m'percentage'[39m },
-  { [32m'Discount%'[39m: [32m'50'[39m },
-  { Remarks: [32m'RibhaDharshini'[39m },
-  { Description: [32m'functionality'[39m }
-]
-]]>
-</system-out>
+<testcase name="TS03 - Material Category › TC005 - edit material category" classname="AdminTest\MaterialCategoryTest.spec.js" time="10.974">
+</testcase>
+<testcase name="TS03 - Material Category › TC006 - view material category" classname="AdminTest\MaterialCategoryTest.spec.js" time="5.147">
+</testcase>
+<testcase name="TS03 - Material Category › TC007 - delete material category" classname="AdminTest\MaterialCategoryTest.spec.js" time="7.878">
 </testcase>
 </testsuite>
 </testsuites>
