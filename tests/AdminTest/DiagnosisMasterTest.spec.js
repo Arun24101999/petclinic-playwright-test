@@ -83,30 +83,30 @@ test.describe('TS03 - Material Category', () => {
     })
 
     test('TC006 - view diagnosis master', async () => {
-      const materialCategoryPage = new MaterialCategoryPage(page);
+      const diagnosisMasterPage = new DiagnosisMasterPage(page);
         await page.waitForTimeout(1000);
-        await materialCategoryPage.searchTheValue('pharmacy')
+        await diagnosisMasterPage.searchTheValue('pharmacy')
         await page.waitForTimeout(1000);
-        await materialCategoryPage.clickViewIcon();
+        await diagnosisMasterPage.clickViewIcon();
         await page.waitForTimeout(2000);
-        await materialCategoryPage.backBtn.click();
+        await diagnosisMasterPage.backBtn.click();
 
 
     })
 
     test('TC007 - delete diagnosis master', async () => {
-        const materialCategoryPage = new MaterialCategoryPage(page);
+        const diagnosisMasterPage = new DiagnosisMasterPage(page);
         await page.waitForTimeout(1000);
-         await materialCategoryPage.searchTheValue('pharmacy')
+         await diagnosisMasterPage.searchTheValue('pharmacy')
         await page.waitForTimeout(1000);
-        await materialCategoryPage.clickDeleteIcon();
-        await materialCategoryPage.closeIcon.click();
-        await materialCategoryPage.clickDeleteIcon();
-        await materialCategoryPage.clickConfirmationNo();
-        await materialCategoryPage.clickDeleteIcon();
-        await materialCategoryPage.clickConfirmationYes();
+        await diagnosisMasterPage.clickDeleteIcon();
+        await diagnosisMasterPage.closeIcon.click();
+        await diagnosisMasterPage.clickDeleteIcon();
+        await diagnosisMasterPage.clickConfirmationNo();
+        await diagnosisMasterPage.clickDeleteIcon();
+        await diagnosisMasterPage.clickConfirmationYes();
         await page.waitForTimeout(1000)
-        await materialCategoryPage.validateToastMessage('Material diagnosis deleted successfully');
+        await diagnosisMasterPage.validateToastMessage('Material diagnosis deleted successfully');
     })
 
 

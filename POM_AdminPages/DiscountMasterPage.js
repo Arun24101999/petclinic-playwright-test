@@ -7,7 +7,7 @@ class DiscountMasterPage {
 
         //Navigate to Discount
         this.discountModule = page.locator(".v-navigation-drawer__content");
-        this.selectDiscountModule = page.locator("//div[text()='Discount']/../../..");
+        this.selectDiscountModule = page.locator("//div[contains(text(),'Discount')]/../../..");
         this.selectDiscountMaster = page.locator("//div[text()='Discount Master']/../..");
 
         //dashboard
@@ -48,13 +48,11 @@ class DiscountMasterPage {
     async navigateToDiscountMaster() {
         await this.discountModule.hover();
         await this.page.waitForTimeout(2000);
-        await this.selectDiscountModule.scrollIntoViewIfNeeded();
-        await this.page.waitForTimeout(1000);
+        await this.selectDiscountModule.scrollIntoViewIfNeeded(); 
         await this.selectDiscountModule.click();
         await this.page.waitForTimeout(1000);
         await this.selectDiscountMaster.click();
     }
-
 
     async clickAddDiscountBtn() {
         await this.addDiscountBtn.click();
@@ -195,7 +193,7 @@ class DiscountMasterPage {
 
         const getMonth = locatorMonth.textContent();
         return getMonth;
-       await this.page.locator(`td[class='available today current'] div span`).click();
+        await this.page.locator(`td[class='available today current'] div span`).click();
         if (year.includes(getYear)) {
             if (month.includes(getMonth)) {
                 const clickDate = await this.page.locator(`//span[contains(text(),'${date}')]`).nth(2);

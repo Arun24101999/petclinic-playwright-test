@@ -7,9 +7,9 @@ class DiagnosisMasterPage {
         this.page = page;
 
         //Navigate to Material Category Module
-        this.materialCategoryModule = page.locator(".v-navigation-drawer__content");
-        this.selectMaterialModule = page.locator("//div[text()='Material']/../../..");
-        this.selectDiagnosisMaster = page.locator("//div[contains(text(),'Diagnosis Master')]/../..");
+        this.materialModule = page.locator(".v-navigation-drawer__content");
+        this.selectMaterialModule = page.locator("//div[@class='v-list-item__title font-weight-bold'][normalize-space()='Material']");
+        this.selectDiagnosisMaster = page.locator("//a[@href='/diagnosis']");
 
         //Dashboard
 
@@ -38,8 +38,9 @@ class DiagnosisMasterPage {
 
     async navigateToDiagnosisMaster() {
 
-        await this.materialCategoryModule.hover();
+        await this.materialModule.hover();
         await this.page.waitForTimeout(1000);
+        await this.selectMaterialModule.scrollIntoViewIfNeeded();
         await this.selectMaterialModule.click();
         await this.page.waitForTimeout(1000);
         await this.selectDiagnosisMaster.click();

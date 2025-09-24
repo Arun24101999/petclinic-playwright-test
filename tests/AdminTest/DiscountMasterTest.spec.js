@@ -41,24 +41,24 @@ test.describe('TS05 - Service Category', () => {
     test('TC003 - Navigate to DiscountMaster ', async () => {
         const discountMasterPage = new DiscountMasterPage(page);
         await discountMasterPage.navigateToDiscountMaster();
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(1000);
     })
 
-    // test('TC004 - Add discount Master', async () => {
-    //     const discountMasterPage = new DiscountMasterPage(page);
-    //     await discountMasterPage.clickAddDiscountBtn();
-    //     await discountMasterPage.addDiscountMaster('discountName', 'Amount', '20', 'GST20', 'Arun', 'description');
-    //     await discountMasterPage.remarkbtn('Yes');
-    //     await discountMasterPage.allocationNeedbtn('Yes');
-    //     await discountMasterPage.clickSubmitBtn();
-    //     await discountMasterPage.closeIcon.click();
-    //     await discountMasterPage.clickSubmitBtn();
-    //     await discountMasterPage.clickConfirmationNo();
-    //     await discountMasterPage.clickSubmitBtn();
-    //     await discountMasterPage.clickConfirmationYes();
-    //     await discountMasterPage.validateToastMessage('Discount master created successfully');
-    //     await page.waitForTimeout(2000);
-    // })
+    test('TC004 - Add discount Master', async () => {
+        const discountMasterPage = new DiscountMasterPage(page);
+        await discountMasterPage.clickAddDiscountBtn();
+        await discountMasterPage.addDiscountMaster('discountName', 'Amount', '20', 'GST20', 'Arun', 'description');
+        await discountMasterPage.remarkbtn('Yes');
+        await discountMasterPage.allocationNeedbtn('Yes');
+        await discountMasterPage.clickSubmitBtn();
+        await discountMasterPage.closeIcon.click();
+        await discountMasterPage.clickSubmitBtn();
+        await discountMasterPage.clickConfirmationNo();
+        await discountMasterPage.clickSubmitBtn();
+        await discountMasterPage.clickConfirmationYes();
+        await discountMasterPage.validateToastMessage('Discount master created successfully');
+        await page.waitForTimeout(2000);
+    })
 
     test('TC005 - Cancel the add discount Master', async () => {
         const discountMasterPage = new DiscountMasterPage(page);

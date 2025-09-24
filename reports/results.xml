@@ -1,18 +1,20 @@
-<testsuites id="" name="" tests="7" failures="0" skipped="0" errors="0" time="59.844133">
-<testsuite name="AdminTest\MaterialCategoryTest.spec.js" timestamp="2025-09-24T04:16:47.619Z" hostname="chromium" tests="7" failures="0" skipped="0" time="53.691" errors="0">
-<testcase name="TS03 - Material Category › TC001 - Login with valid Credentials" classname="AdminTest\MaterialCategoryTest.spec.js" time="6.147">
+<testsuites id="" name="" tests="8" failures="0" skipped="0" errors="0" time="96.96479400000001">
+<testsuite name="AdminTest\GoodTransferTest.spec.js" timestamp="2025-09-24T14:01:25.700Z" hostname="chromium" tests="8" failures="0" skipped="0" time="90.041" errors="0">
+<testcase name="TS03 - Good Transfer › TC001 - Login with valid Credentials" classname="AdminTest\GoodTransferTest.spec.js" time="6.197">
 </testcase>
-<testcase name="TS03 - Material Category › TC002 - Select User Role" classname="AdminTest\MaterialCategoryTest.spec.js" time="7.14">
+<testcase name="TS03 - Good Transfer › TC002 - Select User Role" classname="AdminTest\GoodTransferTest.spec.js" time="7.239">
 </testcase>
-<testcase name="TS03 - Material Category › TC003 - Navigate to Material category" classname="AdminTest\MaterialCategoryTest.spec.js" time="4.312">
+<testcase name="TS03 - Good Transfer › TC003 - Navigate to scrap module" classname="AdminTest\GoodTransferTest.spec.js" time="6.496">
 </testcase>
-<testcase name="TS03 - Material Category › TC004 - add category with valid data" classname="AdminTest\MaterialCategoryTest.spec.js" time="12.093">
+<testcase name="TS03 - Good Transfer › TC004 - add goods transfer" classname="AdminTest\GoodTransferTest.spec.js" time="26.101">
 </testcase>
-<testcase name="TS03 - Material Category › TC005 - edit material category" classname="AdminTest\MaterialCategoryTest.spec.js" time="10.974">
+<testcase name="TS03 - Good Transfer › TC005 - edit good transfer" classname="AdminTest\GoodTransferTest.spec.js" time="15.094">
 </testcase>
-<testcase name="TS03 - Material Category › TC006 - view material category" classname="AdminTest\MaterialCategoryTest.spec.js" time="5.147">
+<testcase name="TS03 - Good Transfer › TC006 - submit good transfer" classname="AdminTest\GoodTransferTest.spec.js" time="2.414">
 </testcase>
-<testcase name="TS03 - Material Category › TC007 - delete material category" classname="AdminTest\MaterialCategoryTest.spec.js" time="7.878">
+<testcase name="TS03 - Good Transfer › TC007 - cancel good transfer" classname="AdminTest\GoodTransferTest.spec.js" time="19.284">
+</testcase>
+<testcase name="TS03 - Good Transfer › TC008 - search scrap " classname="AdminTest\GoodTransferTest.spec.js" time="7.216">
 </testcase>
 </testsuite>
 </testsuites>
