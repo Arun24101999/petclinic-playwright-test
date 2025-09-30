@@ -1,188 +1,272 @@
-<testsuites id="" name="" tests="21" failures="2" skipped="0" errors="0" time="67.64066700000001">
-<testsuite name="AdminTest\SalesTest.spec.js" timestamp="2025-09-25T14:32:33.557Z" hostname="chromium" tests="21" failures="2" skipped="0" time="55.594" errors="0">
-<testcase name="TS03 - Report › TC001 - Login with valid Credentials" classname="AdminTest\SalesTest.spec.js" time="6.154">
+<testsuites id="" name="" tests="8" failures="0" skipped="0" errors="0" time="56.286056">
+<testsuite name="AdminTest\AllPetsTest.spec.js" timestamp="2025-09-29T13:12:37.278Z" hostname="chromium" tests="8" failures="0" skipped="0" time="50.057" errors="0">
+<testcase name="TS05 - Service Category › TC001 - Login with valid Credentials" classname="AdminTest\AllPetsTest.spec.js" time="6.116">
 </testcase>
-<testcase name="TS03 - Report › TC002 - Select User Role" classname="AdminTest\SalesTest.spec.js" time="7.168">
+<testcase name="TS05 - Service Category › TC002 - Select User Role" classname="AdminTest\AllPetsTest.spec.js" time="7.127">
 </testcase>
-<testcase name="TS03 - Report › TC003 - Navigate to sales" classname="AdminTest\SalesTest.spec.js" time="10.928">
+<testcase name="TS05 - Service Category › TC003 - Navigate to pet species " classname="AdminTest\AllPetsTest.spec.js" time="10.41">
 </testcase>
-<testcase name="TS03 - Report › TC004 - view order details in op Tab" classname="AdminTest\SalesTest.spec.js" time="5.077">
-</testcase>
-<testcase name="TS03 - Report › TC004 - get medicine details in op Tab" classname="AdminTest\SalesTest.spec.js" time="0.027">
+<testcase name="TS05 - Service Category › TC004 - Navigate to All module " classname="AdminTest\AllPetsTest.spec.js" time="5.464">
 <system-out>
-<![CDATA[[ [32m'Consultation 15 Min'[39m, [32m'Simparica'[39m ]
-]]>
-</system-out>
-</testcase>
-<testcase name="TS03 - Report › TC005 - get amount details in op Tab" classname="AdminTest\SalesTest.spec.js" time="0.086">
-<system-out>
-<![CDATA[[
-  [32m'Subtotal'[39m,
-  [32m'AED 195.00'[39m,
-  [32m'Total Tax'[39m,
-  [32m'AED 9.75'[39m,
-  [32m'Discount (0%)'[39m,
-  [32m'- AED 0.00'[39m,
-  [32m'Total'[39m,
-  [32m'AED 204.75'[39m
+<![CDATA[25420
+[
+  [32m'\n           Tamilselvi A'[39m,
+  [32m'9345816343'[39m,
+  [32m'27306 / -'[39m,
+  [32m'\n           Nex'[39m,
+  [32m'-'[39m,
+  [32m'testspecies'[39m,
+  [32m'13D'[39m,
+  [32m'Male'[39m,
+  [32m'TestBird'[39m,
+  [32m'\n           Tamilselvi A'[39m,
+  [32m'9345816343'[39m,
+  [32m'27304 / -'[39m,
+  [32m'\n           LasininShelter\n    '[39m,
+  [32m'-'[39m,
+  [32m'testspecies'[39m,
+  [32m'26D'[39m,
+  [32m'Female'[39m,
+  [32m'TestBird'[39m,
+  [32m'\n           Tamilselvi A'[39m,
+  [32m'9345816343'[39m,
+  [32m'27300 / -'[39m,
+  [32m'\n           Pane'[39m,
+  [32m'-'[39m,
+  [32m'testspecies'[39m,
+  [32m'15Y 8M 25D'[39m,
+  [32m'Male'[39m,
+  [32m'TestBird'[39m,
+  [32m'\n           Tamilselvi A'[39m,
+  [32m'9345816343'[39m,
+  [32m'27299 / -'[39m,
+  [32m'\n           Cream'[39m,
+  [32m'-'[39m,
+  [32m'testspecies'[39m,
+  [32m'19D'[39m,
+  [32m'Female'[39m,
+  [32m'TestBird'[39m,
+  [32m'\n           Tamilselvi A'[39m,
+  [32m'9345816343'[39m,
+  [32m'27296 / -'[39m,
+  [32m'\n           Orgeo'[39m,
+  [32m'-'[39m,
+  [32m'testspecies'[39m,
+  [32m'14Y 3M 22D'[39m,
+  [32m'Female'[39m,
+  [32m'TestBird'[39m,
+  [32m'\n           Tamilselvi A'[39m,
+  [32m'9345816343'[39m,
+  [32m'27288 / -'[39m,
+  [32m'\n           Geto'[39m,
+  [32m'-'[39m,
+  [32m'testspecies'[39m,
+  [32m'4Y 7M 27D'[39m,
+  [32m'Male'[39m,
+  [32m'TestDog'[39m,
+  [32m'\n           Tamilselvi A'[39m,
+  [32m'9345816343'[39m,
+  [32m'27275 / -'[39m,
+  [32m'\n           Hyeri'[39m,
+  [32m'-'[39m,
+  [32m'testspecies'[39m,
+  [32m'1M 15D'[39m,
+  [32m'Female'[39m,
+  [32m'TestBird'[39m,
+  [32m'\n           Tamilselvi A'[39m,
+  [32m'9345816343'[39m,
+  [32m'27273 / -'[39m,
+  [32m'\n           Shik'[39m,
+  [32m'-'[39m,
+  [32m'testspecies'[39m,
+  [32m'1M 26D'[39m,
+  [32m'Female'[39m,
+  [32m'TestCamel'[39m,
+  [32m'\n           Tamilselvi A'[39m,
+  [32m'9345816343'[39m,
+  [32m'27269 / -'[39m,
+  [32m'\n           Ponni'[39m,
+  [32m'-'[39m,
+  [32m'testspecies'[39m,
+  [32m'1M 9D'[39m,
+  [32m'Male'[39m,
+  [32m'TestBird'[39m,
+  [32m'\n           Tamilselvi A'[39m,
+  [32m'9345816343'[39m,
+  [32m'27260 / -'[39m,
+  [32m'\n           Bright'[39m,
+  [32m'-'[39m,
+  [32m'testspecies'[39m,
+  [32m'4Y 7M 27D'[39m,
+  [32m'Male'[39m,
+  [32m'TestDog'[39m
 ]
 ]]>
 </system-out>
 </testcase>
-<testcase name="TS03 - Report › TC006 - view order details in All Tab" classname="AdminTest\SalesTest.spec.js" time="7.342">
-</testcase>
-<testcase name="TS03 - Report › TC007 - get medicine details in All Tab" classname="AdminTest\SalesTest.spec.js" time="0.014">
+<testcase name="TS05 - Service Category › TC005 - Navigate to All adopted " classname="AdminTest\AllPetsTest.spec.js" time="5.24">
 <system-out>
-<![CDATA[OP Appointmnet Details : [ [32m'Adoption'[39m ]
-]]>
-</system-out>
-</testcase>
-<testcase name="TS03 - Report › TC008 - get amount details in All Tab" classname="AdminTest\SalesTest.spec.js" time="0.076">
-<system-out>
-<![CDATA[[
-  [32m'Subtotal'[39m,
-  [32m'AED 1000.00'[39m,
-  [32m'Total Tax'[39m,
-  [32m'AED 50.00'[39m,
-  [32m'Discount (0%)'[39m,
-  [32m'- AED 0.00'[39m,
-  [32m'Total'[39m,
-  [32m'AED 1050.00'[39m
+<![CDATA[15213
+[
+  [32m'\n           GEORGE STERIAN'[39m,
+  [32m'523332509'[39m,
+  [32m'20730 / 4'[39m,
+  [32m'\n           Milly'[39m,
+  [32m'900115002360265'[39m,
+  [32m'cat'[39m,
+  [32m'4Y 3M 17D'[39m,
+  [32m'Female'[39m,
+  [32m'DSH'[39m,
+  [32m'\n           GEORGE STERIAN'[39m,
+  [32m'523332509'[39m,
+  [32m'20729 / 1'[39m,
+  [32m'\n           White kitenq5'[39m,
+  [32m'900115002046266'[39m,
+  [32m'cat'[39m,
+  [32m'5Y 3M 9D'[39m,
+  [32m'Male'[39m,
+  [32m'DSH'[39m,
+  [32m'\n           GEORGE STERIAN'[39m,
+  [32m'523332509'[39m,
+  [32m'20728 / 3'[39m,
+  [32m'\n           Kitten'[39m,
+  [32m'-'[39m,
+  [32m'cat'[39m,
+  [32m'-'[39m,
+  [32m'Male'[39m,
+  [32m'DSH'[39m,
+  [32m'\n           GEORGE STERIAN'[39m,
+  [32m'523332509'[39m,
+  [32m'14463 / 1'[39m,
+  [32m'\n           Elsa'[39m,
+  [32m'956000004572458'[39m,
+  [32m'dog'[39m,
+  [32m'8Y 8M 28D'[39m,
+  [32m'Female'[39m,
+  [32m'Mixed'[39m
 ]
 ]]>
 </system-out>
 </testcase>
-<testcase name="TS03 - Report › TC006 - view order details in Ip Tab" classname="AdminTest\SalesTest.spec.js" time="4.818">
-</testcase>
-<testcase name="TS03 - Report › TC007 - get medicine details in Ip Tab" classname="AdminTest\SalesTest.spec.js" time="0.019">
+<testcase name="TS05 - Service Category › TC006 - Navigate to All unadopted " classname="AdminTest\AllPetsTest.spec.js" time="5.413">
 <system-out>
-<![CDATA[IP Appointmnet Details : [ [32m'Consultation 15 Min'[39m, [32m'Paracetomol '[39m ]
-]]>
-</system-out>
-</testcase>
-<testcase name="TS03 - Report › TC008 - get amount details in Ip Tab" classname="AdminTest\SalesTest.spec.js" time="0.088">
-<system-out>
-<![CDATA[[
-  [32m'Subtotal'[39m,
-  [32m'AED 275.00'[39m,
-  [32m'Total Tax'[39m,
-  [32m'AED 13.75'[39m,
-  [32m'Discount (0%)'[39m,
-  [32m'- AED 0.00'[39m,
-  [32m'Total'[39m,
-  [32m'AED 288.75'[39m
+<![CDATA[163
+[
+  [32m'\n           RAK AWC'[39m,
+  [32m'9500995476'[39m,
+  [32m'27305 / -'[39m,
+  [32m'\n           CalfinShelter\n    '[39m,
+  [32m'-'[39m,
+  [32m'cow'[39m,
+  [32m'4Y 7M 20D'[39m,
+  [32m'Female'[39m,
+  [32m'new'[39m,
+  [32m'\n           RAK AWC'[39m,
+  [32m'9500995476'[39m,
+  [32m'27303 / -'[39m,
+  [32m'\n           IssacinShelter\n    '[39m,
+  [32m'-'[39m,
+  [32m'cat'[39m,
+  [32m'3M 25D'[39m,
+  [32m'Female'[39m,
+  [32m'American Bully'[39m,
+  [32m'\n           RAK AWC'[39m,
+  [32m'9500995476'[39m,
+  [32m'27302 / -'[39m,
+  [32m'\n           PugsleyinShelter\n    '[39m,
+  [32m'-'[39m,
+  [32m'dog'[39m,
+  [32m'6M 10D'[39m,
+  [32m'Male'[39m,
+  [32m'American Curl'[39m,
+  [32m'\n           RAK AWC'[39m,
+  [32m'9500995476'[39m,
+  [32m'27301 / -'[39m,
+  [32m'\n           FerryinShelter\n    '[39m,
+  [32m'-'[39m,
+  [32m'testspecies'[39m,
+  [32m'25D'[39m,
+  [32m'Female'[39m,
+  [32m'TestBird'[39m,
+  [32m'\n           RAK AWC'[39m,
+  [32m'9500995476'[39m,
+  [32m'27295 / -'[39m,
+  [32m'\n           EarinShelter\n    '[39m,
+  [32m'-'[39m,
+  [32m'testspecies'[39m,
+  [32m'20D'[39m,
+  [32m'Female'[39m,
+  [32m'TestBird'[39m,
+  [32m'\n           RAK AWC'[39m,
+  [32m'9500995476'[39m,
+  [32m'27293 / -'[39m,
+  [32m'\n           ValoinShelter\n    '[39m,
+  [32m'-'[39m,
+  [32m'testspecies'[39m,
+  [32m'13Y 6M 21D'[39m,
+  [32m'Female'[39m,
+  [32m'TestDog'[39m,
+  [32m'\n           RAK AWC'[39m,
+  [32m'9500995476'[39m,
+  [32m'27291 / -'[39m,
+  [32m'\n           Forzi'[39m,
+  [32m'-'[39m,
+  [32m'fox '[39m,
+  [32m'13Y 6M 28D'[39m,
+  [32m'Male'[39m,
+  [32m'Red Tail Fox'[39m,
+  [32m'\n           RAK AWC'[39m,
+  [32m'9500995476'[39m,
+  [32m'27290 / -'[39m,
+  [32m'\n           DoryinShelter\n    '[39m,
+  [32m'-'[39m,
+  [32m'fox '[39m,
+  [32m'29Y 2M 18D'[39m,
+  [32m'Male'[39m,
+  [32m'Red Tail Fox'[39m,
+  [32m'\n           RAK AWC'[39m,
+  [32m'9500995476'[39m,
+  [32m'27289 / -'[39m,
+  [32m'\n           TommyinShelter\n    '[39m,
+  [32m'-'[39m,
+  [32m'fox '[39m,
+  [32m'5Y 3M 3D'[39m,
+  [32m'Male'[39m,
+  [32m'Red Tail Fox'[39m,
+  [32m'\n           RAK AWC'[39m,
+  [32m'9500995476'[39m,
+  [32m'27285 / -'[39m,
+  [32m'\n           JerkinShelter\n    '[39m,
+  [32m'-'[39m,
+  [32m'testspecies'[39m,
+  [32m'28D'[39m,
+  [32m'Female'[39m,
+  [32m'TestBird'[39m
 ]
 ]]>
 </system-out>
 </testcase>
-<testcase name="TS03 - Report › TC006 - view order details in Surrender Tab" classname="AdminTest\SalesTest.spec.js" time="4.762">
-</testcase>
-<testcase name="TS03 - Report › TC007 - get medicine details in Surrender Tab" classname="AdminTest\SalesTest.spec.js" time="0.009">
+<testcase name="TS05 - Service Category › TC004 - Navigate to All stray " classname="AdminTest\AllPetsTest.spec.js" time="5.133">
 <system-out>
-<![CDATA[Surrender Details : [ [32m'Surrender Personal'[39m ]
+<![CDATA[970
+[]
 ]]>
 </system-out>
 </testcase>
-<testcase name="TS03 - Report › TC008 - get amount details in Surrender Tab" classname="AdminTest\SalesTest.spec.js" time="0.067">
+<testcase name="TS05 - Service Category › TC004 - Navigate to All Inactive " classname="AdminTest\AllPetsTest.spec.js" time="5.154">
 <system-out>
-<![CDATA[[
-  [32m'Subtotal'[39m,
-  [32m'AED 190.48'[39m,
-  [32m'Total Tax'[39m,
-  [32m'AED 9.52'[39m,
-  [32m'Discount (0%)'[39m,
-  [32m'- AED 0.00'[39m,
-  [32m'Total'[39m,
-  [32m'AED 200.00'[39m
+<![CDATA[9074
+[
+  [32m'\n           Arun Muthu Sukumar Mariappan M'[39m,
+  [32m'9677470590'[39m,
+  [32m'27268 / -'[39m,
+  [32m'\n           Ozler'[39m,
+  [32m'-'[39m,
+  [32m'testspecies'[39m,
+  [32m'1M 25D'[39m,
+  [32m'Male'[39m,
+  [32m'TestCamel'[39m
 ]
-]]>
-</system-out>
-</testcase>
-<testcase name="TS03 - Report › TC006 - view order details in Adoption Tab" classname="AdminTest\SalesTest.spec.js" time="6.155">
-</testcase>
-<testcase name="TS03 - Report › TC007 - get medicine details in Adoption Tab" classname="AdminTest\SalesTest.spec.js" time="0.02">
-<system-out>
-<![CDATA[Adoption Details : [ [32m'Adoption'[39m ]
-]]>
-</system-out>
-</testcase>
-<testcase name="TS03 - Report › TC008 - get amount details in Adoption Tab" classname="AdminTest\SalesTest.spec.js" time="0.085">
-<system-out>
-<![CDATA[[
-  [32m'Subtotal'[39m,
-  [32m'AED 1000.00'[39m,
-  [32m'Total Tax'[39m,
-  [32m'AED 50.00'[39m,
-  [32m'Discount (0%)'[39m,
-  [32m'- AED 0.00'[39m,
-  [32m'Total'[39m,
-  [32m'AED 1050.00'[39m
-]
-]]>
-</system-out>
-</testcase>
-<testcase name="TS03 - Report › TC006 - view order details in Shop Tab" classname="AdminTest\SalesTest.spec.js" time="0.01">
-<failure message="SalesTest.spec.js:159:5 TC006 - view order details in Shop Tab" type="FAILURE">
-<![CDATA[  [chromium] › AdminTest\SalesTest.spec.js:159:5 › TS03 - Report › TC006 - view order details in Shop Tab 
-
-    Error: locator.click: SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//div[contains(text(),'Shop') and @role='tab']]' is not a valid XPath expression.
-        at Object.queryAll (<anonymous>:5875:25)
-        at InjectedScript._queryEngineAll (<anonymous>:6558:49)
-        at InjectedScript.querySelectorAll (<anonymous>:6545:30)
-        at eval (eval at evaluate (:291:30), <anonymous>:2:35)
-        at UtilityScript.evaluate (<anonymous>:293:16)
-        at UtilityScript.<anonymous> (<anonymous>:1:44)
-    Call log:
-      - waiting for locator('//div[contains(text(),\'Shop\') and @role=\'tab\']]')
-
-        at Object.queryAll (<anonymous>:5875:25)
-        at InjectedScript._queryEngineAll (<anonymous>:6558:49)
-        at InjectedScript.querySelectorAll (<anonymous>:6545:30)
-        at eval (eval at evaluate (:291:30), <anonymous>:2:35)
-        at UtilityScript.evaluate (<anonymous>:293:16)
-        at UtilityScript.<anonymous> (<anonymous>:1:44)
-        at SalesPage.clickShopTab (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_AdminPages\SalesPage.js:60:28)
-        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\AdminTest\SalesTest.spec.js:161:25
-
-    Error Context: ..\test-results\AdminTest-SalesTest-TS03---3ca8e-w-order-details-in-Shop-Tab-chromium\error-context.md
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|..\test-results\AdminTest-SalesTest-TS03---3ca8e-w-order-details-in-Shop-Tab-chromium\error-context.md]]
-]]>
-</system-out>
-</testcase>
-<testcase name="TS03 - Report › TC007 - get medicine details in Shop Tab" classname="AdminTest\SalesTest.spec.js" time="0.01">
-<system-out>
-<![CDATA[Shop Details : []
-]]>
-</system-out>
-</testcase>
-<testcase name="TS03 - Report › TC008 - get amount details in Shop Tab" classname="AdminTest\SalesTest.spec.js" time="2.679">
-<failure message="SalesTest.spec.js:173:5 TC008 - get amount details in Shop Tab" type="FAILURE">
-<![CDATA[  [chromium] › AdminTest\SalesTest.spec.js:173:5 › TS03 - Report › TC008 - get amount details in Shop Tab 
-
-    Error: locator.click: Target page, context or browser has been closed
-    Call log:
-      - waiting for locator('//button[@class=\'btn cancelbtn-color btn-secondary\']')
-
-
-       at ..\POM_AdminPages\SalesPage.js:105
-
-      103 |
-      104 |     async clickBackBtn(){
-    > 105 |         await this.backBtn.click();
-          |                            ^
-      106 |     }
-      107 |
-      108 |
-        at SalesPage.clickBackBtn (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_AdminPages\SalesPage.js:105:28)
-        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\AdminTest\SalesTest.spec.js:177:25
-]]>
-</failure>
-<system-out>
-<![CDATA[[]
 ]]>
 </system-out>
 </testcase>
