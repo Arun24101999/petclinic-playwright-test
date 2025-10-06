@@ -1,12 +1,18 @@
-<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="31.373752">
-<testsuite name="AdminTest\TaskPolicyTest.spec.js" timestamp="2025-10-06T13:41:22.442Z" hostname="chromium" tests="4" failures="0" skipped="0" time="23.816" errors="0">
-<testcase name="TS03 - Material Category › TC001 - Login with valid Credentials" classname="AdminTest\TaskPolicyTest.spec.js" time="6.119">
+<testsuites id="" name="" tests="7" failures="0" skipped="0" errors="0" time="72.02327199999999">
+<testsuite name="AdminTest\ProjectMasterTest.spec.js" timestamp="2025-10-06T14:34:39.542Z" hostname="chromium" tests="7" failures="0" skipped="0" time="66.02" errors="0">
+<testcase name="TS03 - Material Category › TC001 - Login with valid Credentials" classname="AdminTest\ProjectMasterTest.spec.js" time="6.13">
 </testcase>
-<testcase name="TS03 - Material Category › TC002 - Select User Role" classname="AdminTest\TaskPolicyTest.spec.js" time="7.11">
+<testcase name="TS03 - Material Category › TC002 - Select User Role" classname="AdminTest\ProjectMasterTest.spec.js" time="7.311">
 </testcase>
-<testcase name="TS03 - Material Category › TC003 - Navigate to Task Policy" classname="AdminTest\TaskPolicyTest.spec.js" time="4.379">
+<testcase name="TS03 - Material Category › TC003 - Navigate to Task Policy" classname="AdminTest\ProjectMasterTest.spec.js" time="5.298">
 </testcase>
-<testcase name="TS03 - Material Category › TC008 - delete task policy" classname="AdminTest\TaskPolicyTest.spec.js" time="6.208">
+<testcase name="TS03 - Material Category › TC005 - Cancel Add project " classname="AdminTest\ProjectMasterTest.spec.js" time="21.098">
+</testcase>
+<testcase name="TS03 - Material Category › TC006 - view project master" classname="AdminTest\ProjectMasterTest.spec.js" time="4.186">
+</testcase>
+<testcase name="TS03 - Material Category › TC007 - edit project master" classname="AdminTest\ProjectMasterTest.spec.js" time="15.804">
+</testcase>
+<testcase name="TS03 - Material Category › TC008 - delete project master" classname="AdminTest\ProjectMasterTest.spec.js" time="6.193">
 </testcase>
 </testsuite>
 </testsuites>
