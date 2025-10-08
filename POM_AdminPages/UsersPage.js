@@ -64,6 +64,13 @@ class UsersPage {
     await this.page.locator(`//ul[@class='dropdown-menu show']/li/a[text()='${role}']`).click();
   }
 
+  async selectUserRoleOption(role) {
+    await this.page.waitForTimeout(3000);
+    await this.userRoleBtn.click();
+    await this.page.waitForTimeout(2000);
+    await this.page.locator(`//ul[@class='dropdown-menu show']/li/a[text()='${role}']`).click();
+  }
+
   async gotoUsersModule() {
     await this.userModule.click();
   }

@@ -1,18 +1,44 @@
-<testsuites id="" name="" tests="7" failures="0" skipped="0" errors="0" time="72.02327199999999">
-<testsuite name="AdminTest\ProjectMasterTest.spec.js" timestamp="2025-10-06T14:34:39.542Z" hostname="chromium" tests="7" failures="0" skipped="0" time="66.02" errors="0">
-<testcase name="TS03 - Material Category › TC001 - Login with valid Credentials" classname="AdminTest\ProjectMasterTest.spec.js" time="6.13">
+<testsuites id="" name="" tests="6" failures="1" skipped="0" errors="0" time="47.561778999999994">
+<testsuite name="ExternalManagerTest\VariantOptionMasterTest.spec.js" timestamp="2025-10-08T14:26:51.229Z" hostname="chromium" tests="6" failures="1" skipped="0" time="40.333" errors="0">
+<testcase name="TS03 - Storage Location › TC001 - Login with valid Credentials" classname="ExternalManagerTest\VariantOptionMasterTest.spec.js" time="6.123">
 </testcase>
-<testcase name="TS03 - Material Category › TC002 - Select User Role" classname="AdminTest\ProjectMasterTest.spec.js" time="7.311">
+<testcase name="TS03 - Storage Location › TC002 - Select User Role" classname="ExternalManagerTest\VariantOptionMasterTest.spec.js" time="7.112">
 </testcase>
-<testcase name="TS03 - Material Category › TC003 - Navigate to Task Policy" classname="AdminTest\ProjectMasterTest.spec.js" time="5.298">
+<testcase name="TS03 - Storage Location › TC003 - Navigate to variant option" classname="ExternalManagerTest\VariantOptionMasterTest.spec.js" time="4.357">
 </testcase>
-<testcase name="TS03 - Material Category › TC005 - Cancel Add project " classname="AdminTest\ProjectMasterTest.spec.js" time="21.098">
+<testcase name="TS03 - Storage Location › TC005 - edit variant option" classname="ExternalManagerTest\VariantOptionMasterTest.spec.js" time="9.995">
 </testcase>
-<testcase name="TS03 - Material Category › TC006 - view project master" classname="AdminTest\ProjectMasterTest.spec.js" time="4.186">
+<testcase name="TS03 - Storage Location › TC006 - view variant option" classname="ExternalManagerTest\VariantOptionMasterTest.spec.js" time="5.167">
 </testcase>
-<testcase name="TS03 - Material Category › TC007 - edit project master" classname="AdminTest\ProjectMasterTest.spec.js" time="15.804">
-</testcase>
-<testcase name="TS03 - Material Category › TC008 - delete project master" classname="AdminTest\ProjectMasterTest.spec.js" time="6.193">
+<testcase name="TS03 - Storage Location › TC007 - delete variant option" classname="ExternalManagerTest\VariantOptionMasterTest.spec.js" time="7.579">
+<failure message="VariantOptionMasterTest.spec.js:95:5 TC007 - delete variant option" type="FAILURE">
+<![CDATA[  [chromium] › ExternalManagerTest\VariantOptionMasterTest.spec.js:95:5 › TS03 - Storage Location › TC007 - delete variant option 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Material sub category deleted successfully"
+    Received: "Deleted successfully"
+
+       at ..\POM_ExternalManagerPages\VariantOptionMasterPage.js:98
+
+       96 |     async validateToastMessage(expectedMessage) {
+       97 |         const toast = await this.getToastMessage.textContent();
+    >  98 |         await expect(toast).toBe(expectedMessage);
+          |                             ^
+       99 |     }
+      100 |
+      101 |     async searchTheValue(searchValue) {
+        at VariantOptionMasterPage.validateToastMessage (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_ExternalManagerPages\VariantOptionMasterPage.js:98:29)
+        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\ExternalManagerTest\VariantOptionMasterTest.spec.js:107:9
+
+    Error Context: ..\test-results\ExternalManagerTest-Varian-83abf-007---delete-variant-option-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\ExternalManagerTest-Varian-83abf-007---delete-variant-option-chromium\error-context.md]]
+]]>
+</system-out>
 </testcase>
 </testsuite>
 </testsuites>

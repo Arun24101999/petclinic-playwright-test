@@ -98,11 +98,10 @@ test.describe('TS03 - Storage Location', () => {
          await materialSubCategoryPage.searchTheValue('pharmacy')
         await page.waitForTimeout(1000);
         await materialSubCategoryPage.clickDeleteIcon('Pharmacy','Test');
-         await materialSubCategoryPage.clickDeleteIcon();
         await materialSubCategoryPage.clickCloseIcon();
-        await materialSubCategoryPage.clickDeleteIcon();
+        await materialSubCategoryPage.clickDeleteIcon('Pharmacy','Test');
         await materialSubCategoryPage.clickConfirmationNo();
-        await materialSubCategoryPage.clickDeleteIcon();
+        await materialSubCategoryPage.clickDeleteIcon('Pharmacy','Test');
         await materialSubCategoryPage.clickConfirmationYes();
         await page.waitForTimeout(1000)
         await materialSubCategoryPage.validateToastMessage('Material sub category deleted successfully');
