@@ -1,44 +1,131 @@
-<testsuites id="" name="" tests="6" failures="1" skipped="0" errors="0" time="47.561778999999994">
-<testsuite name="ExternalManagerTest\VariantOptionMasterTest.spec.js" timestamp="2025-10-08T14:26:51.229Z" hostname="chromium" tests="6" failures="1" skipped="0" time="40.333" errors="0">
-<testcase name="TS03 - Storage Location › TC001 - Login with valid Credentials" classname="ExternalManagerTest\VariantOptionMasterTest.spec.js" time="6.123">
+<testsuites id="" name="" tests="18" failures="2" skipped="13" errors="0" time="35.052104">
+<testsuite name="AdminTest\AdoptionTest.spec.js" timestamp="2025-10-11T10:00:47.753Z" hostname="chromium" tests="18" failures="2" skipped="13" time="24.441" errors="0">
+<testcase name="TS02 - Adoption Requests Module Tests › TC001 - Login with valid Credentials" classname="AdminTest\AdoptionTest.spec.js" time="6.122">
 </testcase>
-<testcase name="TS03 - Storage Location › TC002 - Select User Role" classname="ExternalManagerTest\VariantOptionMasterTest.spec.js" time="7.112">
+<testcase name="TS02 - Adoption Requests Module Tests › TC002 - Select User Role" classname="AdminTest\AdoptionTest.spec.js" time="5.26">
 </testcase>
-<testcase name="TS03 - Storage Location › TC003 - Navigate to variant option" classname="ExternalManagerTest\VariantOptionMasterTest.spec.js" time="4.357">
+<testcase name="TS02 - Adoption Requests Module Tests › TC003 - Naviagate to Adoption Module" classname="AdminTest\AdoptionTest.spec.js" time="5.268">
 </testcase>
-<testcase name="TS03 - Storage Location › TC005 - edit variant option" classname="ExternalManagerTest\VariantOptionMasterTest.spec.js" time="9.995">
-</testcase>
-<testcase name="TS03 - Storage Location › TC006 - view variant option" classname="ExternalManagerTest\VariantOptionMasterTest.spec.js" time="5.167">
-</testcase>
-<testcase name="TS03 - Storage Location › TC007 - delete variant option" classname="ExternalManagerTest\VariantOptionMasterTest.spec.js" time="7.579">
-<failure message="VariantOptionMasterTest.spec.js:95:5 TC007 - delete variant option" type="FAILURE">
-<![CDATA[  [chromium] › ExternalManagerTest\VariantOptionMasterTest.spec.js:95:5 › TS03 - Storage Location › TC007 - delete variant option 
+<testcase name="TS02 - Adoption Requests Module Tests › TC004 - Accept the Adoption" classname="AdminTest\AdoptionTest.spec.js" time="7.791">
+<failure message="AdoptionTest.spec.js:45:5 TC004 - Accept the Adoption" type="FAILURE">
+<![CDATA[  [chromium] › AdminTest\AdoptionTest.spec.js:45:5 › TS02 - Adoption Requests Module Tests › TC004 - Accept the Adoption 
 
-    Error: expect(received).toBe(expected) // Object.is equality
+    Error: locator.click: Target page, context or browser has been closed
+    Call log:
+      - waiting for locator('//div[@role=\'gridcell\'][normalize-space()=\'Arumugam K\']/following-sibling::div[text()=\'Barbie\']/following-sibling::div[@col-id=\'action\']/div/div/div/div/button')
+        - locator resolved to <button type="button" class="btn view-btn btn-secondary">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="b-sidebar-backdrop bg-dark"></div> from <div tabindex="-1" class="b-sidebar-outer">…</div> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="b-sidebar-backdrop bg-dark"></div> from <div tabindex="-1" class="b-sidebar-outer">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        3 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="b-sidebar-backdrop bg-dark"></div> from <div tabindex="-1" class="b-sidebar-outer">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
 
-    Expected: "Material sub category deleted successfully"
-    Received: "Deleted successfully"
 
-       at ..\POM_ExternalManagerPages\VariantOptionMasterPage.js:98
+       at ..\POM_AdminPages\AdoptionPage.js:88
 
-       96 |     async validateToastMessage(expectedMessage) {
-       97 |         const toast = await this.getToastMessage.textContent();
-    >  98 |         await expect(toast).toBe(expectedMessage);
-          |                             ^
-       99 |     }
-      100 |
-      101 |     async searchTheValue(searchValue) {
-        at VariantOptionMasterPage.validateToastMessage (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_ExternalManagerPages\VariantOptionMasterPage.js:98:29)
-        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\ExternalManagerTest\VariantOptionMasterTest.spec.js:107:9
-
-    Error Context: ..\test-results\ExternalManagerTest-Varian-83abf-007---delete-variant-option-chromium\error-context.md
+      86 |         if (customerName.includes(givenCustomerName) && petName.includes(givenPetName)) {
+      87 |           await this.page.waitForTimeout(1000);
+    > 88 |           await this.page.locator(`//div[@role='gridcell'][normalize-space()='${customerName}']/following-sibling::div[text()='${petName}']/following-sibling::div[@col-id='action']/div/div/div/div/button`).click();
+         |                                                                                                                                                                                                               ^
+      89 |         }
+      90 |         else {
+      91 |           return console.log("error");
+        at AdoptionPage.clickAdoptionRequest (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_AdminPages\AdoptionPage.js:88:207)
+        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\AdminTest\AdoptionTest.spec.js:51:9
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|..\test-results\ExternalManagerTest-Varian-83abf-007---delete-variant-option-chromium\error-context.md]]
+</testcase>
+<testcase name="TS02 - Adoption Requests Module Tests › TC005 - Reject the Adoption" classname="AdminTest\AdoptionTest.spec.js" time="0">
+<failure message="AdoptionTest.spec.js:67:5 TC005 - Reject the Adoption" type="FAILURE">
+<![CDATA[  [chromium] › AdminTest\AdoptionTest.spec.js:67:5 › TS02 - Adoption Requests Module Tests › TC005 - Reject the Adoption 
+
+    Error: page.goto: Target page, context or browser has been closed
+    Call log:
+      - navigating to "https://pms-dev.medyaan.com/", waiting until "load"
+
+
+       at ..\POM_AdminPages\LoginPage.js:24
+
+      22 |
+      23 |   async gotoLoginPage(Url) {
+    > 24 |     await this.page.goto(Url);
+         |                     ^
+      25 |     await this.SignInButton.click();
+      26 |     
+      27 |   }
+        at LoginPage.gotoLoginPage (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_AdminPages\LoginPage.js:24:21)
+        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\AdminTest\AdoptionTest.spec.js:20:25
 ]]>
-</system-out>
+</failure>
+</testcase>
+<testcase name="TS02 - Adoption Requests Module Tests › TC006 - Accept the Foster" classname="AdminTest\AdoptionTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS02 - Adoption Requests Module Tests › TC007 - Reject the Foster" classname="AdminTest\AdoptionTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS02 - Adoption Requests Module Tests › TC008 - Accept the Trial" classname="AdminTest\AdoptionTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Reject the Trial" classname="AdminTest\AdoptionTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS02 - Adoption Requests Module Tests › TC010 - Accept the Return" classname="AdminTest\AdoptionTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS02 - Adoption Requests Module Tests › TC011 - Reject the Return" classname="AdminTest\AdoptionTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS02 - Adoption Requests Module Tests › TC008 - Select Foster Active" classname="AdminTest\AdoptionTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Select Trial Active" classname="AdminTest\AdoptionTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Select Adoption History Module" classname="AdminTest\AdoptionTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Select Adoption History" classname="AdminTest\AdoptionTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Select Foster History" classname="AdminTest\AdoptionTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Select Trial History" classname="AdminTest\AdoptionTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Select Return History" classname="AdminTest\AdoptionTest.spec.js" time="0">
+<skipped>
+</skipped>
 </testcase>
 </testsuite>
 </testsuites>

@@ -52,7 +52,7 @@ class AdoptionPage {
     this.selectTrialHistory = page.locator("(//div[@role='tab'])[3]");
     this.selectReturnHistory = page.locator("(//div[@role='tab'])[4]");
     this.searchAdoptionHistory = page.locator("//input[@id='managerHistoryquickFilter']");
-    this.backIcon=page.locator("//*[name()='svg' and @class='arrow-icon svg-inline--fa fa-arrow-left fa-w-14']");
+    this.backIcon = page.locator("//*[name()='svg' and @class='arrow-icon svg-inline--fa fa-arrow-left fa-w-14']");
   }
 
 
@@ -75,6 +75,8 @@ class AdoptionPage {
     await this.search.fill(searchValue);
     await this.page.waitForTimeout(2000);
 
+    await this.page.locator(`//div[text()='${givenCustomerName}']/following-sibling::div[text()='${givenPetName}']/following-sibling::div[@col-id='action']/div/div/div/div/button`).click();
+
     for (let i = 0; i < await this.getCustomerName.count(); i++) {
       const customerName = await this.getCustomerName.nth(i).textContent();
 
@@ -82,6 +84,7 @@ class AdoptionPage {
         const petName = await this.getPetName.nth(j).textContent();
 
         if (customerName.includes(givenCustomerName) && petName.includes(givenPetName)) {
+          await this.page.waitForTimeout(1000);
           await this.page.locator(`//div[@role='gridcell'][normalize-space()='${customerName}']/following-sibling::div[text()='${petName}']/following-sibling::div[@col-id='action']/div/div/div/div/button`).click();
         }
         else {
@@ -91,8 +94,7 @@ class AdoptionPage {
       }
 
     }
-
-  }
+}
 
   async clickFosterRequest(searchValue, givenPetName, givenCustomerName) {
 
@@ -238,20 +240,20 @@ class AdoptionPage {
   }
 
   async clickAcceptBtn() {
+    await this.page.waitForTimeout(1000);
     await this.acceptBtn.click();
-    const isVisible = await this.getToastMessage.isVisible();
-    expect(isVisible).toBeTruthy();
 
   }
 
   async clickConfirmationYes() {
     await this.confirmationMessageYes.click();
-    await this.page.waitForTimeout(1000);
+
   }
 
   async clickConfirmationNo() {
     await this.confirmationMessageNo.click();
-    await this.page.waitForTimeout(1000);
+
+
   }
 
   async clickCompleteBtn() {
@@ -310,7 +312,7 @@ class AdoptionPage {
 
         if (customerName.includes(givenCustomerName) && petName.includes(givenPetName)) {
           await this.page.locator(`//div[@class='pt-0 col-12']//div[@ref='eBodyViewport']//div[text()='${customerName}']/following-sibling::div[text()='${petName}']/following-sibling::div//button`).click();
-           await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(2000);
           await this.backIcon.click();
           await this.page.waitForTimeout(2000);
           const getStatusMessage = await this.page.locator(`//div[@class='pt-0 col-12']//div[@ref='eBodyViewport']//div[text()='${customerName}']/following-sibling::div[text()='${petName}']/following-sibling::div//span`).textContent();

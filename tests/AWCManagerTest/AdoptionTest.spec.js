@@ -33,7 +33,7 @@ test.describe('TS02 - Adoption Requests Module Tests', () => {
 
     test('TC002 - Select User Role', async () => {
         const usersPage = new UsersPage(page);
-        await usersPage.selectUserRoleBtn();
+        await usersPage.selectUserRoleOption('AWC Manager');
     })
 
     test('TC003 - Naviagate to Adoption Module', async () => {
@@ -45,12 +45,9 @@ test.describe('TS02 - Adoption Requests Module Tests', () => {
     test('TC004 - Accept the Adoption', async () => {
         const adoptionPage = new AdoptionPage(page);
         await page.waitForTimeout(1000);
-        const excelReader = new ExcelReader();
-        const adoptionData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AdoptionTest');
-        const { Search, PetName, UserName } = adoptionData[0];
-        await adoptionPage.clickAdoptionRequest(Search, PetName, UserName);
-        await adoptionPage.clickRejectBtn(adoptionData[1].RejectReason);
-        await page.waitForTimeout(1000);
+        await adoptionPage.clickAdoptionRequest('Arumugam K', 'Barbie', "Arumugam K");
+        await adoptionPage.clickRejectBtn("Natural");
+         await page.waitForTimeout(1000);
         await adoptionPage.submitBtn.click();
         await adoptionPage.clickConfirmationNo();
         await adoptionPage.closeIcon.click();
@@ -60,16 +57,15 @@ test.describe('TS02 - Adoption Requests Module Tests', () => {
         await adoptionPage.acceptBtn.click();
         await adoptionPage.clickConfirmationYes();
 
+
+
     })
 
     test('TC005 - Reject the Adoption', async () => {
         const adoptionPage = new AdoptionPage(page);
         await page.waitForTimeout(2000);
-        const excelReader = new ExcelReader();
-        const adoptionData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AdoptionTest');
-        const { Search, PetName, UserName } = adoptionData[1];
-        await adoptionPage.clickAdoptionRequest(Search, PetName, UserName);
-        await adoptionPage.clickRejectBtn(adoptionData[1].RejectReason);
+        await adoptionPage.clickAdoptionRequest('Ear', 'Ear', 'Tamilselvi A');
+        await adoptionPage.clickRejectBtn("Natural");
         await adoptionPage.submitBtn.click();
         await adoptionPage.clickConfirmationYes();
 
@@ -78,28 +74,24 @@ test.describe('TS02 - Adoption Requests Module Tests', () => {
     test('TC006 - Accept the Foster', async () => {
         const adoptionPage = new AdoptionPage(page);
         await page.waitForTimeout(2000);
-        const fosterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AdoptionTest');
-        const { Search, PetName, UserName, Date, Month, Year } = fosterData[2];
-        await adoptionPage.clickAdoptionRequest(Search, PetName, UserName);
-        await adoptionPage.clickRejectBtn(fosterData[2].RejectReason);
-        await page.waitForTimeout(1000);
+        await adoptionPage.clickFosterRequest('Blowing', 'Blowing', 'Arunkumar R');
+        await adoptionPage.clickRejectBtn("Natural");
         await adoptionPage.submitBtn.click();
         await page.waitForTimeout(2000);
         await adoptionPage.clickConfirmationNo();
-        await page.waitForTimeout(2000);
+          await page.waitForTimeout(2000);
         await adoptionPage.closeIcon.click();
         await page.waitForTimeout(2000);
         await adoptionPage.startDate.scrollIntoViewIfNeeded();
         await adoptionPage.startDate.click();
-        await adoptionPage.pickCalenderStartDate(Date, Month, Year);
+        await adoptionPage.pickCalenderStartDate('12', 'October', '2025');
         await page.waitForTimeout(2000);
         await adoptionPage.endDate.click();
-        await adoptionPage.pickCalenderEndDate(Date, Month, Year);
+        await adoptionPage.pickCalenderEndDate('14', 'October', '2025');
         await adoptionPage.acceptBtn.click();
         await adoptionPage.clickConfirmationNo();
         await adoptionPage.acceptBtn.click();
         await adoptionPage.clickConfirmationYes();
-
 
     })
 
@@ -107,24 +99,20 @@ test.describe('TS02 - Adoption Requests Module Tests', () => {
     test('TC007 - Reject the Foster', async () => {
         const adoptionPage = new AdoptionPage(page);
         await page.waitForTimeout(2000);
-        const fosterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AdoptionTest');
-        const { Search, PetName, UserName } = fosterData[3];
-        await adoptionPage.clickFosterRequest(Search, PetName, UserName);
-        await adoptionPage.clickRejectBtn(fosterData[3].RejectReason);
+        await adoptionPage.clickFosterRequest('Ribha', 'Leopard', 'Ribhadharshini');
+        await adoptionPage.clickRejectBtn("Natural");
         await adoptionPage.submitBtn.click();
         await adoptionPage.clickConfirmationNo();
         await adoptionPage.closeIcon.click();
         await adoptionPage.backBtn.click();
     })
 
+
     test('TC008 - Accept the Trial', async () => {
         const adoptionPage = new AdoptionPage(page);
         await page.waitForTimeout(2000);
-        const trialData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AdoptionTest');
-        const { Search, PetName, UserName, Date, Month, Year } = trialData[4];
-        await adoptionPage.clickAdoptionRequest(Search, PetName, UserName);
-        await adoptionPage.clickRejectBtn(trialData[4].RejectReason);
-        await page.waitForTimeout(2000);
+        await adoptionPage.clickTrialRequest('Dove', 'Dove', 'Ribhadharshini B');
+        await adoptionPage.clickRejectBtn("Natural");
         await adoptionPage.submitBtn.click();
         await page.waitForTimeout(2000);
         await adoptionPage.clickConfirmationNo();
@@ -132,38 +120,34 @@ test.describe('TS02 - Adoption Requests Module Tests', () => {
         await page.waitForTimeout(2000);
         await adoptionPage.startDate.scrollIntoViewIfNeeded();
         await adoptionPage.startDate.click();
-        await adoptionPage.pickCalenderStartDate(Date, Month, Year);
+        await adoptionPage.pickCalenderStartDate('12', 'October', '2025');
         await page.waitForTimeout(2000);
         await adoptionPage.endDate.click();
-        await adoptionPage.pickCalenderEndDate(Date, Month, Year);
+        await adoptionPage.pickCalenderEndDate('14', 'October', '2025');
         await adoptionPage.acceptBtn.click();
         await adoptionPage.clickConfirmationNo();
         await adoptionPage.acceptBtn.click();
         await adoptionPage.clickConfirmationYes();
 
     })
+    
 
     test('TC009 - Reject the Trial', async () => {
         const adoptionPage = new AdoptionPage(page);
         await page.waitForTimeout(2000);
-        const trialData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AdoptionTest');
-        const { Search, PetName, UserName } = trialData[5];
-        await adoptionPage.clickTrialRequest(Search, PetName, UserName);
-        await adoptionPage.clickRejectBtn(trialData[5].RejectReason);
+        await adoptionPage.clickTrialRequest('Dory', 'Dory', 'Aisha Begam F');
+        await adoptionPage.clickRejectBtn("Natural");
         await adoptionPage.submitBtn.click();
         await adoptionPage.clickConfirmationNo();
         await adoptionPage.closeIcon.click();
         await adoptionPage.backBtn.click();
     })
 
-
     test('TC010 - Accept the Return', async () => {
         const adoptionPage = new AdoptionPage(page);
         await page.waitForTimeout(2000);
-        const returnData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AdoptionTest');
-        const { Search, PetName, UserName } = returnData[6];
-        await adoptionPage.clickReturnRequest(Search, PetName, UserName);
-        await adoptionPage.clickRejectBtn(returnData[6].RejectReason);
+        await adoptionPage.clickReturnRequest('Holy', 'Holy', 'Ej Pradeep');
+        await adoptionPage.clickRejectBtn("Natural");
         await adoptionPage.submitBtn.click();
         await adoptionPage.clickConfirmationNo();
         await adoptionPage.closeIcon.click();
@@ -173,14 +157,11 @@ test.describe('TS02 - Adoption Requests Module Tests', () => {
         await adoptionPage.backBtn.click();
     })
 
-
     test('TC011 - Reject the Return', async () => {
         const adoptionPage = new AdoptionPage(page);
         await page.waitForTimeout(2000);
-        const returnData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AdoptionTest');
-        const { Search, PetName, UserName } = returnData[7];
-        await adoptionPage.clickReturnRequest(Search, PetName, UserName);
-        await adoptionPage.clickRejectBtn(returnData[7].RejectReason);
+        await adoptionPage.clickReturnRequest('Holy', 'Holy', 'Ej Pradeep');
+        await adoptionPage.clickRejectBtn("Natural");
         await adoptionPage.submitBtn.click();
         await adoptionPage.clickConfirmationNo();
         await adoptionPage.closeIcon.click();
@@ -190,9 +171,7 @@ test.describe('TS02 - Adoption Requests Module Tests', () => {
     test('TC008 - Select Foster Active', async () => {
         const adoptionPage = new AdoptionPage(page);
         await page.waitForTimeout(1000);
-        const fosterActiveData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AdoptionTest');
-        const { Search, PetName, UserName } = fosterActiveData[2];
-        await adoptionPage.clickFosterActive(Search, PetName, UserName);
+        await adoptionPage.clickFosterActive('latin', 'Latin', 'Arun Muthu Sukumar M');
         await adoptionPage.clickCompleteBtn();
         await adoptionPage.clickConfirmationNo();
         await adoptionPage.backBtn.click();
@@ -201,9 +180,7 @@ test.describe('TS02 - Adoption Requests Module Tests', () => {
     test('TC009 - Select Trial Active', async () => {
         const adoptionPage = new AdoptionPage(page);
         await page.waitForTimeout(1000);
-        const trialActiveData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AdoptionTest');
-        const { Search, PetName, UserName } = trialActiveData[4];
-        await adoptionPage.clickTrialActive(Search, PetName, UserName);
+        await adoptionPage.clickTrialActive('joy', 'Joy', 'Tamilselvi A');
         await page.waitForTimeout(1000);
         await adoptionPage.clickCompleteBtn();
         await adoptionPage.clickConfirmationNo();
@@ -219,45 +196,34 @@ test.describe('TS02 - Adoption Requests Module Tests', () => {
     test('TC009 - Select Adoption History', async () => {
         const adoptionPage = new AdoptionPage(page);
         await page.waitForTimeout(1000);
-        const adoptionHistoryData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AdoptionTest');
-        const { Search, PetName, UserName } = adoptionHistoryData[4];
         await adoptionPage.selectAdoptionHistory.click();
         await page.waitForTimeout(1000);
-        const getStatusMessage = await adoptionPage.clickAdoptionHistory(Search, PetName, UserName);
-        console.log("adoption history status is:", getStatusMessage);
+        const getStatusMessage=await adoptionPage.clickAdoptionHistory('Lasseo','Ribhadharshini B','Lasseo');
+        console.log("adoption history status is:",getStatusMessage);
     })
-
     test('TC009 - Select Foster History', async () => {
         const adoptionPage = new AdoptionPage(page);
         await page.waitForTimeout(1000);
-        const fosterHistoryData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AdoptionTest');
-        const { Search, PetName, UserName } = fosterHistoryData[4];
         await adoptionPage.selectFosterHistory.click();
         await page.waitForTimeout(1000);
-        const getStatusMessage = await adoptionPage.clickAdoptionHistory(Search, PetName, UserName);
-        console.log("foster history status is:", getStatusMessage);
+        const getStatusMessage=await adoptionPage.clickAdoptionHistory('laliya','Tamilselvi A','Laliya');
+        console.log("foster history status is:",getStatusMessage);
     })
-
     test('TC009 - Select Trial History', async () => {
         const adoptionPage = new AdoptionPage(page);
         await page.waitForTimeout(1000);
-        const trialHistoryData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AdoptionTest');
-        const { Search, PetName, UserName } = trialHistoryData[4];
         await adoptionPage.selectTrialHistory.click();
         await page.waitForTimeout(1000);
-        const getStatusMessage = await adoptionPage.clickAdoptionHistory(Search, PetName, UserName);
-        console.log("trial history status is:", getStatusMessage);
+        const getStatusMessage=await adoptionPage.clickAdoptionHistory('thing','Arunkumar R','Thing');
+        console.log("trial history status is:",getStatusMessage);
     })
-
     test('TC009 - Select Return History', async () => {
         const adoptionPage = new AdoptionPage(page);
         await page.waitForTimeout(1000);
-        const returnHistoryData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AdoptionTest');
-        const { Search, PetName, UserName } = returnHistoryData[4];
         await adoptionPage.selectReturnHistory.click();
         await page.waitForTimeout(1000);
-        const getStatusMessage = await adoptionPage.clickAdoptionHistory( Search, PetName, UserName);
-        console.log("return history status is:", getStatusMessage);
+        const getStatusMessage=await adoptionPage.clickAdoptionHistory('benz','Arun Muthu Sukumar M','Benz');
+        console.log("return history status is:",getStatusMessage);
     })
 
 

@@ -34,7 +34,7 @@ test.describe('TS03 - Material Category', () => {
 
     test('TC002 - Select User Role', async () => {
         const usersPage = new UsersPage(page);
-        await usersPage.selectUserRoleBtn();
+       await usersPage.selectUserRoleOption('AWC Manager');
         await page.waitForTimeout(2000);
     })
 
@@ -51,9 +51,9 @@ test.describe('TS03 - Material Category', () => {
         await languagePage.clickAddLanguageBtn();
         await page.waitForTimeout(2000);
         await languagePage.addLanguageDetails('Pharma');
-        await page.waitForTimeout(1000);
+         await page.waitForTimeout(1000);
         await languagePage.clickSubmitBtn();
-        await page.waitForTimeout(1000);
+             await page.waitForTimeout(1000);
         await languagePage.validateToastMessage('Language added successfully');
 
     })
@@ -65,12 +65,12 @@ test.describe('TS03 - Material Category', () => {
         await languagePage.searchValue('pharma')
         await page.waitForTimeout(1000);
         await languagePage.clickEditIcon();
-        await page.waitForTimeout(1000);
+         await page.waitForTimeout(1000);
         await languagePage.editLanguageDetails('Pharmacy');
-        await page.waitForTimeout(1000);
+         await page.waitForTimeout(1000);
         await languagePage.clickSubmitBtn();
         await languagePage.clickCloseIcon();
-        await page.waitForTimeout(1000)
+          await page.waitForTimeout(1000)
         await languagePage.clickSubmitBtn();
         await languagePage.clickConfirmationNo();
         await page.waitForTimeout(1000)
@@ -89,10 +89,10 @@ test.describe('TS03 - Material Category', () => {
         await page.waitForTimeout(1000);
         await languagePage.clickDeleteIcon();
         await languagePage.closeIcon.click();
-        await page.waitForTimeout(1000);
+         await page.waitForTimeout(1000);
         await languagePage.clickDeleteIcon();
         await languagePage.clickConfirmationNo();
-        await page.waitForTimeout(1000);
+         await page.waitForTimeout(1000);
         await languagePage.clickDeleteIcon();
         await languagePage.clickConfirmationYes();
         await page.waitForTimeout(1000)
@@ -110,7 +110,7 @@ test.describe('TS03 - Material Category', () => {
         await page.waitForTimeout(1000);
         await languagePage.clickCancelBtn();
         await languagePage.clickConfirmationNo();
-        await page.waitForTimeout(1000);
+         await page.waitForTimeout(1000);
         await languagePage.clickCancelBtn();
         await languagePage.clickConfirmationYes();
     })
@@ -120,14 +120,14 @@ test.describe('TS03 - Material Category', () => {
         await page.waitForTimeout(1000);
         await languagePage.clickAddLanguageBtn();
         await page.waitForTimeout(1000);
-        await languagePage.addLanguageDetails('Tamil');
-        await page.waitForTimeout(1000);
+         await languagePage.addLanguageDetails('Tamil');
+           await page.waitForTimeout(1000);
         const getErrorMessage = await languagePage.getErrorMessage.textContent();
         await expect(getErrorMessage).toContain("Language already exists");
         await page.waitForTimeout(1000);
         await languagePage.clickCancelBtn();
         await languagePage.clickConfirmationNo();
-        await page.waitForTimeout(1000);
+          await page.waitForTimeout(1000);
         await languagePage.clickCancelBtn();
         await languagePage.clickConfirmationYes();
 
