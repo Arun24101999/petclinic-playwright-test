@@ -47,7 +47,20 @@ test.describe('TS05 - Service Category', () => {
     test('TC004 - Add discount Allocation', async () => {
         const discountAllocationPage = new DiscountAllocationPage(page);
         await discountAllocationPage.clickAddAllocationBtn();
-        await discountAllocationPage.addDiscountAllocation('new discount', 'New Discount Name', 'All', 'Overall Pet', 'GST20', 'Every Day', '1');
+        //from excel
+        const excelReader = new ExcelReader();
+        const DiscountAllocationTestData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'DiscountAllocationTest');
+
+        const discountSearch = (DiscountAllocationTestData[0].SearchDiscount);
+        const discountName = (DiscountAllocationTestData[0].nameOfDiscount);
+        const orderTypeName = (DiscountAllocationTestData[0].orderType);
+        const ruleAgainst = (DiscountAllocationTestData[0].discountRuleAgainst);
+        const ruleAgainstID = (DiscountAllocationTestData[0].discountRuleAgainstId);
+        const timeFrame = (DiscountAllocationTestData[0].TimeFrame);
+        const count = (DiscountAllocationTestData[0].TotalCount);
+
+        await discountAllocationPage.addDiscountAllocation(discountSearch, discountName, orderTypeName, ruleAgainst, ruleAgainstID, timeFrame, count);
+
         await discountAllocationPage.clickSubmitBtn();
         await discountAllocationPage.closeIcon.click();
         await discountAllocationPage.clickSubmitBtn();
@@ -61,7 +74,19 @@ test.describe('TS05 - Service Category', () => {
     test('TC005 - Cancel the add discount allocation', async () => {
         const discountAllocationPage = new DiscountAllocationPage(page);
         await discountAllocationPage.clickAddAllocationBtn();
-        await discountAllocationPage.addDiscountAllocation('new discount', 'New Discount Name', 'All', 'Overall Pet', 'GST20', 'Every Day', '1');
+        //from excel
+        const excelReader = new ExcelReader();
+        const DiscountAllocationTestData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'DiscountAllocationTest');
+
+        const discountSearch = (DiscountAllocationTestData[0].SearchDiscount);
+        const discountName = (DiscountAllocationTestData[0].nameOfDiscount);
+        const orderTypeName = (DiscountAllocationTestData[0].orderType);
+        const ruleAgainst = (DiscountAllocationTestData[0].discountRuleAgainst);
+        const ruleAgainstID = (DiscountAllocationTestData[0].discountRuleAgainstId);
+        const timeFrame = (DiscountAllocationTestData[0].TimeFrame);
+        const count = (DiscountAllocationTestData[0].TotalCount);
+
+        await discountAllocationPage.addDiscountAllocation(discountSearch, discountName, orderTypeName, ruleAgainst, ruleAgainstID, timeFrame, count);
         await discountAllocationPage.clickCancelBtn();
         await discountAllocationPage.closeIcon.click();
         await discountAllocationPage.clickCancelBtn();
@@ -72,41 +97,80 @@ test.describe('TS05 - Service Category', () => {
     })
 
     test('TC006 - edit discount Master', async () => {
-       const discountAllocationPage = new DiscountAllocationPage(page);
-        await discountAllocationPage.searchValue('new discount');
+        const discountAllocationPage = new DiscountAllocationPage(page);
+        //from excel
+        const excelReader = new ExcelReader();
+        const DiscountAllocationTestData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'DiscountAllocationTest');
+
+        const discountSearch = (DiscountAllocationTestData[0].SearchDiscount);
+        const discountName = (DiscountAllocationTestData[0].nameOfDiscount);
+        const orderTypeName = (DiscountAllocationTestData[0].orderType);
+        const ruleAgainst = (DiscountAllocationTestData[0].discountRuleAgainst);
+        const ruleAgainstID = (DiscountAllocationTestData[0].discountRuleAgainstId);
+        const timeFrame = (DiscountAllocationTestData[0].TimeFrame);
+        const count = (DiscountAllocationTestData[0].TotalCount);
+        await discountAllocationPage.searchValue(discountSearch);
         await page.waitForTimeout(1000);
-        await discountAllocationPage.clickEditBtn('New Discount Name', 'Overall Pet');
+        await discountAllocationPage.clickEditBtn(discountName, ruleAgainst);
         await page.waitForTimeout(1000);
-        await discountAllocationPage.editDiscountAllocation( 'All', 'Overall Pet', 'GST20', 'Every Day', '2');
+        await discountAllocationPage.editDiscountAllocation(orderTypeName, ruleAgainst, ruleAgainstID, timeFrame, count);
         await discountAllocationPage.clickSubmitBtn();
         await discountAllocationPage.clickConfirmationNo();
         await discountAllocationPage.clickSubmitBtn();
         await discountAllocationPage.closeIcon.click();
         await discountAllocationPage.clickSubmitBtn();
         await discountAllocationPage.clickConfirmationYes();
-        await discountAllocationPage.validateToastMessage('Discount allocation updated successfully');
-        await page.waitForTimeout(2000);
+        //from excel
+        const getToastMessage = (DiscountAllocationTestData[0].ToastMessage);
+        await discountAllocationPage.validateToastMessage(getToastMessage);
+        await page.waitForTimeout(1000);
     })
 
     test('TC008 - view discount allocation', async () => {
-       const discountAllocationPage = new DiscountAllocationPage(page);
-        await discountAllocationPage.searchValue('New Discount');
+        const discountAllocationPage = new DiscountAllocationPage(page);
+        //from excel
+        const excelReader = new ExcelReader();
+        const DiscountAllocationTestData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'DiscountAllocationTest');
+
+        const discountSearch = (DiscountAllocationTestData[0].SearchDiscount);
+        const discountName = (DiscountAllocationTestData[0].nameOfDiscount);
+        const orderTypeName = (DiscountAllocationTestData[0].orderType);
+        const ruleAgainst = (DiscountAllocationTestData[0].discountRuleAgainst);
+        const ruleAgainstID = (DiscountAllocationTestData[0].discountRuleAgainstId);
+        const timeFrame = (DiscountAllocationTestData[0].TimeFrame);
+        const count = (DiscountAllocationTestData[0].TotalCount);
+
+        await discountAllocationPage.searchValue(discountSearch);
         await page.waitForTimeout(1000);
-        await discountAllocationPage.clickViewBtn('New Discount Name','Overall Pet');
+        await discountAllocationPage.clickViewBtn(discountName, ruleAgainst);
         await page.waitForTimeout(1000);
         await discountAllocationPage.backBtn.click();
         await page.waitForTimeout(2000);
     })
 
     test('TC009 - delete discount allocation', async () => {
-         const discountAllocationPage = new DiscountAllocationPage(page);
-        await discountAllocationPage.searchValue('New Discount');
+        const discountAllocationPage = new DiscountAllocationPage(page);
+        //from excel
+        const excelReader = new ExcelReader();
+        const DiscountAllocationTestData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'DiscountAllocationTest');
+
+        const discountSearch = (DiscountAllocationTestData[0].SearchDiscount);
+        const discountName = (DiscountAllocationTestData[0].nameOfDiscount);
+        const orderTypeName = (DiscountAllocationTestData[0].orderType);
+        const ruleAgainst = (DiscountAllocationTestData[0].discountRuleAgainst);
+        const ruleAgainstID = (DiscountAllocationTestData[0].discountRuleAgainstId);
+        const timeFrame = (DiscountAllocationTestData[0].TimeFrame);
+        const count = (DiscountAllocationTestData[0].TotalCount);
+
+        await discountAllocationPage.searchValue(discountSearch);
         await page.waitForTimeout(1000);
-        await discountAllocationPage.clickDeleteBtn('New Discount Name','Overall Pet');
+        await discountAllocationPage.clickDeleteBtn(discountName, ruleAgainst);
         await page.waitForTimeout(1000);
         await discountAllocationPage.clickConfirmationYes();
         await page.waitForTimeout(1000);
-        await discountAllocationPage.validateToastMessage('Discount allocation deleted successfully');
+        //from excel
+        const getToastMessage = (DiscountAllocationTestData[0].ToastMessage);
+        await discountAllocationPage.validateToastMessage(getToastMessage);
         await page.waitForTimeout(2000);
     })
 

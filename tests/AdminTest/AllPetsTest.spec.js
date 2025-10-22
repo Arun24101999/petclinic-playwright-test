@@ -46,52 +46,93 @@ test.describe('TS05 - Service Category', () => {
 
     test('TC004 - Navigate to All module ', async () => {
         const allPetsPage = new AllPetsPage(page);
-        const noOfPetCount=await allPetsPage.selectTab('All');
+        //from excel
+        const excelReader = new ExcelReader();
+        const Allpetsdata = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AllPets Test');
+
+        const tab = (Allpetsdata[0].tabName);
+
+        const noOfPetCount = await allPetsPage.selectTab(tab);
         console.log(noOfPetCount);
         await page.waitForTimeout(1000);
-        await allPetsPage.searchValue('14439');
-        const petDetails=await allPetsPage.printPetDetails('14439');
+        //from excel
+        const searchPet = (Allpetsdata[0].petSearch);
+
+        await allPetsPage.searchValue(searchPet);
+        const petDetails = await allPetsPage.printPetDetails(searchPet);
         console.log(petDetails);
     })
 
     test('TC005 - Navigate to All adopted ', async () => {
         const allPetsPage = new AllPetsPage(page);
-         const noOfPetCount=await allPetsPage.selectTab('Adopted');
+        //from excel
+        const excelReader = new ExcelReader();
+        const Allpetsdata = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AllPets Test');
+
+        const tab = (Allpetsdata[1].tabName);
+        const noOfPetCount = await allPetsPage.selectTab(tab);
         console.log(noOfPetCount);
         await page.waitForTimeout(1000);
-        await allPetsPage.searchValue('7864');
-         const petDetails=await allPetsPage.printPetDetails('7864');
-         console.log(petDetails);
+        //from excel
+        const searchPet = (Allpetsdata[1].petSearch);
+        await allPetsPage.searchValue(searchPet);
+        const petDetails = await allPetsPage.printPetDetails(searchPet);
+        console.log(petDetails);
     })
 
     test('TC006 - Navigate to All unadopted ', async () => {
         const allPetsPage = new AllPetsPage(page);
-         const noOfPetCount=await allPetsPage.selectTab('Unadopted');
-        console.log(noOfPetCount);
-        await page.waitForTimeout(1000);
-        await allPetsPage.searchValue('6010');
-         const petDetails=await allPetsPage.printPetDetails('6010');
-         console.log(petDetails);
-    })
+        //from excel
+        const excelReader = new ExcelReader();
+        const Allpetsdata = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AllPets Test');
 
-    test('TC004 - Navigate to All stray ', async () => {
-        const allPetsPage = new AllPetsPage(page);
-         const noOfPetCount=await allPetsPage.selectTab('Stray');
+        const tab = (Allpetsdata[2].tabName);
+        const noOfPetCount = await allPetsPage.selectTab(tab);
         console.log(noOfPetCount);
         await page.waitForTimeout(1000);
-        await allPetsPage.searchValue('27307');
-        const petDetails= await allPetsPage.printPetDetails('27307');
+        //from excel
+        const searchPet = (Allpetsdata[2].petSearch);
+        await allPetsPage.searchValue(searchPet);
+        const petDetails = await allPetsPage.printPetDetails(searchPet);
         console.log(petDetails);
     })
 
-    test('TC004 - Navigate to All Inactive ', async () => {
+    test('TC007 - Navigate to All stray ', async () => {
         const allPetsPage = new AllPetsPage(page);
-        const noOfPetCount=await allPetsPage.selectTab('InActive');
+        //from excel
+        const excelReader = new ExcelReader();
+        const Allpetsdata = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AllPets Test');
+
+        const tab = (Allpetsdata[3].tabName);
+
+        const noOfPetCount = await allPetsPage.selectTab(tab);
         console.log(noOfPetCount);
         await page.waitForTimeout(1000);
-        await allPetsPage.searchValue('14442');
-         const petDetails=await allPetsPage.printPetDetails('14442');
-         console.log(petDetails);
+        //from excel
+        const searchPet = (Allpetsdata[3].petSearch);
+        await allPetsPage.searchValue(searchPet);
+
+        const petDetails = await allPetsPage.printPetDetails(searchPet);
+        console.log(petDetails);
+    })
+
+    test('TC008 - Navigate to All Inactive ', async () => {
+        const allPetsPage = new AllPetsPage(page);
+        //from excel
+        const excelReader = new ExcelReader();
+        const Allpetsdata = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AllPets Test');
+
+        const tab = (Allpetsdata[4].tabName);
+
+        const noOfPetCount = await allPetsPage.selectTab(tab);
+        console.log(noOfPetCount);
+        await page.waitForTimeout(1000);
+         //from excel
+        const searchPet = (Allpetsdata[4].petSearch);
+        await allPetsPage.searchValue(searchPet);
+       
+        const petDetails = await allPetsPage.printPetDetails(searchPet);
+        console.log(petDetails);
     })
 
 

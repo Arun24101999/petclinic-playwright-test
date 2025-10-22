@@ -47,25 +47,53 @@ test.describe('TS05 - Service Category', () => {
     test('TC004 - Add discount Master', async () => {
         const discountMasterPage = new DiscountMasterPage(page);
         await discountMasterPage.clickAddDiscountBtn();
-        await discountMasterPage.addDiscountMaster('discountName', 'Amount', '20', 'GST20', 'Arun', 'description');
-        await discountMasterPage.remarkbtn('Yes');
-        await discountMasterPage.allocationNeedbtn('Yes');
+        //from excel
+        const excelReader = new ExcelReader();
+        const DiscountMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'DiscountMasterTest');
+        //from excel
+        const discountName = (DiscountMasterData[0].NameOfDiscount);
+        const discountType = (DiscountMasterData[0].discount_Type);
+        const discountValue = (DiscountMasterData[0].Discount_value);
+        const discountCode = (DiscountMasterData[0].Discount_code);
+        const remarkName = (DiscountMasterData[0].remark_Name);
+        const Description = (DiscountMasterData[0].description);
+        //from excel
+        const remarkValue = (DiscountMasterData[0].remark_Value);
+
+        await discountMasterPage.addDiscountMaster(discountName, discountType, discountValue, discountCode, remarkName, Description);
+        await discountMasterPage.remarkbtn(remarkValue);
+        await discountMasterPage.allocationNeedbtn(remarkValue);
         await discountMasterPage.clickSubmitBtn();
         await discountMasterPage.closeIcon.click();
         await discountMasterPage.clickSubmitBtn();
         await discountMasterPage.clickConfirmationNo();
         await discountMasterPage.clickSubmitBtn();
         await discountMasterPage.clickConfirmationYes();
-        await discountMasterPage.validateToastMessage('Discount master created successfully');
+        //from excel
+        const getToastMessage = (DiscountMasterData[0].ToastMessage);
+
+        await discountMasterPage.validateToastMessage(getToastMessage);
         await page.waitForTimeout(2000);
     })
 
     test('TC005 - Cancel the add discount Master', async () => {
         const discountMasterPage = new DiscountMasterPage(page);
-        await discountMasterPage.clickAddDiscountBtn();
-        await discountMasterPage.addDiscountMaster('discountName', 'Amount', '20', 'GST20', 'Arun', 'description');
-        await discountMasterPage.remarkbtn('Yes');
-        await discountMasterPage.allocationNeedbtn('Yes');
+        //from excel
+        const excelReader = new ExcelReader();
+        const DiscountMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'DiscountMasterTest');
+        //from excel
+        const discountName = (DiscountMasterData[0].NameOfDiscount);
+        const discountType = (DiscountMasterData[0].discount_Type);
+        const discountValue = (DiscountMasterData[0].Discount_value);
+        const discountCode = (DiscountMasterData[0].Discount_code);
+        const remarkName = (DiscountMasterData[0].remark_Name);
+        const Description = (DiscountMasterData[0].description);
+        //from excel
+        const remarkValue = (DiscountMasterData[0].remark_Value);
+
+        await discountMasterPage.addDiscountMaster(discountName, discountType, discountValue, discountCode, remarkName, Description);
+        await discountMasterPage.remarkbtn(remarkValue);
+        await discountMasterPage.allocationNeedbtn(remarkValue);
         await discountMasterPage.clickCancelBtn();
         await discountMasterPage.closeIcon.click();
         await discountMasterPage.clickCancelBtn();
@@ -95,24 +123,39 @@ test.describe('TS05 - Service Category', () => {
     // })
 
     test('TC008 - view discount Master', async () => {
-       const discountMasterPage = new DiscountMasterPage(page);
-        await discountMasterPage.searchValue('New Discount Name');
+        const discountMasterPage = new DiscountMasterPage(page);
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const DiscountMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'DiscountMasterTest');
+        //from excel
+        const searchValue = (DiscountMasterData[0].searchdata);
+        await discountMasterPage.searchValue(searchValue);
         await page.waitForTimeout(1000);
-        await discountMasterPage.clickViewBtn('New Discount Name');
+        await discountMasterPage.clickViewBtn(searchValue);
         await page.waitForTimeout(1000);
         await discountMasterPage.backBtn.click();
         await page.waitForTimeout(2000);
     })
 
     test('TC009 - delete Treatment Master', async () => {
-         const discountMasterPage = new DiscountMasterPage(page);
-        await discountMasterPage.searchValue('test discount');
+        const discountMasterPage = new DiscountMasterPage(page);
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const DiscountMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'DiscountMasterTest');
+        //from excel
+        const deleteTreatment = (DiscountMasterData[0].TreatmentDelete);
+
+        await discountMasterPage.searchValue(deleteTreatment);
         await page.waitForTimeout(1000);
-        await discountMasterPage.clickDeleteBtn('test discount');
+        await discountMasterPage.clickDeleteBtn(deleteTreatment);
         await page.waitForTimeout(1000);
         await discountMasterPage.clickConfirmationYes();
         await page.waitForTimeout(1000);
-        await discountMasterPage.validateToastMessage('Discount master deleted successfully');
+            //from excel
+        const getToastMessage = (DiscountMasterData[1].ToastMessage);
+        await discountMasterPage.validateToastMessage(getToastMessage);
         await page.waitForTimeout(2000);
     })
 

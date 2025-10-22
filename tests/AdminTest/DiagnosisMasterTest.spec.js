@@ -51,7 +51,14 @@ test.describe('TS03 - Material Category', () => {
         await page.waitForTimeout(1000);
         await diagnosisMasterPage.clickAddDiagnosisBtn();
         await page.waitForTimeout(2000);
-        await diagnosisMasterPage.addDiagnosisDetails('Pharma', 'test the function');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const DiagnosisMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'DiagnosisMasterTest');
+        const NameOfdiagnosis = (DiagnosisMasterData[0].diagnosisName);
+        const diagnosisDescription = (DiagnosisMasterData[0].description);
+
+        await diagnosisMasterPage.addDiagnosisDetails(NameOfdiagnosis, diagnosisDescription);
         await diagnosisMasterPage.clickSubmitBtn();
         await diagnosisMasterPage.clickCloseIcon();
         await diagnosisMasterPage.clickSubmitBtn();
@@ -59,18 +66,30 @@ test.describe('TS03 - Material Category', () => {
         await diagnosisMasterPage.clickSubmitBtn();
         await diagnosisMasterPage.clickConfirmationYes();
         await page.waitForTimeout(1000)
-        await diagnosisMasterPage.validateToastMessage('Material diagnosis created successfully');
+        //from excel
+        const getToastMessage = (DiagnosisMasterData[0].ToastMessage);
+        await diagnosisMasterPage.validateToastMessage(getToastMessage);
 
     })
 
 
     test('TC005 - edit diagnosis', async () => {
-       const diagnosisMasterPage = new DiagnosisMasterPage(page);
+        const diagnosisMasterPage = new DiagnosisMasterPage(page);
         await page.waitForTimeout(1000);
-        await diagnosisMasterPage.searchTheValue('pharma')
+        //from excel
+        const excelReader = new ExcelReader();
+        const DiagnosisMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'DiagnosisMasterTest');
+        //from excel
+        const diagnosisMasterSearch = (DiagnosisMasterData[0].diagnosisSearch);
+        await diagnosisMasterPage.searchTheValue(diagnosisMasterSearch)
         await page.waitForTimeout(2000);
         await diagnosisMasterPage.clickEditIcon();
-        await diagnosisMasterPage.editDiagnosisDetails('Pharmacy', 'New');
+        //from excel
+        const NameOfdiagnosis = (DiagnosisMasterData[1].diagnosisName);
+        const diagnosisDescription = (DiagnosisMasterData[1].description);
+
+
+        await diagnosisMasterPage.editDiagnosisDetails(NameOfdiagnosis, diagnosisDescription);
         await diagnosisMasterPage.clickSubmitBtn();
         await diagnosisMasterPage.clickCloseIcon();
         await diagnosisMasterPage.clickSubmitBtn();
@@ -78,14 +97,24 @@ test.describe('TS03 - Material Category', () => {
         await diagnosisMasterPage.clickSubmitBtn();
         await diagnosisMasterPage.clickConfirmationYes();
         await page.waitForTimeout(1000)
-        await diagnosisMasterPage.validateToastMessage('Material diagnosis updated successfully');
+        //from excel
+        const getToastMessage = (DiagnosisMasterData[1].ToastMessage);
+        await diagnosisMasterPage.validateToastMessage(getToastMessage);
 
     })
 
     test('TC006 - view diagnosis master', async () => {
-      const diagnosisMasterPage = new DiagnosisMasterPage(page);
+        const diagnosisMasterPage = new DiagnosisMasterPage(page);
         await page.waitForTimeout(1000);
-        await diagnosisMasterPage.searchTheValue('pharmacy')
+
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const DiagnosisMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'DiagnosisMasterTest');
+        //from excel
+        const diagnosisMasterSearch = (DiagnosisMasterData[1].diagnosisSearch);
+
+        await diagnosisMasterPage.searchTheValue(diagnosisMasterSearch)
         await page.waitForTimeout(1000);
         await diagnosisMasterPage.clickViewIcon();
         await page.waitForTimeout(2000);
@@ -97,7 +126,13 @@ test.describe('TS03 - Material Category', () => {
     test('TC007 - delete diagnosis master', async () => {
         const diagnosisMasterPage = new DiagnosisMasterPage(page);
         await page.waitForTimeout(1000);
-         await diagnosisMasterPage.searchTheValue('pharmacy')
+        //from excel
+        const excelReader = new ExcelReader();
+        const DiagnosisMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'DiagnosisMasterTest');
+        //from excel
+        const diagnosisMasterSearch = (DiagnosisMasterData[1].diagnosisSearch);
+
+        await diagnosisMasterPage.searchTheValue(diagnosisMasterSearch)
         await page.waitForTimeout(1000);
         await diagnosisMasterPage.clickDeleteIcon();
         await diagnosisMasterPage.closeIcon.click();
@@ -106,7 +141,9 @@ test.describe('TS03 - Material Category', () => {
         await diagnosisMasterPage.clickDeleteIcon();
         await diagnosisMasterPage.clickConfirmationYes();
         await page.waitForTimeout(1000)
-        await diagnosisMasterPage.validateToastMessage('Material diagnosis deleted successfully');
+        //from excel
+        const getToastMessage = (DiagnosisMasterData[2].ToastMessage);
+        await diagnosisMasterPage.validateToastMessage(getToastMessage);
     })
 
 

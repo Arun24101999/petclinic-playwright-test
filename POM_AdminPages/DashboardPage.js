@@ -54,7 +54,7 @@ class DashboardPage {
 
         this.getSpecies = page.locator("#apexchartsgr3mwnhzh g[seriesName]");
         this.getSpeciesCount = page.locator("#apexchartsgr3mwnhzh g[seriesName] path");
-        this.getOverallFacilityText = page.locator("//div[@id='overall-pet']//*[name()='svg'][@id='SvgjsSvg316887']/*[name()='text']");
+        this.getOverallFacilityText = page.locator("//div[@id='overall-pet']//*[@class='apexcharts-title-text']");
 
         //Pets
         this.getPetText = page.locator(".col-12>h5>b").nth(0);
@@ -292,62 +292,62 @@ class DashboardPage {
 
     }
 
-    
+
     async getInvoiceDetails() {
         await this.getInvoiceText.scrollIntoViewIfNeeded();
         await this.page.waitForTimeout(1000);
-       
+
     }
-    
+
     async getAppointmentDetails() {
         await this.getAppointmentText.scrollIntoViewIfNeeded();
         await this.page.waitForTimeout(1000);
         await this.opMenuBtn.click();
         await this.page.waitForTimeout(1000);
         await this.ipMenuBtn.click();
-       
+
     }
-    
+
     async getTaskManagementDetails() {
         await this.getTaskManagementText.scrollIntoViewIfNeeded();
         await this.page.waitForTimeout(1000);
     }
 
-     async getConsumptionInAwcAreaWiseDetails() {
+    async getConsumptionInAwcAreaWiseDetails() {
         await this.getConsumptionInAreaWiseText.scrollIntoViewIfNeeded();
         await this.page.waitForTimeout(1000);
-       const count= await this.allSpecies.count();
-        for(let i=0; i<count; i++){
+        const count = await this.allSpecies.count();
+        for (let i = 0; i < count; i++) {
             await this.allSpecies.nth(i).click();
-             await this.page.waitForTimeout(2000);
+            await this.page.waitForTimeout(2000);
         }
         await this.page.waitForTimeout(1000);
         await this.awcConsumptionMenuBtn.click();
-       
-       
+
+
     }
 
-     async getGoodsReceivedDetails() {
+    async getGoodsReceivedDetails() {
         await this.getGoodsReceivedText.scrollIntoViewIfNeeded();
         await this.page.waitForTimeout(1000);
     }
 
-     async getGoodsIssueDetails() {
+    async getGoodsIssueDetails() {
         await this.getGoodsIssueText.scrollIntoViewIfNeeded();
         await this.page.waitForTimeout(1000);
     }
 
-     async getConsumptionInOporIpDetails() {
+    async getConsumptionInOporIpDetails() {
         await this.getConsumptionInOPorIPText.scrollIntoViewIfNeeded();
         await this.page.waitForTimeout(1000);
     }
 
-     async getTop5MaterialsConsumedByCountDetails() {
+    async getTop5MaterialsConsumedByCountDetails() {
         await this.getTopMaterialConsumedByCount.scrollIntoViewIfNeeded();
         await this.page.waitForTimeout(1000);
     }
 
-     async getOnboardingDetails() {
+    async getOnboardingDetails() {
         await this.getOnboardingText.scrollIntoViewIfNeeded();
         await this.page.waitForTimeout(1000);
         await this.userOnboardMenuBtn.click();
@@ -363,11 +363,11 @@ class DashboardPage {
 
     }
 
-      async getStraySurrenderDetails() {
+    async getStraySurrenderDetails() {
         await this.getStraySurrenderEntryText.scrollIntoViewIfNeeded();
         await this.straySurrenderMenuBtn.click();
         await this.page.locator("//a[text()='2024']").nth(2).click();
-      }
+    }
 
 
 

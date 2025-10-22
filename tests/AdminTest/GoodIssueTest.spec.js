@@ -48,19 +48,19 @@ test.describe('TS03 - Material Category', () => {
     test('TC005 - add good issue', async () => {
         const goodIssuePage = new GoodIssuePage(page);
         await goodIssuePage.clickAddGoodIssueBtn();
-        await goodIssuePage.addGoodIssueDetails('Ribhadharshini B','Clinic Store','Simpari','sim','1');
+        await goodIssuePage.addGoodIssueDetails('Ribhadharshini B', 'Clinic Store', 'Simpari', 'sim', '1');
         await goodIssuePage.clickclearBtn();
         await page.waitForTimeout(2000);
-        await goodIssuePage.addGoodIssueDetails('Ribhadharshini B','Clinic Store','Simpari','sim','1');
+        await goodIssuePage.addGoodIssueDetails('Ribhadharshini B', 'Clinic Store', 'Simpari', 'sim', '1');
         await goodIssuePage.clickAddBtn();
         await page.waitForTimeout(2000);
     })
 
     test('TC006 - edit good issue', async () => {
         const goodIssuePage = new GoodIssuePage(page);
-        await goodIssuePage.clickEditIcon('Simparica','sim');
+        await goodIssuePage.clickEditIcon('Simparica', 'sim');
         await page.waitForTimeout(2000);
-        await goodIssuePage.editGoodIssueDetails('Ribhadharshini B','Clinic Store','Simparica','sim','1');
+        await goodIssuePage.editGoodIssueDetails('Ribhadharshini B', 'Clinic Store', 'Simparica', 'sim', '1');
         await page.waitForTimeout(2000);
         await goodIssuePage.clickAddBtn();
         await page.waitForTimeout(2000);
@@ -68,14 +68,14 @@ test.describe('TS03 - Material Category', () => {
 
     test('TC006 - delete good issue', async () => {
         const goodIssuePage = new GoodIssuePage(page);
-        await goodIssuePage.clickDeleteIcon('Simparica','sim');
+        await goodIssuePage.clickDeleteIcon('Simparica', 'sim');
         await page.waitForTimeout(2000);
 
     })
 
     test('TC007 - submit good issue', async () => {
         const goodIssuePage = new GoodIssuePage(page);
-        await goodIssuePage.addGoodIssueDetails('Ribhadharshini B','Clinic Store','Simparica','sim','1');
+        await goodIssuePage.addGoodIssueDetails('Ribhadharshini B', 'Clinic Store', 'Simparica', 'sim', '1');
         await page.waitForTimeout(2000);
         await goodIssuePage.clickAddBtn();
         await goodIssuePage.clickSubmitBtn();
@@ -84,7 +84,7 @@ test.describe('TS03 - Material Category', () => {
         await goodIssuePage.clickConfirmationNo();
         await goodIssuePage.clickSubmitBtn();
         await goodIssuePage.clickConfirmationYes();
-     const toast = await goodIssuePage.getToastMessage.textContent();
+        const toast = await goodIssuePage.getToastMessage.textContent();
         await expect(toast).toBe("Good issue created successfully");
         await page.waitForTimeout(2000);
 
@@ -93,6 +93,14 @@ test.describe('TS03 - Material Category', () => {
     test('TC008 - cancel good issue', async () => {
         const goodIssuePage = new GoodIssuePage(page);
         await goodIssuePage.clickAddGoodIssueBtn();
+        //from excel
+        const excelReader = new ExcelReader();
+        const GoodIssueData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'GoodIssueTest');
+
+        
+
+
+
         await goodIssuePage.addGoodIssueDetails('Ribhadharshini B', 'Clinic Store', 'Simparica', 'sim', '1');
         await page.waitForTimeout(2000);
         await goodIssuePage.clickAddBtn();

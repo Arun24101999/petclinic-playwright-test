@@ -47,16 +47,21 @@ test.describe('TS05 - Service Category', () => {
     test('TC004 - View to discount history ', async () => {
         const discountHistoryPage = new DiscountHistoryPage(page);
         const totalEntries = await discountHistoryPage.getDiscountHistoryList();
-        console.log('no of discount entries',totalEntries);
+        console.log('no of discount entries', totalEntries);
         await page.waitForTimeout(2000);
     })
 
     test('TC005 - get discount history details based on user Id', async () => {
         const discountHistoryPage = new DiscountHistoryPage(page);
-         await page.waitForTimeout(1000);
-        await discountHistoryPage.searchValue('14438');
         await page.waitForTimeout(1000);
-        const userDetails = await discountHistoryPage.getHistoryDetailsBasedonUserId('14438');
+        //from excel
+        const excelReader = new ExcelReader();
+        const DiagnosisMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'DiscountHistoryTest');
+
+        const discountHistorySearch = (DiagnosisMasterData[0].HistoryDiscountSearch)
+        await discountHistoryPage.searchValue(discountHistorySearch);
+        await page.waitForTimeout(1000);
+        const userDetails = await discountHistoryPage.getHistoryDetailsBasedonUserId(discountHistorySearch);
         console.log(userDetails);
         await page.waitForTimeout(2000);
     })

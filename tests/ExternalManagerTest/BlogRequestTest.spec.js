@@ -2,15 +2,16 @@ const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../../POM_AdminPages/LoginPage');
 const { ExcelReader } = require('../../utils/AdminUtils/ExcelReader');
 const { UsersPage } = require('../../POM_AdminPages/UsersPage');
-const { AwcIPAppointmentPage } = require('../../POM_AdminPages/AwcIPAppointmentPage');
+const { AttributeMasterPage } = require('../../POM_ExternalManagerPages/AttributeMasterPage');
+
+
 
 
 let page;
 let context;
 
 
-test.describe('TS03 - OP Appointment', () => {
-
+test.describe('TS03 - Material Category', () => {
 
     test.beforeAll('Launch Browser', async ({ browser }) => {
         context = await browser.newContext({ viewport: { width: 1366, height: 580 } });
@@ -20,6 +21,7 @@ test.describe('TS03 - OP Appointment', () => {
         const url = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'URL');
         await loginPage.gotoLoginPage(url[0].URL);
         await page.waitForTimeout(2000);
+
     })
 
     test('TC001 - Login with valid Credentials', async () => {
@@ -34,37 +36,16 @@ test.describe('TS03 - OP Appointment', () => {
 
     test('TC002 - Select User Role', async () => {
         const usersPage = new UsersPage(page);
-        await usersPage.selectUserRoleBtn();
+        await usersPage.selectUserRoleOption('External Manager');
         await page.waitForTimeout(2000);
     })
 
-
-    test('TC003 - Navigate to Awc Ip Module', async () => {
-        const awcIPAppointmentPage = new AwcIPAppointmentPage(page);
-        await awcIPAppointmentPage.navigateToAppointmentModule();
-        await page.waitForTimeout(2000);
+    test('TC003 - Navigate to MarketPlace Management', async () => {
+        const attributeMasterPage = new AttributeMasterPage(page);
+        await attributeMasterPage.navigateToAttributeMaster();
     })
 
-
-    test('TC004 - View the data', async () => {
-        const awcIPAppointmentPage = new AwcIPAppointmentPage(page);
-        //from excel
-        const excelReader = new ExcelReader();
-        const Allpetsdata = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'AwcIP_OP_AppointmentTest');
-        const AWCIPsearchPet = (Allpetsdata[0].petSearchIP);
-        await awcIPAppointmentPage.searchValue(AWCIPsearchPet);
-        await page.waitForTimeout(2000);
-
-
-    })
-
-
-
-
-
-
-
-
+   
 
 
 })

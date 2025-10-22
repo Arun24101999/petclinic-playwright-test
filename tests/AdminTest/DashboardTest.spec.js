@@ -65,7 +65,7 @@ test.describe('TS03 - DashboardPage', () => {
 
     })
 
-    test('TC005 - get pet details', async () => {
+    test('TC006 - get pet details', async () => {
         const dashboardPage = new DashboardPage(page);
         await page.waitForTimeout(1000);
         const petDetails = await dashboardPage.getPetDetails();
@@ -73,7 +73,7 @@ test.describe('TS03 - DashboardPage', () => {
 
     })
 
-    test('TC005 - get adoption details', async () => {
+    test('TC007 - get adoption details', async () => {
         const dashboardPage = new DashboardPage(page);
         await page.waitForTimeout(1000);
         const adoptionDetails = await dashboardPage.getAdoptionDetails();
@@ -81,7 +81,7 @@ test.describe('TS03 - DashboardPage', () => {
 
     })
 
-    test('TC005 - get no of pet details', async () => {
+    test('TC008 - get no of pet details', async () => {
         const dashboardPage = new DashboardPage(page);
         await page.waitForTimeout(1000);
         const petDetails = await dashboardPage.getNoOfPetsDetails();
@@ -89,7 +89,7 @@ test.describe('TS03 - DashboardPage', () => {
 
     })
 
-    test('TC006 - view details', async () => {
+    test('TC009 - view details', async () => {
         const dashboardPage = new DashboardPage(page);
         await page.waitForTimeout(1000);
         await dashboardPage.getInvoiceDetails();

@@ -1,131 +1,18 @@
-<testsuites id="" name="" tests="18" failures="2" skipped="13" errors="0" time="35.052104">
-<testsuite name="AdminTest\AdoptionTest.spec.js" timestamp="2025-10-11T10:00:47.753Z" hostname="chromium" tests="18" failures="2" skipped="13" time="24.441" errors="0">
-<testcase name="TS02 - Adoption Requests Module Tests › TC001 - Login with valid Credentials" classname="AdminTest\AdoptionTest.spec.js" time="6.122">
+<testsuites id="" name="" tests="7" failures="0" skipped="0" errors="0" time="63.589938000000004">
+<testsuite name="AdminTest\DiagnosisMasterTest.spec.js" timestamp="2025-10-14T09:37:18.791Z" hostname="chromium" tests="7" failures="0" skipped="0" time="55.777" errors="0">
+<testcase name="TS03 - Material Category › TC001 - Login with valid Credentials" classname="AdminTest\DiagnosisMasterTest.spec.js" time="6.15">
 </testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC002 - Select User Role" classname="AdminTest\AdoptionTest.spec.js" time="5.26">
+<testcase name="TS03 - Material Category › TC002 - Select User Role" classname="AdminTest\DiagnosisMasterTest.spec.js" time="7.17">
 </testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC003 - Naviagate to Adoption Module" classname="AdminTest\AdoptionTest.spec.js" time="5.268">
+<testcase name="TS03 - Material Category › TC003 - Navigate to Diagnosis Master" classname="AdminTest\DiagnosisMasterTest.spec.js" time="6.362">
 </testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC004 - Accept the Adoption" classname="AdminTest\AdoptionTest.spec.js" time="7.791">
-<failure message="AdoptionTest.spec.js:45:5 TC004 - Accept the Adoption" type="FAILURE">
-<![CDATA[  [chromium] › AdminTest\AdoptionTest.spec.js:45:5 › TS02 - Adoption Requests Module Tests › TC004 - Accept the Adoption 
-
-    Error: locator.click: Target page, context or browser has been closed
-    Call log:
-      - waiting for locator('//div[@role=\'gridcell\'][normalize-space()=\'Arumugam K\']/following-sibling::div[text()=\'Barbie\']/following-sibling::div[@col-id=\'action\']/div/div/div/div/button')
-        - locator resolved to <button type="button" class="btn view-btn btn-secondary">…</button>
-      - attempting click action
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <div class="b-sidebar-backdrop bg-dark"></div> from <div tabindex="-1" class="b-sidebar-outer">…</div> subtree intercepts pointer events
-        - retrying click action
-        - waiting 20ms
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <div class="b-sidebar-backdrop bg-dark"></div> from <div tabindex="-1" class="b-sidebar-outer">…</div> subtree intercepts pointer events
-        - retrying click action
-          - waiting 100ms
-        3 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <div class="b-sidebar-backdrop bg-dark"></div> from <div tabindex="-1" class="b-sidebar-outer">…</div> subtree intercepts pointer events
-        - retrying click action
-          - waiting 500ms
-
-
-       at ..\POM_AdminPages\AdoptionPage.js:88
-
-      86 |         if (customerName.includes(givenCustomerName) && petName.includes(givenPetName)) {
-      87 |           await this.page.waitForTimeout(1000);
-    > 88 |           await this.page.locator(`//div[@role='gridcell'][normalize-space()='${customerName}']/following-sibling::div[text()='${petName}']/following-sibling::div[@col-id='action']/div/div/div/div/button`).click();
-         |                                                                                                                                                                                                               ^
-      89 |         }
-      90 |         else {
-      91 |           return console.log("error");
-        at AdoptionPage.clickAdoptionRequest (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_AdminPages\AdoptionPage.js:88:207)
-        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\AdminTest\AdoptionTest.spec.js:51:9
-]]>
-</failure>
+<testcase name="TS03 - Material Category › TC004 - add diagnosis with valid data" classname="AdminTest\DiagnosisMasterTest.spec.js" time="12.041">
 </testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC005 - Reject the Adoption" classname="AdminTest\AdoptionTest.spec.js" time="0">
-<failure message="AdoptionTest.spec.js:67:5 TC005 - Reject the Adoption" type="FAILURE">
-<![CDATA[  [chromium] › AdminTest\AdoptionTest.spec.js:67:5 › TS02 - Adoption Requests Module Tests › TC005 - Reject the Adoption 
-
-    Error: page.goto: Target page, context or browser has been closed
-    Call log:
-      - navigating to "https://pms-dev.medyaan.com/", waiting until "load"
-
-
-       at ..\POM_AdminPages\LoginPage.js:24
-
-      22 |
-      23 |   async gotoLoginPage(Url) {
-    > 24 |     await this.page.goto(Url);
-         |                     ^
-      25 |     await this.SignInButton.click();
-      26 |     
-      27 |   }
-        at LoginPage.gotoLoginPage (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_AdminPages\LoginPage.js:24:21)
-        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\AdminTest\AdoptionTest.spec.js:20:25
-]]>
-</failure>
+<testcase name="TS03 - Material Category › TC005 - edit diagnosis" classname="AdminTest\DiagnosisMasterTest.spec.js" time="10.999">
 </testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC006 - Accept the Foster" classname="AdminTest\AdoptionTest.spec.js" time="0">
-<skipped>
-</skipped>
+<testcase name="TS03 - Material Category › TC006 - view diagnosis master" classname="AdminTest\DiagnosisMasterTest.spec.js" time="5.174">
 </testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC007 - Reject the Foster" classname="AdminTest\AdoptionTest.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC008 - Accept the Trial" classname="AdminTest\AdoptionTest.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Reject the Trial" classname="AdminTest\AdoptionTest.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC010 - Accept the Return" classname="AdminTest\AdoptionTest.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC011 - Reject the Return" classname="AdminTest\AdoptionTest.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC008 - Select Foster Active" classname="AdminTest\AdoptionTest.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Select Trial Active" classname="AdminTest\AdoptionTest.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Select Adoption History Module" classname="AdminTest\AdoptionTest.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Select Adoption History" classname="AdminTest\AdoptionTest.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Select Foster History" classname="AdminTest\AdoptionTest.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Select Trial History" classname="AdminTest\AdoptionTest.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="TS02 - Adoption Requests Module Tests › TC009 - Select Return History" classname="AdminTest\AdoptionTest.spec.js" time="0">
-<skipped>
-</skipped>
+<testcase name="TS03 - Material Category › TC007 - delete diagnosis master" classname="AdminTest\DiagnosisMasterTest.spec.js" time="7.881">
 </testcase>
 </testsuite>
 </testsuites>
