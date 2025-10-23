@@ -44,13 +44,15 @@ test.describe('TS03 - Material Category', () => {
     })
 
 
-
     test('TC004 - add category with valid data', async () => {
         const materialCategoryPage = new MaterialCategoryPage(page);
+        const excelReader = new ExcelReader();
+        const materialCategoryData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'MaterialCategoryTest');
+        const { Category, Description, Toast } = materialCategoryData[0];
         await page.waitForTimeout(1000);
-        await materialCategoryPage.clickAddCategoryBtn();
+        await materialCategoryPage.clickAddCategoryBtn(Category, Description);
         await page.waitForTimeout(2000);
-        await materialCategoryPage.addCategoryDetails('Pharma', 'test the function');
+        await materialCategoryPage.addCategoryDetails();
         await materialCategoryPage.clickSubmitBtn();
         await materialCategoryPage.clickCloseIcon();
         await materialCategoryPage.clickSubmitBtn();
@@ -58,18 +60,21 @@ test.describe('TS03 - Material Category', () => {
         await materialCategoryPage.clickSubmitBtn();
         await materialCategoryPage.clickConfirmationYes();
         await page.waitForTimeout(1000)
-        await materialCategoryPage.validateToastMessage('Material category created successfully');
+        await materialCategoryPage.validateToastMessage(Toast);
 
     })
 
 
     test('TC005 - edit material category', async () => {
         const materialCategoryPage = new MaterialCategoryPage(page);
+        const excelReader = new ExcelReader();
+        const materialCategoryData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'MaterialCategoryTest');
+        const { Category, Description, Toast } = materialCategoryData[1];
         await page.waitForTimeout(1000);
-        await materialCategoryPage.searchTheValue('pharma')
+        await materialCategoryPage.searchTheValue(materialCategoryData[0].Category)
         await page.waitForTimeout(2000);
         await materialCategoryPage.clickEditIcon();
-        await materialCategoryPage.editCategoryDetails('Pharmacy', 'New');
+        await materialCategoryPage.editCategoryDetails(Category, Description);
         await materialCategoryPage.clickSubmitBtn();
         await materialCategoryPage.clickCloseIcon();
         await materialCategoryPage.clickSubmitBtn();
@@ -77,14 +82,17 @@ test.describe('TS03 - Material Category', () => {
         await materialCategoryPage.clickSubmitBtn();
         await materialCategoryPage.clickConfirmationYes();
         await page.waitForTimeout(1000)
-        await materialCategoryPage.validateToastMessage('Material category updated successfully');
+        await materialCategoryPage.validateToastMessage(Toast);
 
     })
 
     test('TC006 - view material category', async () => {
-      const materialCategoryPage = new MaterialCategoryPage(page);
+        const materialCategoryPage = new MaterialCategoryPage(page);
+        const excelReader = new ExcelReader();
+        const materialCategoryData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'MaterialCategoryTest');
+
         await page.waitForTimeout(1000);
-        await materialCategoryPage.searchTheValue('pharmacy')
+        await materialCategoryPage.searchTheValue(materialCategoryData[1].Category);
         await page.waitForTimeout(1000);
         await materialCategoryPage.clickViewIcon();
         await page.waitForTimeout(2000);
@@ -95,8 +103,11 @@ test.describe('TS03 - Material Category', () => {
 
     test('TC007 - delete material category', async () => {
         const materialCategoryPage = new MaterialCategoryPage(page);
+        const excelReader = new ExcelReader();
+        const materialCategoryData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'MaterialCategoryTest');
+
         await page.waitForTimeout(1000);
-         await materialCategoryPage.searchTheValue('pharmacy')
+        await materialCategoryPage.searchTheValue(materialCategoryData[1].Category);
         await page.waitForTimeout(1000);
         await materialCategoryPage.clickDeleteIcon();
         await materialCategoryPage.closeIcon.click();
@@ -105,7 +116,7 @@ test.describe('TS03 - Material Category', () => {
         await materialCategoryPage.clickDeleteIcon();
         await materialCategoryPage.clickConfirmationYes();
         await page.waitForTimeout(1000)
-        await materialCategoryPage.validateToastMessage('Material category deleted successfully');
+        await materialCategoryPage.validateToastMessage(materialCategoryData[2].Toast);
     })
 
 

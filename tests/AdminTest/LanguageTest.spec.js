@@ -47,26 +47,30 @@ test.describe('TS03 - Material Category', () => {
 
     test('TC004 - add language with valid data', async () => {
         const languagePage = new LanguagePage(page);
+        const excelReader = new ExcelReader();
+        const languageData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LanguageTest');
         await page.waitForTimeout(1000);
         await languagePage.clickAddLanguageBtn();
         await page.waitForTimeout(2000);
-        await languagePage.addLanguageDetails('Pharma');
+        await languagePage.addLanguageDetails(languageData[0].Language);
         await page.waitForTimeout(1000);
         await languagePage.clickSubmitBtn();
         await page.waitForTimeout(1000);
-        await languagePage.validateToastMessage('Language added successfully');
+        await languagePage.validateToastMessage(languageData[0].ToastMessage);
 
     })
 
 
     test('TC005 - edit language details', async () => {
         const languagePage = new LanguagePage(page);
+        const excelReader = new ExcelReader();
+        const languageData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LanguageTest');
         await page.waitForTimeout(1000);
-        await languagePage.searchValue('pharma')
+        await languagePage.searchValue(languageData[0].Language);
         await page.waitForTimeout(1000);
         await languagePage.clickEditIcon();
         await page.waitForTimeout(1000);
-        await languagePage.editLanguageDetails('Pharmacy');
+        await languagePage.editLanguageDetails(languageData[1].Language);
         await page.waitForTimeout(1000);
         await languagePage.clickSubmitBtn();
         await languagePage.clickCloseIcon();
@@ -77,15 +81,18 @@ test.describe('TS03 - Material Category', () => {
         await languagePage.clickSubmitBtn();
         await languagePage.clickConfirmationYes();
         await page.waitForTimeout(1000)
-        await languagePage.validateToastMessage('Language updated successfully');
+        await languagePage.validateToastMessage(languageData[1].Toast);
 
     })
 
 
     test('TC006 - delete langaugae category', async () => {
         const languagePage = new LanguagePage(page);
+        const excelReader = new ExcelReader();
+        const languageData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LanguageTest');
+
         await page.waitForTimeout(1000);
-        await languagePage.searchValue('pharmacy')
+        await languagePage.searchValue(languageData[1].Language);
         await page.waitForTimeout(1000);
         await languagePage.clickDeleteIcon();
         await languagePage.closeIcon.click();
@@ -96,17 +103,20 @@ test.describe('TS03 - Material Category', () => {
         await languagePage.clickDeleteIcon();
         await languagePage.clickConfirmationYes();
         await page.waitForTimeout(1000)
-        await languagePage.validateToastMessage('Language deleted successfully');
+        await languagePage.validateToastMessage(languageData[2].Toast);
     })
 
     test('TC007 - add language without data', async () => {
         const languagePage = new LanguagePage(page);
+        const excelReader = new ExcelReader();
+        const languageData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LanguageTest');
+
         await page.waitForTimeout(1000);
         await languagePage.clickAddLanguageBtn();
         await page.waitForTimeout(2000);
         await languagePage.clickSubmitBtn();
         const getErrorMessage = await languagePage.getErrorMessage.textContent();
-        await expect(getErrorMessage).toContain("Language is required");
+        await expect(getErrorMessage).toContain(languageData[3].Toast);
         await page.waitForTimeout(1000);
         await languagePage.clickCancelBtn();
         await languagePage.clickConfirmationNo();
@@ -117,13 +127,16 @@ test.describe('TS03 - Material Category', () => {
 
     test('TC004 - add language using existing data', async () => {
         const languagePage = new LanguagePage(page);
+        const excelReader = new ExcelReader();
+        const languageData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LanguageTest');
+
         await page.waitForTimeout(1000);
         await languagePage.clickAddLanguageBtn();
         await page.waitForTimeout(1000);
-        await languagePage.addLanguageDetails('Tamil');
+        await languagePage.addLanguageDetails(languageData[2].Language);
         await page.waitForTimeout(1000);
         const getErrorMessage = await languagePage.getErrorMessage.textContent();
-        await expect(getErrorMessage).toContain("Language already exists");
+        await expect(getErrorMessage).toContain(languageData[4].Toast);
         await page.waitForTimeout(1000);
         await languagePage.clickCancelBtn();
         await languagePage.clickConfirmationNo();

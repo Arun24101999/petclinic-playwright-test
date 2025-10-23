@@ -46,17 +46,20 @@ test.describe('TS03 - Material Category', () => {
 
     test('TC004 - Add Material Master', async () => {
         const materialMasterPage = new MaterialMasterPage(page);
+        const excelReader = new ExcelReader();
+        const materialMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'MaterialMasterTest');
+        const { Name, Manufacturer, MRP, MaterialCategory, MaterialType, Diagnosis, GenericName, Description, ExceptedDeliveryDays, ProductDescription, ReturnDays, ReturnContent, Toast } = materialMasterData[0];
         await materialMasterPage.clickAddMaterialBtn();
-        await materialMasterPage.addMaterialDetails('newTestAK',' RAK Manufacture Industries', '20', 'Test', 'Test Sub Category', 'Anxiety', 'Test');
+        await materialMasterPage.addMaterialDetails(Name, Manufacturer, MRP, MaterialCategory, MaterialType, Diagnosis, GenericName);
         await materialMasterPage.clickCanBeSoldYes();
         await materialMasterPage.clickCanBeConsumedYes();
         await materialMasterPage.clickCanBeIporOpYes();
         await materialMasterPage.clickIsAppliedShopYes();
         await materialMasterPage.uploadImageFile('C:/Users/ArunkumarRagavan/PetClinic_VScode/Images/download.jpg');
         await materialMasterPage.clickIsReplacementorExchangePolicyYes();
-        await materialMasterPage.addIsAppliedshopDetails('Test Description', '5', 'Test Product Description');
+        await materialMasterPage.addIsAppliedshopDetails(Description, ExceptedDeliveryDays, ProductDescription);
         await materialMasterPage.clickIsReturnPolicyYes();
-        await materialMasterPage.addIsReturnPolicyDetails('7', 'Test Return Content');
+        await materialMasterPage.addIsReturnPolicyDetails(ReturnDays, ReturnContent);
         await page.waitForTimeout(2000);
         await materialMasterPage.clickSubmitBtn();
         await materialMasterPage.clickCloseIcon();
@@ -66,19 +69,22 @@ test.describe('TS03 - Material Category', () => {
         await page.waitForTimeout(2000);
         await materialMasterPage.clickSubmitBtn();
         await materialMasterPage.clickConfirmationMessageYes();
-        await materialMasterPage.validatateToastMessage("Material created successfully");
+        await materialMasterPage.validatateToastMessage(Toast);
     })
 
     test('TC005 - Add Material Master only sold', async () => {
         const materialMasterPage = new MaterialMasterPage(page);
+        const excelReader = new ExcelReader();
+        const materialMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'MaterialMasterTest');
+        const { Name, Manufacturer, MRP, MaterialCategory, MaterialType, Diagnosis, GenericName, } = materialMasterData[1];
         await materialMasterPage.clickAddMaterialBtn();
-        await materialMasterPage.addMaterialDetails('DatayaanRAK', ' RAK Manufacture Industries', '20', 'Test', 'Test Sub Category', 'Anxiety', 'Test');
+        await materialMasterPage.addMaterialDetails(Name, Manufacturer, MRP, MaterialCategory, MaterialType, Diagnosis, GenericName,);
         await materialMasterPage.clickCanBeSoldYes();
         await materialMasterPage.clickCanBeConsumedNo();
         await materialMasterPage.clickCanBeIporOpNo();
         await materialMasterPage.clickIsAppliedShopNo();
         await materialMasterPage.uploadImageFile('C:/Users/ArunkumarRagavan/PetClinic_VScode/Images/download.jpg');
-       await page.waitForTimeout(2000);
+        await page.waitForTimeout(2000);
         await materialMasterPage.clickSubmitBtn();
         await materialMasterPage.clickCloseIcon();
         await page.waitForTimeout(2000);
@@ -87,14 +93,17 @@ test.describe('TS03 - Material Category', () => {
         await page.waitForTimeout(2000);
         await materialMasterPage.clickSubmitBtn();
         await materialMasterPage.clickConfirmationMessageYes();
-        await materialMasterPage.validatateToastMessage("Material created successfully");
+        await materialMasterPage.validatateToastMessage(materialMasterData[0].Toast);
         await page.waitForTimeout(2000);
     })
 
     test('TC006 - Add Material Master only consumption', async () => {
         const materialMasterPage = new MaterialMasterPage(page);
+        const excelReader = new ExcelReader();
+        const materialMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'MaterialMasterTest');
+        const { Name, Manufacturer, MRP, MaterialCategory, MaterialType, Diagnosis, GenericName } = materialMasterData[2];
         await materialMasterPage.clickAddMaterialBtn();
-        await materialMasterPage.addMaterialDetails('PetClinic', ' RAK Manufacture Industries', '20', 'Test', 'Test Sub Category', 'Anxiety', 'Test');
+        await materialMasterPage.addMaterialDetails(Name, Manufacturer, MRP, MaterialCategory, MaterialType, Diagnosis, GenericName);
         await materialMasterPage.clickCanBeSoldYes();
         await materialMasterPage.clickCanBeConsumedNo();
         await materialMasterPage.clickCanBeIporOpNo();
@@ -106,15 +115,18 @@ test.describe('TS03 - Material Category', () => {
         await materialMasterPage.clickConfirmationMessageNo();
         await materialMasterPage.clickSubmitBtn();
         await materialMasterPage.clickConfirmationMessageYes();
-        await materialMasterPage.validatateToastMessage("Material created successfully");
+        await materialMasterPage.validatateToastMessage(materialMasterData[0].Toast);
         await page.waitForTimeout(2000);
     })
 
 
     test('TC007 - Cancel Add Material Master', async () => {
         const materialMasterPage = new MaterialMasterPage(page);
+        const excelReader = new ExcelReader();
+        const materialMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'MaterialMasterTest');
+        const { Name, Manufacturer, MRP, MaterialCategory, MaterialType, Diagnosis, GenericName } = materialMasterData[3];
         await materialMasterPage.clickAddMaterialBtn();
-        await materialMasterPage.addMaterialDetails('RAKPSDS', ' RAK Manufacture Industries', '20', 'Test', 'Test Sub Category', 'Anxiety', 'Test');
+        await materialMasterPage.addMaterialDetails(Name, Manufacturer, MRP, MaterialCategory, MaterialType, Diagnosis, GenericName);
         await materialMasterPage.clickCanBeSoldYes();
         await materialMasterPage.clickCanBeConsumedNo();
         await materialMasterPage.clickCanBeIporOpNo();
@@ -136,11 +148,14 @@ test.describe('TS03 - Material Category', () => {
 
     test('TC008 - edit Material Master', async () => {
         const materialMasterPage = new MaterialMasterPage(page);
+        const excelReader = new ExcelReader();
+        const materialMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'MaterialMasterTest');
+        const { Name, Manufacturer, MRP, MaterialCategory, MaterialType, Diagnosis, GenericName, Toast } = materialMasterData[3];
         await materialMasterPage.materialTab.click();
         await page.waitForTimeout(1000);
-        await materialMasterPage.searchValue('datayaan');
-        await materialMasterPage.clickEditBtn('DatayaanRAK', 'Test');
-        await materialMasterPage.addMaterialDetails('PetClinic', ' RAK Manufacture Industries', '20', 'Test', 'Test Sub Category', 'Anxiety', 'Test');
+        await materialMasterPage.searchValue(materialMasterData[2].Name);
+        await materialMasterPage.clickEditBtn(materialMasterData[2].Name, materialMasterData[2].MaterialCategory);
+        await materialMasterPage.addMaterialDetails(Name, Manufacturer, MRP, MaterialCategory, MaterialType, Diagnosis, GenericName);
         await materialMasterPage.clickCanBeSoldYes();
         await materialMasterPage.clickCanBeConsumedNo();
         await materialMasterPage.clickCanBeIporOpNo();
@@ -148,34 +163,42 @@ test.describe('TS03 - Material Category', () => {
         await page.waitForTimeout(2000)
         await materialMasterPage.clickSubmitBtn();
         await materialMasterPage.clickCloseIcon();
-         await page.waitForTimeout(2000);
+        await page.waitForTimeout(2000);
         await materialMasterPage.clickSubmitBtn();
         await materialMasterPage.clickConfirmationMessageNo();
-         await page.waitForTimeout(2000);
+        await page.waitForTimeout(2000);
         await materialMasterPage.clickSubmitBtn();
         await materialMasterPage.clickConfirmationMessageYes();
-        await materialMasterPage.validatateToastMessage("Material details updated successfully");
-    
+        await materialMasterPage.validatateToastMessage(Toast);
+
     })
 
 
     test('TC009 - view Material Master', async () => {
         const materialMasterPage = new MaterialMasterPage(page);
+        const excelReader = new ExcelReader();
+        const materialMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'MaterialMasterTest');
+        const { Name, Manufacturer, MRP, MaterialCategory, MaterialType, Diagnosis, GenericName, Toast } = materialMasterData[0];
+
         await page.waitForTimeout(1000);
-        await materialMasterPage.searchValue('Adrenaline');
-          await page.waitForTimeout(2000);
+        await materialMasterPage.searchValue(Name);
+        await page.waitForTimeout(2000);
         const materialQty = await materialMasterPage.getAvailableQty.textContent();
         console.log("Available Material Qty:", materialQty);
-        await materialMasterPage.clickViewBtn('PetClinic', 'Test');
+        await materialMasterPage.clickViewBtn(Name, MaterialCategory);
         await materialMasterPage.clickBackBtn();
         await page.waitForTimeout(2000);
     })
 
     test('TC010 - delete Material Master', async () => {
         const materialMasterPage = new MaterialMasterPage(page);
+        const excelReader = new ExcelReader();
+        const materialMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'MaterialMasterTest');
+        const { Name, Manufacturer, MRP, MaterialCategory, MaterialType, Diagnosis, GenericName, Toast } = materialMasterData[0];
+
         await page.waitForTimeout(1000);
-        await materialMasterPage.searchValue('PetClinic');
-        await materialMasterPage.clickDeleteBtn('PetClinic', 'Test');
+        await materialMasterPage.searchValue(Name);
+        await materialMasterPage.clickDeleteBtn(Name, MaterialCategory);
         await materialMasterPage.clickConfirmationMessageYes();
         await materialMasterPage.clickBackBtn();
         await page.waitForTimeout(2000);
@@ -184,12 +207,16 @@ test.describe('TS03 - Material Category', () => {
     //Batch Tab
     test('TC010 - view Material Master in Batch Tab', async () => {
         const materialMasterPage = new MaterialMasterPage(page);
+        const excelReader = new ExcelReader();
+        const materialMasterData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'MaterialMasterTest');
+        const { Name, CategoryDropDown,StorageLocation} = materialMasterData[0];
+
         await page.waitForTimeout(1000);
         await materialMasterPage.batchTab.click();
         await page.waitForTimeout(1000);
-        await materialMasterPage.searchValue('Simparica');
-        await materialMasterPage.clickCategoryDropDown('TestCategory');
-        await materialMasterPage.clickStorageLocationDropDown('Clinic Store');
+        await materialMasterPage.searchValue(Name);
+        await materialMasterPage.clickCategoryDropDown(CategoryDropDown);
+        await materialMasterPage.clickStorageLocationDropDown(StorageLocation);
         await materialMasterPage.clickFirstViewBtn.click();
         await materialMasterPage.clickBackBtn();
         await page.waitForTimeout(2000);

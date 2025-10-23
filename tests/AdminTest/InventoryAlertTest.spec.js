@@ -9,7 +9,7 @@ let page;
 let context;
 
 
-test.describe('TS04 - Supplier or Vendor', () => {
+test.describe('TS04 - Inventory Alert', () => {
 
 
     test.beforeAll('Launch Browser', async ({ browser }) => {
@@ -54,9 +54,12 @@ test.describe('TS04 - Supplier or Vendor', () => {
 
     test('TC005 - get low qty material details', async () => {
         const inventoryAlertPage = new InventoryAlertPage(page);
+         const excelReader = new ExcelReader();
+        const inventoryAlertData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'InventoryAlertTest');
+
         await inventoryAlertPage.clickLowQtyTab();
-        await inventoryAlertPage.searchValue('Buster collar');
-        const materialDetails=await inventoryAlertPage.getLowQtyMaterialDetails('Buster collar');
+        await inventoryAlertPage.searchValue(inventoryAlertData[0].searchValue);
+        const materialDetails=await inventoryAlertPage.getLowQtyMaterialDetails(inventoryAlertData[0].searchValue);
         console.log(materialDetails);
     })
 
@@ -70,9 +73,12 @@ test.describe('TS04 - Supplier or Vendor', () => {
 
       test('TC007 - get low qty material details', async () => {
         const inventoryAlertPage = new InventoryAlertPage(page);
+         const excelReader = new ExcelReader();
+        const inventoryAlertData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'InventoryAlertTest');
+
         await inventoryAlertPage.clickExpiringTab();
-        await inventoryAlertPage.searchValue('simparica');
-        const materialDetails=await inventoryAlertPage.getExpiringMaterialDetails('Simparica');
+        await inventoryAlertPage.searchValue(inventoryAlertData[1].searchValue);
+        const materialDetails=await inventoryAlertPage.getExpiringMaterialDetails(inventoryAlertData[1].searchValue);
         console.log(materialDetails);
     })
 

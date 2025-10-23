@@ -9,7 +9,7 @@ let page;
 let context;
 
 
-test.describe('TS03 - Material Category', () => {
+test.describe('TS03 - Good Issue Module', () => {
 
 
     test.beforeAll('Launch Browser', async ({ browser }) => {
@@ -47,20 +47,26 @@ test.describe('TS03 - Material Category', () => {
 
     test('TC005 - add good issue', async () => {
         const goodIssuePage = new GoodIssuePage(page);
+        const excelReader = new ExcelReader();
         await goodIssuePage.clickAddGoodIssueBtn();
-        await goodIssuePage.addGoodIssueDetails('Ribhadharshini B', 'Clinic Store', 'Simpari', 'sim', '1');
+        const goodIssueData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'GoodIssueTest');
+        const { Employee, StorageLocation, Material, Batch, Quantity } = goodIssueData[0];
+        await goodIssuePage.addGoodIssueDetails(Employee, StorageLocation, Material, Batch, Quantity);
         await goodIssuePage.clickclearBtn();
         await page.waitForTimeout(2000);
-        await goodIssuePage.addGoodIssueDetails('Ribhadharshini B', 'Clinic Store', 'Simpari', 'sim', '1');
+        await goodIssuePage.addGoodIssueDetails(Employee, StorageLocation, Material, Batch, Quantity);
         await goodIssuePage.clickAddBtn();
         await page.waitForTimeout(2000);
     })
 
     test('TC006 - edit good issue', async () => {
         const goodIssuePage = new GoodIssuePage(page);
-        await goodIssuePage.clickEditIcon('Simparica', 'sim');
+        const excelReader = new ExcelReader();
+        const goodIssueData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'GoodIssueTest');
+        const { Employee, StorageLocation, Material, Batch, Quantity } = goodIssueData[1];
+        await goodIssuePage.clickEditIcon(Material, Batch);
         await page.waitForTimeout(2000);
-        await goodIssuePage.editGoodIssueDetails('Ribhadharshini B', 'Clinic Store', 'Simparica', 'sim', '1');
+        await goodIssuePage.editGoodIssueDetails(Employee, StorageLocation, Material, Batch, Quantity);
         await page.waitForTimeout(2000);
         await goodIssuePage.clickAddBtn();
         await page.waitForTimeout(2000);
@@ -68,14 +74,21 @@ test.describe('TS03 - Material Category', () => {
 
     test('TC006 - delete good issue', async () => {
         const goodIssuePage = new GoodIssuePage(page);
-        await goodIssuePage.clickDeleteIcon('Simparica', 'sim');
+        const excelReader = new ExcelReader();
+        const goodIssueData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'GoodIssueTest');
+        const { Employee, StorageLocation, Material, Batch, Quantity } = goodIssueData[1];
+        await goodIssuePage.clickDeleteIcon(Material, Batch);
         await page.waitForTimeout(2000);
 
     })
 
     test('TC007 - submit good issue', async () => {
         const goodIssuePage = new GoodIssuePage(page);
-        await goodIssuePage.addGoodIssueDetails('Ribhadharshini B', 'Clinic Store', 'Simparica', 'sim', '1');
+        const excelReader = new ExcelReader();
+        await goodIssuePage.clickAddGoodIssueBtn();
+        const goodIssueData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'GoodIssueTest');
+        const { Employee, StorageLocation, Material, Batch, Quantity, Toast } = goodIssueData[0];
+        await goodIssuePage.addGoodIssueDetails(Employee, StorageLocation, Material, Batch, Quantity);
         await page.waitForTimeout(2000);
         await goodIssuePage.clickAddBtn();
         await goodIssuePage.clickSubmitBtn();
@@ -85,23 +98,18 @@ test.describe('TS03 - Material Category', () => {
         await goodIssuePage.clickSubmitBtn();
         await goodIssuePage.clickConfirmationYes();
         const toast = await goodIssuePage.getToastMessage.textContent();
-        await expect(toast).toBe("Good issue created successfully");
+        await expect(toast).toBe(Toast);
         await page.waitForTimeout(2000);
 
     })
 
     test('TC008 - cancel good issue', async () => {
         const goodIssuePage = new GoodIssuePage(page);
-        await goodIssuePage.clickAddGoodIssueBtn();
-        //from excel
         const excelReader = new ExcelReader();
-        const GoodIssueData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'GoodIssueTest');
-
-        
-
-
-
-        await goodIssuePage.addGoodIssueDetails('Ribhadharshini B', 'Clinic Store', 'Simparica', 'sim', '1');
+        const goodIssueData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'GoodIssueTest');
+        const { Employee, StorageLocation, Material, Batch, Quantity, Toast } = goodIssueData[0];
+        await goodIssuePage.clickAddGoodIssueBtn();
+        await goodIssuePage.addGoodIssueDetails(Employee, StorageLocation, Material, Batch, Quantity);
         await page.waitForTimeout(2000);
         await goodIssuePage.clickAddBtn();
         await goodIssuePage.clickCancelBtn();
@@ -116,21 +124,27 @@ test.describe('TS03 - Material Category', () => {
 
     test('TC009 - search good issue', async () => {
         const goodIssuePage = new GoodIssuePage(page);
-        await goodIssuePage.searchValue('Arun');
+        const excelReader = new ExcelReader();
+        const goodIssueData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'GoodIssueTest');
+        const { Employee, StorageLocation, Material, Batch, Quantity, Toast, Date } = goodIssueData[0];
+        await goodIssuePage.searchValue(Employee);
         await page.waitForTimeout(1000);
-        await goodIssuePage.clickViewIcon('ARUN', "24/09/2025");
+        await goodIssuePage.clickViewIcon(Employee, Date);
         await page.waitForTimeout(2000);
     })
 
     test('TC010 - return good issue', async () => {
         const goodIssuePage = new GoodIssuePage(page);
+        const excelReader = new ExcelReader();
+        const goodIssueData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'GoodIssueTest');
+        const { Employee, StorageLocation, Material, Batch, Quantity, Toast, Date } = goodIssueData[0];
         await page.waitForTimeout(1000);
         await goodIssuePage.clickReturnBtn();
-        await goodIssuePage.returnQuantityDeatils('Simparica', "sim", "1");
+        await goodIssuePage.returnQuantityDeatils(Material, Batch, Quantity);
         await goodIssuePage.clickSubmitBtn();
         await goodIssuePage.clickConfirmationYes();
         const toast = await goodIssuePage.getToastMessage.textContent();
-        await expect(toast).toBe("Goods issue return successfully");
+        await expect(toast).toBe(goodIssueData[1].Toast);
         await page.waitForTimeout(3000);
     })
 

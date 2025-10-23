@@ -9,7 +9,7 @@ let page;
 let context;
 
 
-test.describe('TS03 - OP Appointment', () => {
+test.describe('TS03 - IP Appointment', () => {
 
 
     test.beforeAll('Launch Browser', async ({ browser }) => {
@@ -46,9 +46,10 @@ test.describe('TS03 - OP Appointment', () => {
 
 
     test('TC004 - View the data', async () => {
-         const inPatientAppointmentPage = new InPatientAppointmentPage(page);
-
-        await inPatientAppointmentPage.searchValue('255');
+        const inPatientAppointmentPage = new InPatientAppointmentPage(page);
+         const excelReader = new ExcelReader();
+        const ipAppointmentData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'IP_OP_AppointmentTest');
+        await inPatientAppointmentPage.searchValue(ipAppointmentData[0].searchValue);
         await page.waitForTimeout(2000);
        
 

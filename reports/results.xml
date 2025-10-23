@@ -1,18 +1,12 @@
-<testsuites id="" name="" tests="7" failures="0" skipped="0" errors="0" time="63.589938000000004">
-<testsuite name="AdminTest\DiagnosisMasterTest.spec.js" timestamp="2025-10-14T09:37:18.791Z" hostname="chromium" tests="7" failures="0" skipped="0" time="55.777" errors="0">
-<testcase name="TS03 - Material Category › TC001 - Login with valid Credentials" classname="AdminTest\DiagnosisMasterTest.spec.js" time="6.15">
+<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="31.643338">
+<testsuite name="AdminTest\InPatientAppointmentTest.spec.js" timestamp="2025-10-23T10:44:06.310Z" hostname="chromium" tests="4" failures="0" skipped="0" time="23.838" errors="0">
+<testcase name="TS03 - IP Appointment › TC001 - Login with valid Credentials" classname="AdminTest\InPatientAppointmentTest.spec.js" time="6.149">
 </testcase>
-<testcase name="TS03 - Material Category › TC002 - Select User Role" classname="AdminTest\DiagnosisMasterTest.spec.js" time="7.17">
+<testcase name="TS03 - IP Appointment › TC002 - Select User Role" classname="AdminTest\InPatientAppointmentTest.spec.js" time="7.213">
 </testcase>
-<testcase name="TS03 - Material Category › TC003 - Navigate to Diagnosis Master" classname="AdminTest\DiagnosisMasterTest.spec.js" time="6.362">
+<testcase name="TS03 - IP Appointment › TC003 - Navigate to Ip Module" classname="AdminTest\InPatientAppointmentTest.spec.js" time="8.374">
 </testcase>
-<testcase name="TS03 - Material Category › TC004 - add diagnosis with valid data" classname="AdminTest\DiagnosisMasterTest.spec.js" time="12.041">
-</testcase>
-<testcase name="TS03 - Material Category › TC005 - edit diagnosis" classname="AdminTest\DiagnosisMasterTest.spec.js" time="10.999">
-</testcase>
-<testcase name="TS03 - Material Category › TC006 - view diagnosis master" classname="AdminTest\DiagnosisMasterTest.spec.js" time="5.174">
-</testcase>
-<testcase name="TS03 - Material Category › TC007 - delete diagnosis master" classname="AdminTest\DiagnosisMasterTest.spec.js" time="7.881">
+<testcase name="TS03 - IP Appointment › TC004 - View the data" classname="AdminTest\InPatientAppointmentTest.spec.js" time="2.102">
 </testcase>
 </testsuite>
 </testsuites>

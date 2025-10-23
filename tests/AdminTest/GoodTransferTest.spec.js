@@ -48,20 +48,28 @@ test.describe('TS03 - Good Transfer', () => {
     test('TC004 - add goods transfer', async () => {
 
         const goodTransferPage = new GoodTransferPage(page);
+        const excelReader = new ExcelReader();
+        const goodTransferData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'GoodTransferTest');
+        const { From, To, TransferDate, Material, Batch, Quantity } = goodTransferData[0];
+
         await goodTransferPage.clickAddGoodsTransferBtn();
-        await goodTransferPage.addGoodsTransferDetails('Clinic Store', 'Main & Food Store','15','Simparica', 'sim', '1');
+        await goodTransferPage.addGoodsTransferDetails(From, To, TransferDate, Material, Batch, Quantity);
         await goodTransferPage.clickclearBtn();
         await page.waitForTimeout(2000);
-        await goodTransferPage.addGoodsTransferDetails('Clinic Store', 'Main & Food Store','15','Simparica', 'sim', '1');
+        await goodTransferPage.addGoodsTransferDetails(From, To, TransferDate, Material, Batch, Quantity);
         await goodTransferPage.clickAddBtn();
         await page.waitForTimeout(2000);
     })
 
     test('TC005 - edit good transfer', async () => {
         const goodTransferPage = new GoodTransferPage(page);
-        await goodTransferPage.clickEditIcon('Simparica', 'sim');
+        const excelReader = new ExcelReader();
+        const goodTransferData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'GoodTransferTest');
+        const { From, To, TransferDate, Material, Batch, Quantity } = goodTransferData[0];
+
+        await goodTransferPage.clickEditIcon(Material, Batch);
         await page.waitForTimeout(2000);
-        await goodTransferPage.editGoodsTransferDetails('Clinic Store', 'Main & Food Store','15','Simparica', 'sim', '1');
+        await goodTransferPage.editGoodsTransferDetails(goodTransferData[1].From, goodTransferData[1].To, goodTransferData[1].TransferDate, goodTransferData[1].Material, goodTransferData[1].Batch, goodTransferData[1].Quantity);
         await page.waitForTimeout(2000);
         await goodTransferPage.clickAddBtn();
         await page.waitForTimeout(2000);
@@ -69,17 +77,25 @@ test.describe('TS03 - Good Transfer', () => {
 
     test('TC006 - submit good transfer', async () => {
         const goodTransferPage = new GoodTransferPage(page);
+        const excelReader = new ExcelReader();
+        const goodTransferData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'GoodTransferTest');
+        const { Toast } = goodTransferData[0];
+
         await goodTransferPage.clickSubmitBtn();
         const toast = await goodTransferPage.getToastMessage.textContent();
-        await expect(toast).toBe("Goods transferred successfully");
+        await expect(toast).toBe(Toast); x
         await page.waitForTimeout(2000);
 
     })
 
     test('TC007 - cancel good transfer', async () => {
         const goodTransferPage = new GoodTransferPage(page);
+        const excelReader = new ExcelReader();
+        const goodTransferData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'GoodTransferTest');
+        const { From, To, TransferDate, Material, Batch, Quantity } = goodTransferData[0];
+
         await goodTransferPage.clickAddGoodsTransferBtn();
-        await goodTransferPage.addGoodsTransferDetails('Clinic Store', 'Main & Food Store','15','Simparica', 'sim', '1');
+        await goodTransferPage.addGoodsTransferDetails(From, To, TransferDate, Material, Batch, Quantity);
         await goodTransferPage.clickCancelBtn();
         await goodTransferPage.clickCloseIcon();
         await goodTransferPage.clickCancelBtn();
@@ -92,10 +108,13 @@ test.describe('TS03 - Good Transfer', () => {
 
 
     test('TC008 - search scrap ', async () => {
-       const goodTransferPage = new GoodTransferPage(page);
-        await goodTransferPage.searchValue('52');
+        const goodTransferPage = new GoodTransferPage(page);
+        const excelReader = new ExcelReader();
+        const goodTransferData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'GoodTransferTest');
+        const { GTId } = goodTransferData[0];
+        await goodTransferPage.searchValue(GTId);
         await page.waitForTimeout(1000);
-        await goodTransferPage.clickViewIcon('52');
+        await goodTransferPage.clickViewIcon(GTId);
         await page.waitForTimeout(2000);
         await goodTransferPage.clickBackBtn();
     })

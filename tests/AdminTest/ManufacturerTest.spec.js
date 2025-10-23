@@ -47,37 +47,48 @@ test.describe('TS04 - Supplier or Vendor', () => {
 
     test('TC004 - add manfacturer details ', async () => {
         const manufacturerPage = new ManufacturerPage(page);
+        const excelReader = new ExcelReader();
+        const manufacturerData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LoginTest');
+        const { Name, MobileNumber, Email, Emirate, Address, Toast } = manufacturerData[0];
         await manufacturerPage.clickAddManufacturerBtn();
-        await manufacturerPage.addManufacturerDetails('MedyaanDatayaa', '7094750000', 'arun@medyaan.com', 'Ajman', 'Test the functionality');
+        await manufacturerPage.addManufacturerDetails(Name, MobileNumber, Email, Emirate, Address);
         await manufacturerPage.clickSubmitBtn();
         await manufacturerPage.clickCloseIcon();
         await manufacturerPage.clickSubmitBtn();
         await manufacturerPage.clickConfirmationNo();
         await manufacturerPage.clickSubmitBtn()
         await manufacturerPage.clickConfirmationYes();
-        await manufacturerPage.validateToastMessage('Manufacturer created successfully');
+        await manufacturerPage.validateToastMessage(Toast);
     })
 
     test('TC005 - edit manufacturer details ', async () => {
         const manufacturerPage = new ManufacturerPage(page);
-        await manufacturerPage.searchValue('7094750000');
-        await manufacturerPage.clickEditBtn('7094750000');
-        await manufacturerPage.addManufacturerDetails('Medyaan', '7094755145', 'arun@medyaan.com', 'Ajman', 'Test the functionality');
+        const excelReader = new ExcelReader();
+        const manufacturerData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LoginTest');
+        const { Name, MobileNumber, Email, Emirate, Address, Toast } = manufacturerData[1];
+
+        await manufacturerPage.searchValue(manufacturerData[0].MobileNumber);
+        await manufacturerPage.clickEditBtn(manufacturerData[0].MobileNumber);
+        await manufacturerPage.addManufacturerDetails(Name, MobileNumber, Email, Emirate, Address);
         await manufacturerPage.clickSubmitBtn();
         await manufacturerPage.clickCloseIcon();
         await manufacturerPage.clickSubmitBtn();
         await manufacturerPage.clickConfirmationNo();
         await manufacturerPage.clickSubmitBtn()
         await manufacturerPage.clickConfirmationYes();
-        await manufacturerPage.validateToastMessage('Manufacturer updated successfully');
+        await manufacturerPage.validateToastMessage(Toast);
     })
 
 
 
     test('TC006 - cancel add manufacturer details ', async () => {
         const manufacturerPage = new ManufacturerPage(page);
+        const excelReader = new ExcelReader();
+        const manufacturerData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LoginTest');
+        const { Name, MobileNumber, Email, Emirate, Address } = manufacturerData[2];
+
         await manufacturerPage.clickAddManufacturerBtn();
-        await manufacturerPage.addManufacturerDetails('Arunku', '7094750000', 'arun@medyaan.com', 'Ajman', 'Test the functionality');
+        await manufacturerPage.addManufacturerDetails(Name, MobileNumber, Email, Emirate, Address);
         await manufacturerPage.clickCancelBtn();
         await manufacturerPage.clickCloseIcon();
         await manufacturerPage.clickCancelBtn();
@@ -88,8 +99,11 @@ test.describe('TS04 - Supplier or Vendor', () => {
 
     test('TC005 - view manufacturer details ', async () => {
         const manufacturerPage = new ManufacturerPage(page);
-        await manufacturerPage.searchValue('7094755145');
-        await manufacturerPage.clickViewBtn('7094755145');
+        const excelReader = new ExcelReader();
+        const manufacturerData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LoginTest');
+
+        await manufacturerPage.searchValue(manufacturerData[2].MobileNumber);
+        await manufacturerPage.clickViewBtn(manufacturerData[2].MobileNumber);
         await page.waitForTimeout(2000);
         await manufacturerPage.clickCloseBtn();
 
@@ -97,14 +111,17 @@ test.describe('TS04 - Supplier or Vendor', () => {
 
     test('TC007 - delete supplier details ', async () => {
         const manufacturerPage = new ManufacturerPage(page);
-        await manufacturerPage.searchValue('7094755145');
-        await manufacturerPage.clickDeleteBtn('7094755145');
+        const excelReader = new ExcelReader();
+        const manufacturerData = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LoginTest');
+        const mobileNumber=manufacturerData[2].MobileNumber;
+        await manufacturerPage.searchValue(mobileNumber);
+        await manufacturerPage.clickDeleteBtn(mobileNumber);
         await manufacturerPage.clickCloseIcon();
-        await manufacturerPage.clickDeleteBtn('7094755145');
+        await manufacturerPage.clickDeleteBtn(mobileNumber);
         await manufacturerPage.clickConfirmationNo();
-        await manufacturerPage.clickDeleteBtn('7094755145');
+        await manufacturerPage.clickDeleteBtn(mobileNumber);
         await manufacturerPage.clickConfirmationYes();
-        await manufacturerPage.validateToastMessage('Manufacturer deleted successfully');
+        await manufacturerPage.validateToastMessage(manufacturerData[2].Toast);
     })
 
 
