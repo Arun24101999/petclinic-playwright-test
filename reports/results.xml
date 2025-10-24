@@ -1,12 +1,33 @@
-<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="34.286585">
-<testsuite name="AdminTest\InPatientAppointmentTest.spec.js" timestamp="2025-10-24T09:50:52.906Z" hostname="chromium" tests="4" failures="0" skipped="0" time="24.127" errors="0">
-<testcase name="TS03 - IP Appointment › TC001 - Login with valid Credentials" classname="AdminTest\InPatientAppointmentTest.spec.js" time="6.177">
+<testsuites id="" name="" tests="4" failures="1" skipped="3" errors="0" time="6.9459800000000005">
+<testsuite name="AdminTest\InPatientAppointmentTest.spec.js" timestamp="2025-10-24T09:56:21.217Z" hostname="chromium" tests="4" failures="1" skipped="3" time="0" errors="0">
+<testcase name="TS03 - IP Appointment › TC001 - Login with valid Credentials" classname="AdminTest\InPatientAppointmentTest.spec.js" time="0">
+<failure message="InPatientAppointmentTest.spec.js:25:5 TC001 - Login with valid Credentials" type="FAILURE">
+<![CDATA[  [chromium] › AdminTest\InPatientAppointmentTest.spec.js:25:5 › TS03 - IP Appointment › TC001 - Login with valid Credentials 
+
+    Error: page.waitForTimeout: Target page, context or browser has been closed
+
+      20 |         const url = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'URL');
+      21 |         await loginPage.gotoLoginPage(url[0].URL);
+    > 22 |         await page.waitForTimeout(2000);
+         |                    ^
+      23 |     })
+      24 |
+      25 |     test('TC001 - Login with valid Credentials', async () => {
+        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\AdminTest\InPatientAppointmentTest.spec.js:22:20
+]]>
+</failure>
 </testcase>
-<testcase name="TS03 - IP Appointment › TC002 - Select User Role" classname="AdminTest\InPatientAppointmentTest.spec.js" time="7.306">
+<testcase name="TS03 - IP Appointment › TC002 - Select User Role" classname="AdminTest\InPatientAppointmentTest.spec.js" time="0">
+<skipped>
+</skipped>
 </testcase>
-<testcase name="TS03 - IP Appointment › TC003 - Navigate to Ip Module" classname="AdminTest\InPatientAppointmentTest.spec.js" time="8.489">
+<testcase name="TS03 - IP Appointment › TC003 - Navigate to Ip Module" classname="AdminTest\InPatientAppointmentTest.spec.js" time="0">
+<skipped>
+</skipped>
 </testcase>
-<testcase name="TS03 - IP Appointment › TC004 - View the data" classname="AdminTest\InPatientAppointmentTest.spec.js" time="2.155">
+<testcase name="TS03 - IP Appointment › TC004 - View the data" classname="AdminTest\InPatientAppointmentTest.spec.js" time="0">
+<skipped>
+</skipped>
 </testcase>
 </testsuite>
 </testsuites>
