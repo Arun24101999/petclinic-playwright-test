@@ -1,7 +1,6 @@
 const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../../POM_AdminPages/LoginPage');
 const { ExcelReader } = require('../../utils/AdminUtils/ExcelReader');
-//const { AdoptionPage } = require('../../POM_AdminPages/AdoptionPage');
 const { UsersPage } = require('../../POM_AdminPages/UsersPage');
 const { ServiceMasterPage } = require('../../POM_AdminPages/ServiceMasterPage');
 

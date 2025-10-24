@@ -1,12 +1,24 @@
-<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="31.643338">
-<testsuite name="AdminTest\InPatientAppointmentTest.spec.js" timestamp="2025-10-23T10:44:06.310Z" hostname="chromium" tests="4" failures="0" skipped="0" time="23.838" errors="0">
-<testcase name="TS03 - IP Appointment › TC001 - Login with valid Credentials" classname="AdminTest\InPatientAppointmentTest.spec.js" time="6.149">
+<testsuites id="" name="" tests="8" failures="0" skipped="0" errors="0" time="105.83969600000002">
+<testsuite name="AdminTest\VaccineMasterTest.spec.js" timestamp="2025-10-24T04:46:04.653Z" hostname="chromium" tests="8" failures="0" skipped="0" time="97.131" errors="0">
+<testcase name="TS05 - VaccineMaster › TC001 - Login with valid Credentials" classname="AdminTest\VaccineMasterTest.spec.js" time="6.167">
 </testcase>
-<testcase name="TS03 - IP Appointment › TC002 - Select User Role" classname="AdminTest\InPatientAppointmentTest.spec.js" time="7.213">
+<testcase name="TS05 - VaccineMaster › TC002 - Select User Role" classname="AdminTest\VaccineMasterTest.spec.js" time="7.243">
 </testcase>
-<testcase name="TS03 - IP Appointment › TC003 - Navigate to Ip Module" classname="AdminTest\InPatientAppointmentTest.spec.js" time="8.374">
+<testcase name="TS05 - VaccineMaster › TC003 - Navigate to VaccineMaster " classname="AdminTest\VaccineMasterTest.spec.js" time="5.262">
 </testcase>
-<testcase name="TS03 - IP Appointment › TC004 - View the data" classname="AdminTest\InPatientAppointmentTest.spec.js" time="2.102">
+<testcase name="TS05 - VaccineMaster › TC004 - Add Vaccine Master " classname="AdminTest\VaccineMasterTest.spec.js" time="18.925">
+</testcase>
+<testcase name="TS05 - VaccineMaster › TC005 - Cancel the add vaccine master " classname="AdminTest\VaccineMasterTest.spec.js" time="22.937">
+</testcase>
+<testcase name="TS05 - VaccineMaster › TC006 - edit Vaccine Master" classname="AdminTest\VaccineMasterTest.spec.js" time="22.907">
+</testcase>
+<testcase name="TS05 - VaccineMaster › TC008 - view Vaccine Master " classname="AdminTest\VaccineMasterTest.spec.js" time="6.156">
+</testcase>
+<testcase name="TS05 - VaccineMaster › TC009 - delete Vaccine Master" classname="AdminTest\VaccineMasterTest.spec.js" time="7.534">
+<system-out>
+<![CDATA[Toast Message not matched :undefined
+]]>
+</system-out>
 </testcase>
 </testsuite>
 </testsuites>
