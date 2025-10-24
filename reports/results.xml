@@ -1,31 +1,62 @@
-<testsuites id="" name="" tests="4" failures="1" skipped="3" errors="0" time="6.9459800000000005">
-<testsuite name="AdminTest\InPatientAppointmentTest.spec.js" timestamp="2025-10-24T09:56:21.217Z" hostname="chromium" tests="4" failures="1" skipped="3" time="0" errors="0">
-<testcase name="TS03 - IP Appointment › TC001 - Login with valid Credentials" classname="AdminTest\InPatientAppointmentTest.spec.js" time="0">
-<failure message="InPatientAppointmentTest.spec.js:25:5 TC001 - Login with valid Credentials" type="FAILURE">
-<![CDATA[  [chromium] › AdminTest\InPatientAppointmentTest.spec.js:25:5 › TS03 - IP Appointment › TC001 - Login with valid Credentials 
+<testsuites id="" name="" tests="8" failures="2" skipped="4" errors="0" time="29.779082000000002">
+<testsuite name="AdminTest\VaccineMasterTest.spec.js" timestamp="2025-10-24T10:04:38.027Z" hostname="chromium" tests="8" failures="2" skipped="4" time="17.565" errors="0">
+<testcase name="TS05 - VaccineMaster › TC001 - Login with valid Credentials" classname="AdminTest\VaccineMasterTest.spec.js" time="6.2">
+</testcase>
+<testcase name="TS05 - VaccineMaster › TC002 - Select User Role" classname="AdminTest\VaccineMasterTest.spec.js" time="7.308">
+</testcase>
+<testcase name="TS05 - VaccineMaster › TC003 - Navigate to VaccineMaster " classname="AdminTest\VaccineMasterTest.spec.js" time="4.057">
+<failure message="VaccineMasterTest.spec.js:43:5 TC003 - Navigate to VaccineMaster " type="FAILURE">
+<![CDATA[  [chromium] › AdminTest\VaccineMasterTest.spec.js:43:5 › TS05 - VaccineMaster › TC003 - Navigate to VaccineMaster  
 
     Error: page.waitForTimeout: Target page, context or browser has been closed
 
-      20 |         const url = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'URL');
-      21 |         await loginPage.gotoLoginPage(url[0].URL);
-    > 22 |         await page.waitForTimeout(2000);
+      44 |         const vaccineMasterPage = new VaccineMasterPage(page);
+      45 |         await vaccineMasterPage.navigateToVaccineMaster();
+    > 46 |         await page.waitForTimeout(2000);
          |                    ^
-      23 |     })
-      24 |
-      25 |     test('TC001 - Login with valid Credentials', async () => {
-        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\AdminTest\InPatientAppointmentTest.spec.js:22:20
+      47 |     })
+      48 |
+      49 |     //Add Vaccine Master with valid data
+        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\AdminTest\VaccineMasterTest.spec.js:46:20
 ]]>
 </failure>
 </testcase>
-<testcase name="TS03 - IP Appointment › TC002 - Select User Role" classname="AdminTest\InPatientAppointmentTest.spec.js" time="0">
+<testcase name="TS05 - VaccineMaster › TC004 - Add Vaccine Master " classname="AdminTest\VaccineMasterTest.spec.js" time="0">
+<failure message="VaccineMasterTest.spec.js:50:5 TC004 - Add Vaccine Master " type="FAILURE">
+<![CDATA[  [chromium] › AdminTest\VaccineMasterTest.spec.js:50:5 › TS05 - VaccineMaster › TC004 - Add Vaccine Master  
+
+    Error: page.goto: Target page, context or browser has been closed
+    Call log:
+      - navigating to "https://pms-dev.medyaan.com/", waiting until "load"
+
+
+       at ..\POM_AdminPages\LoginPage.js:24
+
+      22 |
+      23 |   async gotoLoginPage(Url) {
+    > 24 |     await this.page.goto(Url);
+         |                     ^
+      25 |     await this.SignInButton.click();
+      26 |     
+      27 |   }
+        at LoginPage.gotoLoginPage (C:\Users\ArunkumarRagavan\PetClinic_VScode\POM_AdminPages\LoginPage.js:24:21)
+        at C:\Users\ArunkumarRagavan\PetClinic_VScode\tests\AdminTest\VaccineMasterTest.spec.js:20:25
+]]>
+</failure>
+</testcase>
+<testcase name="TS05 - VaccineMaster › TC005 - Cancel the add vaccine master " classname="AdminTest\VaccineMasterTest.spec.js" time="0">
 <skipped>
 </skipped>
 </testcase>
-<testcase name="TS03 - IP Appointment › TC003 - Navigate to Ip Module" classname="AdminTest\InPatientAppointmentTest.spec.js" time="0">
+<testcase name="TS05 - VaccineMaster › TC006 - Edit Vaccine Master" classname="AdminTest\VaccineMasterTest.spec.js" time="0">
 <skipped>
 </skipped>
 </testcase>
-<testcase name="TS03 - IP Appointment › TC004 - View the data" classname="AdminTest\InPatientAppointmentTest.spec.js" time="0">
+<testcase name="TS05 - VaccineMaster › TC008 - view Vaccine Master " classname="AdminTest\VaccineMasterTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS05 - VaccineMaster › TC009 - delete Vaccine Master" classname="AdminTest\VaccineMasterTest.spec.js" time="0">
 <skipped>
 </skipped>
 </testcase>
