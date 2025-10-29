@@ -7,7 +7,7 @@ const { SettingsPage } = require('../../POM_AdminPages/SettingsPage');
 
 let page;
 let context;
-
+let pathone = "D:/excel/PetForAdmin.xlsx";
 
 test.describe('TS03 - Material Category', () => {
 
@@ -17,7 +17,7 @@ test.describe('TS03 - Material Category', () => {
         page = await context.newPage();
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const url = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'URL');
+        const url = await excelReader.readExcel(pathone, 'URL');
         await loginPage.gotoLoginPage(url[0].URL);
         await page.waitForTimeout(2000);
     })
@@ -25,7 +25,7 @@ test.describe('TS03 - Material Category', () => {
     test('TC001 - Login with valid Credentials', async () => {
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const LoginDataset = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LoginTest');
+        const LoginDataset = await excelReader.readExcel(pathone, 'LoginTest');
         const { UserName, Password } = LoginDataset[0];
         await page.waitForTimeout(2000);
         await loginPage.login(UserName, Password);
@@ -67,11 +67,19 @@ test.describe('TS03 - Material Category', () => {
 
 
     test('TC005 - cancel edit clinic details', async () => {
-       const settingsPage = new SettingsPage(page);
+        const settingsPage = new SettingsPage(page);
         await page.waitForTimeout(1000);
         await settingsPage.clickEditBtn();
         await page.waitForTimeout(2000);
-        await settingsPage.editClinicDetails('YaanPharma', '9717228568', 'Ajman', 'info@psd.rak.ae', '10030428410003', 'Public Services Department, PO BOX 1661, RAK, UAE Dubai');
+
+        //from excel
+
+        const excelReader = new ExcelReader();
+        const Settingsdata = await excelReader.readExcel(pathone, 'SettingsTest');
+        const { clinicName, mobileNumber, emirate, email, trnNo } = Settingsdata[0];
+
+        await settingsPage.editClinicDetails(clinicName, mobileNumber, emirate, email, trnNo);
+        // await settingsPage.editClinicDetails('YaanPharma', '9717228568', 'Ajman', 'info@psd.rak.ae', '10030428410003', 'Public Services Department, PO BOX 1661, RAK, UAE Dubai');
         await page.waitForTimeout(1000);
         await settingsPage.clickCancelBtn();
         await settingsPage.clickCloseIcon();
@@ -81,10 +89,10 @@ test.describe('TS03 - Material Category', () => {
         await page.waitForTimeout(1000);
         await settingsPage.clickCancelBtn();
         await settingsPage.clickConfirmationYes();
-       
+
     })
 
 
-    
+
 
 })

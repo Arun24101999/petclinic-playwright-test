@@ -7,7 +7,7 @@ const { TaskPolicyPage } = require('../../POM_AdminPages/TaskPolicyPage');
 
 let page;
 let context;
-
+let pathone = "D:/excel/PetForAdmin.xlsx"
 
 test.describe('TS03 - Material Category', () => {
 
@@ -17,7 +17,7 @@ test.describe('TS03 - Material Category', () => {
         page = await context.newPage();
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const url = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'URL');
+        const url = await excelReader.readExcel(pathone, 'URL');
         await loginPage.gotoLoginPage(url[0].URL);
         await page.waitForTimeout(2000);
     })
@@ -25,7 +25,7 @@ test.describe('TS03 - Material Category', () => {
     test('TC001 - Login with valid Credentials', async () => {
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const LoginDataset = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LoginTest');
+        const LoginDataset = await excelReader.readExcel(pathone, 'LoginTest');
         const { UserName, Password } = LoginDataset[0];
         await page.waitForTimeout(2000);
         await loginPage.login(UserName, Password);
@@ -45,11 +45,20 @@ test.describe('TS03 - Material Category', () => {
 
 
     test('TC004 - Add task policy with valid data', async () => {
-       const taskPolicyPage = new TaskPolicyPage(page);
+        const taskPolicyPage = new TaskPolicyPage(page);
         await page.waitForTimeout(1000);
         await taskPolicyPage.clickAddTaskPolicyBtn();
         await page.waitForTimeout(1000);
-        await taskPolicyPage.addTaskPolicyDetails('Provide a cough syrup','TestProject','00:15','19','00','18','30','Week','W','11','24','Test the functionality');
+
+        //from excel 
+        const excelReader = new ExcelReader();
+        const TaskPolicyData = await excelReader.readExcel(pathone, 'TaskPolicyTest');
+        const { Title, Project, Planhrs, StartHrs, Startmin, Endhrs, EndMin, Recurrence, Day1, Startdate, Enddate, Description, Toast } = TaskPolicyData[0];
+
+
+        await taskPolicyPage.addTaskPolicyDetails(Title, Project, Planhrs, StartHrs, Startmin, Endhrs, EndMin, Recurrence, Day1, Startdate, Enddate, Description);
+
+        // await taskPolicyPage.addTaskPolicyDetails('Provide a cough syrup','TestProject','00:15','19','00','18','30','Week','W','11','24','Test the functionality');
         await page.waitForTimeout(1000);
         await taskPolicyPage.clickSubmitBtn();
         await taskPolicyPage.clickCloseIcon();
@@ -60,12 +69,15 @@ test.describe('TS03 - Material Category', () => {
         await taskPolicyPage.clickSubmitBtn();
         await taskPolicyPage.clickConfirmationYes();
         await page.waitForTimeout(1000)
-        await taskPolicyPage.validateToastMessage('Task Policy Created successfully');
+
+        await taskPolicyPage.validateToastMessage(Toast);
+
+        // await taskPolicyPage.validateToastMessage('Task Policy Created successfully');
 
     })
 
     test('TC005 - Cancel Add task policy', async () => {
-       const taskPolicyPage = new TaskPolicyPage(page);
+        const taskPolicyPage = new TaskPolicyPage(page);
         await page.waitForTimeout(1000);
         await taskPolicyPage.clickAddTaskPolicyBtn();
         await page.waitForTimeout(1000);
@@ -73,7 +85,16 @@ test.describe('TS03 - Material Category', () => {
         await page.waitForTimeout(1000);
         await taskPolicyPage.clickAddTaskPolicyBtn();
         await page.waitForTimeout(1000);
-        await taskPolicyPage.addTaskPolicyDetails('Provide a cough syrup','TestProject','00:15','19','00','18','30','Week','W','11','24','Test the functionality');
+
+        //from excel 
+        const excelReader = new ExcelReader();
+        const TaskPolicyData = await excelReader.readExcel(pathone, 'TaskPolicyTest');
+        const { Title, Project, Planhrs, StartHrs, Startmin, Endhrs, EndMin, Recurrence, Day1, Startdate, Enddate, Description, Toast } = TaskPolicyData[0];
+
+
+        await taskPolicyPage.addTaskPolicyDetails(Title, Project, Planhrs, StartHrs, Startmin, Endhrs, EndMin, Recurrence, Day1, Startdate, Enddate, Description);
+
+        // await taskPolicyPage.addTaskPolicyDetails('Provide a cough syrup', 'TestProject', '00:15', '19', '00', '18', '30', 'Week', 'W', '11', '24', 'Test the functionality');
         await page.waitForTimeout(1000);
         await taskPolicyPage.clickCancelBtn();
         await taskPolicyPage.clickCloseIcon();
@@ -88,25 +109,45 @@ test.describe('TS03 - Material Category', () => {
 
 
     test('TC006 - view task policy', async () => {
-       const taskPolicyPage = new TaskPolicyPage(page);
+        const taskPolicyPage = new TaskPolicyPage(page);
         await page.waitForTimeout(1000);
-        await taskPolicyPage.searchTheValue('Test One');
+        //from excel 
+        const excelReader = new ExcelReader();
+        const TaskPolicyData = await excelReader.readExcel(pathone, 'TaskPolicyTest');
+        const { search, Project } = TaskPolicyData[0];
+
+        await taskPolicyPage.searchTheValue(search);
+
+        // await taskPolicyPage.searchTheValue('Test One');
         await page.waitForTimeout(1000);
-        await taskPolicyPage.clickViewIcon('test one','TestProject');
+        await taskPolicyPage.clickViewIcon(search, Project);
+        // await taskPolicyPage.clickViewIcon('test one', 'TestProject');
         await page.waitForTimeout(1000);
         await taskPolicyPage.clickBackBtn();
-        
+
     })
 
 
     test('TC007 - edit task policy', async () => {
-       const taskPolicyPage = new TaskPolicyPage(page);
+        const taskPolicyPage = new TaskPolicyPage(page);
         await page.waitForTimeout(1000);
-        await taskPolicyPage.searchTheValue('Test One');
+        //from excel 
+        const excelReader = new ExcelReader();
+        const TaskPolicyData = await excelReader.readExcel(pathone, 'TaskPolicyTest');
+        const { search } = TaskPolicyData[0];
+        const { Title, Project, Planhrs, StartHrs, Startmin, Endhrs, EndMin, Recurrence, Day1, Startdate, Enddate, Description } = TaskPolicyData[0];
+        const { Toast } = TaskPolicyData[1];
+
+        await taskPolicyPage.searchTheValue(search);
+        // await taskPolicyPage.searchTheValue('Test One');
         await page.waitForTimeout(1000);
-        await taskPolicyPage.clickEditIcon('test one','TestProject');
+
+        await taskPolicyPage.clickEditIcon(search, Project);
+        // await taskPolicyPage.clickEditIcon('test one', 'TestProject');
         await page.waitForTimeout(1000);
-        await taskPolicyPage.editTaskPolicyDetails('Provide a cough syrup','00:10','19','00','18','30','Week','W','11','24','Test the functionality');
+
+        await taskPolicyPage.editTaskPolicyDetails(Title, Project, Planhrs, StartHrs, Startmin, Endhrs, EndMin, Recurrence, Day1, Startdate, Enddate, Description);
+        // await taskPolicyPage.editTaskPolicyDetails('Provide a cough syrup', '00:10', '19', '00', '18', '30', 'Week', 'W', '11', '24', 'Test the functionality');
         await page.waitForTimeout(1000);
         await taskPolicyPage.clickSubmitBtn();
         await taskPolicyPage.clickCloseIcon();
@@ -117,23 +158,35 @@ test.describe('TS03 - Material Category', () => {
         await taskPolicyPage.clickSubmitBtn();
         await taskPolicyPage.clickConfirmationYes();
         await page.waitForTimeout(1000)
-        await taskPolicyPage.validateToastMessage('Task Policy updated successfully');
 
-        
+        await taskPolicyPage.validateToastMessage(Toast);
+        // await taskPolicyPage.validateToastMessage('Task Policy updated successfully');
+
+
     })
 
     test('TC008 - delete task policy', async () => {
-       const taskPolicyPage = new TaskPolicyPage(page);
+        const taskPolicyPage = new TaskPolicyPage(page);
         await page.waitForTimeout(1000);
-        await taskPolicyPage.searchTheValue('Provide a cough syrup');
+
+        //from excel 
+        const excelReader = new ExcelReader();
+        const TaskPolicyData = await excelReader.readExcel(pathone, 'TaskPolicyTest');
+        const { Title, Project } = TaskPolicyData[0];
+        const { Toast } = TaskPolicyData[2];
+
+        await taskPolicyPage.searchTheValue(Title);
+        // await taskPolicyPage.searchTheValue('Provide a cough syrup');
         await page.waitForTimeout(1000);
-        await taskPolicyPage.clickDeleteIcon('Provide a cough syrup','TestProject');
+        await taskPolicyPage.clickDeleteIcon(Title, Project);
+        // await taskPolicyPage.clickDeleteIcon('Provide a cough syrup', 'TestProject');
         await page.waitForTimeout(1000);
         await taskPolicyPage.clickConfirmationYes();
-        await page.waitForTimeout(1000)
-        await taskPolicyPage.validateToastMessage('Task Policy deleted successfully');
+        await page.waitForTimeout(1000);
+        await taskPolicyPage.validateToastMessage(Toast);
+        // await taskPolicyPage.validateToastMessage('Task Policy deleted successfully');
 
-        
+
     })
 
 

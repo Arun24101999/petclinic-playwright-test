@@ -1,5 +1,5 @@
-<testsuites id="" name="" tests="8" failures="1" skipped="7" errors="0" time="8.536523">
-<testsuite name="AdminTest\TaskStageTest.spec.js" timestamp="2025-10-27T04:24:09.069Z" hostname="chromium" tests="8" failures="1" skipped="7" time="0" errors="0">
+<testsuites id="" name="" tests="8" failures="1" skipped="7" errors="0" time="6.881744">
+<testsuite name="AdminTest\TaskStageTest.spec.js" timestamp="2025-10-29T07:16:44.121Z" hostname="chromium" tests="8" failures="1" skipped="7" time="0" errors="0">
 <testcase name="TS03 - Task Stage › TC001 - Login with valid Credentials" classname="AdminTest\TaskStageTest.spec.js" time="0">
 <failure message="TaskStageTest.spec.js:25:5 TC001 - Login with valid Credentials" type="FAILURE">
 <![CDATA[  [chromium] › AdminTest\TaskStageTest.spec.js:25:5 › TS03 - Task Stage › TC001 - Login with valid Credentials 

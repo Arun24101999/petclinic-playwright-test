@@ -13,7 +13,7 @@ class SettingsPage {
 
         //Dashboard
         this.editBtn = page.locator("button[title='Click here, to edit the form']");
-       
+
         //Edit clinic details
         this.clinicName = page.locator("#clinicname");
         this.mobileNumber = page.locator("#phonenumber");
@@ -24,7 +24,7 @@ class SettingsPage {
         this.submitBtn = page.locator("//button[@class='btn primary-btn submit-btn-size btn-secondary']");
         this.cancelBtn = page.locator("//button[@class='btn secondary-btn cancel-btn-size mr-2 btn-secondary']");
 
-        this.getErrorMessage=page.locator("[class='error']");
+        this.getErrorMessage = page.locator("[class='error']");
 
         //confirmation message
         this.confirmationMessageYes = page.locator("//button[contains(@class,'el-button el-button--default el-button--small el-button--primary')]");
@@ -39,12 +39,12 @@ class SettingsPage {
         await this.settingsModule.hover();
         await this.page.waitForTimeout(1000);
         await this.selectSettingsModule.scrollIntoViewIfNeeded();
-         await this.page.waitForTimeout(1000);
+        await this.page.waitForTimeout(1000);
         await this.selectSettingsModule.click();
         await this.page.waitForTimeout(1000);
         await this.selectClinicModule.click();
         await this.page.waitForTimeout(1000);
-      
+
 
     }
 
@@ -52,13 +52,13 @@ class SettingsPage {
         await this.editBtn.click();
     }
 
-    async editClinicDetails(clinicName,mobileNumber,emirate,email,trnNo,address) {
+    async editClinicDetails(clinicName, mobileNumber, emirate, email, trnNo, address) {
 
         await this.clinicName.fill(clinicName);
         await this.page.waitForTimeout(1000);
         await this.mobileNumber.fill(mobileNumber);
         await this.page.waitForTimeout(1000);
-        await this.emirate.selectOption({label:emirate});
+        await this.emirate.selectOption({ label: emirate });
         await this.page.waitForTimeout(1000);
         await this.email.fill(email);
         await this.page.waitForTimeout(1000);
@@ -100,7 +100,7 @@ class SettingsPage {
         await expect(toast).toContain(expectedMessage);
     }
 
-  
+
 
 
 
