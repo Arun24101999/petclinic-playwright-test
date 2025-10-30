@@ -32,5 +32,33 @@
 <skipped>
 </skipped>
 </testcase>
+<testcase name="TS03 - Task Stage › TC002 - Select User Role" classname="AdminTest\TaskStageTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS03 - Task Stage › TC003 - Navigate to Task Management" classname="AdminTest\TaskStageTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS03 - Task Stage › TC005 - Cancel task stage with valid data" classname="AdminTest\TaskStageTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS03 - Task Stage › TC006 - edit task stage details" classname="AdminTest\TaskStageTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS03 - Task Stage › TC007 - view task stage" classname="AdminTest\TaskStageTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS03 - Task Stage › TC008 - delete task stage details" classname="AdminTest\TaskStageTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS03 - Task Stage › TC009 - Add task stage with Invalid data" classname="AdminTest\TaskStageTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
 </testsuite>
 </testsuites>

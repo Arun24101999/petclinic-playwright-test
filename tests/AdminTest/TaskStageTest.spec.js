@@ -7,17 +7,17 @@ const { TaskStagePage } = require('../../POM_AdminPages/TaskStagePage');
 
 let page;
 let context;
+let pathone = "D:/excel/PetForAdmin.xlsx"
 
-
-test.describe('TS03 - Material Category', () => {
+test.describe('TS03 - Task Stage', () => {
 
 
     test.beforeAll('Launch Browser', async ({ browser }) => {
-        context = await browser.newContext({ viewport: { width: 1366, height: 580 } });
+        context = await browser.newContext(); //{ viewport: { width: 1366, height: 580 } }
         page = await context.newPage();
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const url = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'URL');
+        const url = await excelReader.readExcel(pathone, 'URL');
         await loginPage.gotoLoginPage(url[0].URL);
         await page.waitForTimeout(2000);
     })
@@ -25,7 +25,7 @@ test.describe('TS03 - Material Category', () => {
     test('TC001 - Login with valid Credentials', async () => {
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const LoginDataset = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LoginTest');
+        const LoginDataset = await excelReader.readExcel(pathone, 'LoginTest');
         const { UserName, Password } = LoginDataset[0];
         await page.waitForTimeout(2000);
         await loginPage.login(UserName, Password);
@@ -72,7 +72,14 @@ test.describe('TS03 - Material Category', () => {
         await page.waitForTimeout(1000);
         await taskStagePage.clickAddTaskStageBtn();
         await page.waitForTimeout(1000);
-        await taskStagePage.addTaskSatgeDetails('sample', 'No', 'test the function');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const TaskStagedata = await excelReader.readExcel(pathone, 'TaskStageTest');
+        const { stageName, Status, description } = TaskStagedata[0];
+
+        await taskStagePage.addTaskSatgeDetails(stageName, Status, description);
+        // await taskStagePage.addTaskSatgeDetails('sample', 'No', 'test the function');
         await taskStagePage.clickGreenColor();
         await page.waitForTimeout(1000);
         await taskStagePage.clickCancelBtn();
@@ -80,7 +87,7 @@ test.describe('TS03 - Material Category', () => {
         await page.waitForTimeout(1000);
         await taskStagePage.clickCancelBtn();
         await taskStagePage.clickConfirmationNo();
-          await page.waitForTimeout(1000);
+        await page.waitForTimeout(1000);
         await taskStagePage.clickCancelBtn();
         await taskStagePage.clickConfirmationYes();
 
@@ -91,10 +98,26 @@ test.describe('TS03 - Material Category', () => {
     test('TC006 - edit task stage details', async () => {
         const taskStagePage = new TaskStagePage(page);
         await page.waitForTimeout(1000);
-        await taskStagePage.searchTheValue('new');
-        await taskStagePage.clickEditIcon('new');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const TaskStagedata = await excelReader.readExcel(pathone, 'TaskStageTest');
+        const { search } = TaskStagedata[0];
+
+        await taskStagePage.searchTheValue(search);
+        await taskStagePage.clickEditIcon(search);
+
+        // await taskStagePage.searchTheValue('new');
+        // await taskStagePage.clickEditIcon('new');
         await page.waitForTimeout(1000);
-        await taskStagePage.addTaskSatgeDetails('NewStage', 'No', 'test the function');
+
+        //from excel
+        const excelReader1 = new ExcelReader();
+        const TaskStagedata1 = await excelReader1.readExcel(pathone, 'TaskStageTest');
+        const { stageName, Status, description, Toast } = TaskStagedata1[1];
+
+        await taskStagePage.addTaskSatgeDetails(stageName, Status, description);
+        // await taskStagePage.addTaskSatgeDetails('NewStage', 'No', 'test the function');
         await taskStagePage.clickNeonColor();
         await page.waitForTimeout(1000);
         await taskStagePage.clickSubmitBtn();
@@ -106,17 +129,27 @@ test.describe('TS03 - Material Category', () => {
         await taskStagePage.clickSubmitBtn();
         await taskStagePage.clickConfirmationYes();
         await page.waitForTimeout(1000)
-        await taskStagePage.validateToastMessage('Task stage updated successfully');
-
+        await taskStagePage.validateToastMessage(Toast);
+        // await taskStagePage.validateToastMessage('Task stage updated successfully');
+                
     })
 
     test('TC007 - view task stage', async () => {
         const taskStagePage = new TaskStagePage(page);
         await page.waitForTimeout(1000);
-        await taskStagePage.searchTheValue('NewStage')
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const TaskStagedata = await excelReader.readExcel(pathone, 'TaskStageTest');
+        const { stage } = (TaskStagedata[1].stageName);
+
+        await taskStagePage.searchTheValue(stage)
         await page.waitForTimeout(1000);
-        await taskStagePage.clickViewIcon('NewStage');
-        await page.waitForTimeout(2000);
+        await taskStagePage.clickViewIcon(stage);
+        // await taskStagePage.searchTheValue('NewStage')
+        // await page.waitForTimeout(1000);
+        // await taskStagePage.clickViewIcon('NewStage');
+        await page.waitForTimeout(1000);
         await taskStagePage.backBtn.click();
 
 
@@ -125,17 +158,25 @@ test.describe('TS03 - Material Category', () => {
     test('TC008 - delete task stage details', async () => {
         const taskStagePage = new TaskStagePage(page);
         await page.waitForTimeout(1000);
-        await taskStagePage.searchTheValue('NewStage')
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const TaskStagedata = await excelReader.readExcel(pathone, 'TaskStageTest');
+        const { stage } = (TaskStagedata[1].stageName);
+        const { Toast } = TaskStagedata[2];
+
+        await taskStagePage.searchTheValue(stage)      //New stage
         await page.waitForTimeout(1000);
-        await taskStagePage.clickDeleteIcon('NewStage');
+        await taskStagePage.clickDeleteIcon(stage);    //New stage
         await taskStagePage.closeIcon.click();
         await page.waitForTimeout(1000);
-        await taskStagePage.clickDeleteIcon('NewStage');
+        await taskStagePage.clickDeleteIcon(stage);    //New stage
         await taskStagePage.clickConfirmationNo();
-        await taskStagePage.clickDeleteIcon('NewStage');
+        await taskStagePage.clickDeleteIcon(stage);    //New stage
         await taskStagePage.clickConfirmationYes();
         await page.waitForTimeout(1000)
-        await taskStagePage.validateToastMessage('Task stage deleted successfully');
+        await taskStagePage.validateToastMessage(Toast);
+        // await taskStagePage.validateToastMessage('Task stage deleted successfully');
     })
 
     test('TC009 - Add task stage with Invalid data', async () => {
@@ -145,7 +186,14 @@ test.describe('TS03 - Material Category', () => {
         await page.waitForTimeout(2000);
         await taskStagePage.clickSubmitBtn();
         await page.waitForTimeout(1000)
-        await taskStagePage.validateErrorMessage('Stage name is required');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const TaskStagedata = await excelReader.readExcel(pathone, 'TaskStageTest');
+        const { Toast } = TaskStagedata[3];
+
+        await taskStagePage.validateErrorMessage(Toast);
+        // await taskStagePage.validateErrorMessage('Stage name is required');
         await page.waitForTimeout(1000)
         await taskStagePage.backBtn.click();
 

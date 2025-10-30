@@ -7,7 +7,7 @@ const { SupplierOrVendorPage } = require('../../POM_AdminPages/SupplierOrVendorP
 
 let page;
 let context;
-
+let pathone = "D:/excel/PetForAdmin.xlsx"
 
 test.describe('TS04 - Supplier or Vendor', () => {
 
@@ -17,7 +17,7 @@ test.describe('TS04 - Supplier or Vendor', () => {
         page = await context.newPage();
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const url = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'URL');
+        const url = await excelReader.readExcel(pathone, 'URL');
         await loginPage.gotoLoginPage(url[0].URL);
         await page.waitForTimeout(2000);
     })
@@ -25,7 +25,7 @@ test.describe('TS04 - Supplier or Vendor', () => {
     test('TC001 - Login with valid Credentials', async () => {
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const LoginDataset = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LoginTest');
+        const LoginDataset = await excelReader.readExcel(pathone, 'LoginTest');
         const { UserName, Password } = LoginDataset[0];
         await page.waitForTimeout(2000);
         await loginPage.login(UserName, Password);
@@ -48,28 +48,46 @@ test.describe('TS04 - Supplier or Vendor', () => {
     test('TC004 - add supplier details ', async () => {
         const supplierOrVendorPage = new SupplierOrVendorPage(page);
         await supplierOrVendorPage.clickAddSupplierBtn();
-        await supplierOrVendorPage.addSupplierDetails('Arunkumar', '7094750000', 'arun@medyaan.com', 'Ajman', 'Test the functionality');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const SupplyorvendorListdata = await excelReader.readExcel(pathone, 'SupplyorvendorListTest');
+        const { name, mobileno, email, emiratevalue, address, Toast } = SupplyorvendorListdata[0];
+
+        await supplierOrVendorPage.addSupplierDetails(name, mobileno, email, emiratevalue, address);
+        // await supplierOrVendorPage.addSupplierDetails('Arunkumar', '7094750000', 'arun@medyaan.com', 'Ajman', 'Test the functionality');
         await supplierOrVendorPage.clickSubmitBtn();
         await supplierOrVendorPage.clickCloseIcon();
         await supplierOrVendorPage.clickSubmitBtn();
         await supplierOrVendorPage.clickConfirmationNo();
         await supplierOrVendorPage.clickSubmitBtn()
         await supplierOrVendorPage.clickConfirmationYes();
-        await supplierOrVendorPage.validateToastMessage('Supplier created successfully');
+        await supplierOrVendorPage.validateToastMessage(Toast);
     })
 
     test('TC005 - edit supplier details ', async () => {
         const supplierOrVendorPage = new SupplierOrVendorPage(page);
-        await supplierOrVendorPage.searchValue('7094750000');
-        await supplierOrVendorPage.clickEditBtn('7094750000');
-        await supplierOrVendorPage.addSupplierDetails('Arunkumar', '7094755145', 'arun@medyaan.com', 'Ajman', 'Test the functionality');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const SupplyorvendorListdata = await excelReader.readExcel(pathone, 'SupplyorvendorListTest');
+        const { name, mobileno, email, emiratevalue, address, Toast } = SupplyorvendorListdata[0];
+
+        await supplierOrVendorPage.searchValue(mobileno);
+        await supplierOrVendorPage.clickEditBtn(mobileno);
+        await supplierOrVendorPage.addSupplierDetails(name, mobileno, email, emiratevalue, address);
+        // await supplierOrVendorPage.searchValue('7094750000');
+        // await supplierOrVendorPage.clickEditBtn('7094750000');
+        // await supplierOrVendorPage.addSupplierDetails('Arunkumar', '7094755145', 'arun@medyaan.com', 'Ajman', 'Test the functionality');
         await supplierOrVendorPage.clickSubmitBtn();
         await supplierOrVendorPage.clickCloseIcon();
         await supplierOrVendorPage.clickSubmitBtn();
         await supplierOrVendorPage.clickConfirmationNo();
-        await supplierOrVendorPage.clickSubmitBtn()
+        await supplierOrVendorPage.clickSubmitBtn();
         await supplierOrVendorPage.clickConfirmationYes();
-        await supplierOrVendorPage.validateToastMessage('Supplier details updated successfully');
+
+        await supplierOrVendorPage.validateToastMessage(Toast);
+        // await supplierOrVendorPage.validateToastMessage('Supplier details updated successfully');
     })
 
 
@@ -77,7 +95,14 @@ test.describe('TS04 - Supplier or Vendor', () => {
     test('TC006 - cancel add supplier details ', async () => {
         const supplierOrVendorPage = new SupplierOrVendorPage(page);
         await supplierOrVendorPage.clickAddSupplierBtn();
-        await supplierOrVendorPage.addSupplierDetails('Arunkumar', '7094750000', 'arun@medyaan.com', 'Ajman', 'Test the functionality');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const SupplyorvendorListdata = await excelReader.readExcel(pathone, 'SupplyorvendorListTest');
+        const { name, mobileno, email, emiratevalue, address, Toast } = SupplyorvendorListdata[0];
+
+        await supplierOrVendorPage.addSupplierDetails(name, mobileno, email, emiratevalue, address);
+        // await supplierOrVendorPage.addSupplierDetails('Arunkumar', '7094750000', 'arun@medyaan.com', 'Ajman', 'Test the functionality');
         await supplierOrVendorPage.clickCancelBtn();
         await supplierOrVendorPage.clickCloseIcon();
         await supplierOrVendorPage.clickCancelBtn();
@@ -88,8 +113,15 @@ test.describe('TS04 - Supplier or Vendor', () => {
 
     test('TC005 - view supplier details ', async () => {
         const supplierOrVendorPage = new SupplierOrVendorPage(page);
-        await supplierOrVendorPage.searchValue('7094755145');
-        await supplierOrVendorPage.clickViewBtn('7094755145');
+        //from excel
+        const excelReader = new ExcelReader();
+        const SupplyorvendorListdata = await excelReader.readExcel(pathone, 'SupplyorvendorListTest');
+        const { mobileno } = SupplyorvendorListdata[1];
+
+        await supplierOrVendorPage.searchValue(mobileno);
+        await supplierOrVendorPage.clickViewBtn(mobileno);
+        // await supplierOrVendorPage.searchValue('7094755145');
+        // await supplierOrVendorPage.clickViewBtn('7094755145');
         await page.waitForTimeout(2000);
         await supplierOrVendorPage.clickCloseBtn();
 
@@ -97,14 +129,22 @@ test.describe('TS04 - Supplier or Vendor', () => {
 
     test('TC007 - delete supplier details ', async () => {
         const supplierOrVendorPage = new SupplierOrVendorPage(page);
-        await supplierOrVendorPage.searchValue('7094755145');
-        await supplierOrVendorPage.clickDeleteBtn('7094755145');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const SupplyorvendorListdata = await excelReader.readExcel(pathone, 'SupplyorvendorListTest');
+        const { mobileno } = SupplyorvendorListdata[1];
+        const { Toast } = SupplyorvendorListdata[2];
+
+        await supplierOrVendorPage.searchValue(mobileno);   //7094755145
+        await supplierOrVendorPage.clickDeleteBtn(mobileno);    //7094755145
         await supplierOrVendorPage.clickCloseIcon();
-        await supplierOrVendorPage.clickDeleteBtn('7094755145');
+        await supplierOrVendorPage.clickDeleteBtn(mobileno);    //7094755145
         await supplierOrVendorPage.clickConfirmationNo();
-        await supplierOrVendorPage.clickDeleteBtn('7094755145');
+        await supplierOrVendorPage.clickDeleteBtn(mobileno);    //7094755145
         await supplierOrVendorPage.clickConfirmationYes();
-        await supplierOrVendorPage.validateToastMessage('Supplier details deleted successfully');
+        await supplierOrVendorPage.validateToastMessage(Toast);
+        // await supplierOrVendorPage.validateToastMessage('Supplier details deleted successfully');
     })
 
 

@@ -174,7 +174,7 @@ class TaskStagePage {
     }
 
     async searchTheValue(searchValue) {
-        await this.search.fill(searchValue);
+        await this.search.type(searchValue);
         await this.page.waitForTimeout(1000);
 
     }

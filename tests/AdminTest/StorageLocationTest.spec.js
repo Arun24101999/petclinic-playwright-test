@@ -8,7 +8,7 @@ const { StorageLocation } = require('../../POM_AdminPages/StorageLocationPage');
 
 let page;
 let context;
-
+let pathone = "D:/excel/PetForAdmin.xlsx"
 
 test.describe('TS03 - Storage Location', () => {
 
@@ -18,7 +18,7 @@ test.describe('TS03 - Storage Location', () => {
         page = await context.newPage();
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const url = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'URL');
+        const url = await excelReader.readExcel(pathone, 'URL');
         await loginPage.gotoLoginPage(url[0].URL);
         await page.waitForTimeout(2000);
     })
@@ -26,7 +26,7 @@ test.describe('TS03 - Storage Location', () => {
     test('TC001 - Login with valid Credentials', async () => {
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const LoginDataset = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LoginTest');
+        const LoginDataset = await excelReader.readExcel(pathone, 'LoginTest');
         const { UserName, Password } = LoginDataset[0];
         await page.waitForTimeout(2000);
         await loginPage.login(UserName, Password);
@@ -52,7 +52,14 @@ test.describe('TS03 - Storage Location', () => {
         await page.waitForTimeout(1000);
         await storageLocation.clickAddStorageLocationButton();
         await page.waitForTimeout(2000);
-        await storageLocation.AddStorageLocationDetails('arunstore', 'Arunkumar R', 'test the function');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const StorageLocationData = await excelReader.readExcel(pathone, 'StorageLocationTest');
+        const { storename, inchargeName, description, Toast } = StorageLocationData[0];
+
+        await storageLocation.AddStorageLocationDetails(storename, inchargeName, description);
+        // await storageLocation.AddStorageLocationDetails('arunstore', 'Arunkumar R', 'test the function');
         await storageLocation.clickSubmitBtn();
         await storageLocation.clickCloseIcon();
         await storageLocation.clickSubmitBtn();
@@ -60,7 +67,8 @@ test.describe('TS03 - Storage Location', () => {
         await storageLocation.clickSubmitBtn();
         await storageLocation.clickConfirmationYes();
         await page.waitForTimeout(1000)
-        await storageLocation.validateToastMessage('Storage location created successfully');
+        await storageLocation.validateToastMessage(Toast);
+        // await storageLocation.validateToastMessage('Storage location created successfully');
 
     })
 
@@ -68,25 +76,47 @@ test.describe('TS03 - Storage Location', () => {
     test('TC005 - edit storagelocation', async () => {
         const storageLocation = new StorageLocation(page);
         await page.waitForTimeout(1000);
-        await storageLocation.searchTheValue('arunstore')
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const StorageLocationData = await excelReader.readExcel(pathone, 'StorageLocationTest');
+        const { storename } = StorageLocationData[0];
+
+        await storageLocation.searchTheValue(storename)
+        // await storageLocation.searchTheValue('arunstore');
         await page.waitForTimeout(2000);
         await storageLocation.clickEditIcon();
-        await storageLocation.editStorageLocationDetails('Arumugam K', 'New');
+
+        //from excel
+        const { inchargeName, description } = StorageLocationData[1];
+        const { Toast } = StorageLocationData[1];
+
+        await storageLocation.editStorageLocationDetails(inchargeName, description);
+        // await storageLocation.editStorageLocationDetails('Arumugam K', 'New');
         await storageLocation.clickSubmitBtn();
         await storageLocation.clickCloseIcon();
         await storageLocation.clickSubmitBtn();
         await storageLocation.clickConfirmationNo();
         await storageLocation.clickSubmitBtn();
         await storageLocation.clickConfirmationYes();
-        await page.waitForTimeout(1000)
-        await storageLocation.validateToastMessage('Storage location updated successfully');
+        await page.waitForTimeout(1000);
+
+        await storageLocation.validateToastMessage(Toast);
+        // await storageLocation.validateToastMessage('Storage location updated successfully');
 
     })
 
     test('TC006 - view storagelocation', async () => {
         const storageLocation = new StorageLocation(page);
         await page.waitForTimeout(1000);
-        await storageLocation.searchTheValue('arunstore')
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const StorageLocationData = await excelReader.readExcel(pathone, 'StorageLocationTest');
+        const { storename } = StorageLocationData[0];
+
+        await storageLocation.searchTheValue(storename)
+        // await storageLocation.searchTheValue('arunstore')
         await page.waitForTimeout(1000);
         await storageLocation.clickViewIcon();
         await page.waitForTimeout(2000);
@@ -100,7 +130,15 @@ test.describe('TS03 - Storage Location', () => {
         await page.waitForTimeout(1000);
         await storageLocation.clickAddStorageLocationButton();
         await page.waitForTimeout(2000);
-        await storageLocation.AddStorageLocationDetails('stores', 'Arunkumar R', 'test the function');
+        //from excel
+        const excelReader = new ExcelReader();
+        const StorageLocationData = await excelReader.readExcel(pathone, 'StorageLocationTest');
+        const { inchargeName, description, Toast } = StorageLocationData[0];
+        const { storename } = StorageLocationData[1];
+        const toastmessage = (StorageLocationData[2].Toast);
+
+        await storageLocation.AddStorageLocationDetails(storename, inchargeName, description);
+        // await storageLocation.AddStorageLocationDetails('stores', 'Arunkumar R', 'test the function');
         await storageLocation.clickSubmitBtn();
         await storageLocation.clickCloseIcon();
         await storageLocation.clickSubmitBtn();
@@ -108,16 +146,21 @@ test.describe('TS03 - Storage Location', () => {
         await storageLocation.clickSubmitBtn();
         await storageLocation.clickConfirmationYes();
         await page.waitForTimeout(1000);
-        await storageLocation.validateToastMessage('Storage location created successfully');
+        await storageLocation.validateToastMessage(Toast);
+        // await storageLocation.validateToastMessage('Storage location created successfully');
         await page.waitForTimeout(2000);
-        await storageLocation.searchTheValue('stores');
+
+        await storageLocation.searchTheValue(storename);
+        // await storageLocation.searchTheValue('stores');
         await storageLocation.clickDeleteIcon();
         await storageLocation.clickCloseIcon();
         await storageLocation.clickDeleteIcon();
         await storageLocation.clickConfirmationNo();
         await storageLocation.clickDeleteIcon();
         await storageLocation.clickConfirmationYes();
-        await storageLocation.validateToastMessage('Storage location deleted successfully');
+
+        await storageLocation.validateToastMessage(toastmessage);
+        // await storageLocation.validateToastMessage('Storage location deleted successfully');
     })
 
 

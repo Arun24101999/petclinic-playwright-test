@@ -41,7 +41,7 @@ class TimesheetPage {
     async selectUserDropdown(value) {
         await this.userDropDownBtn.click();
         await this.page.waitForTimeout(1000);
-        await this.page.locator(`//label[text()='${value}']`).click();
+        await this.page.locator(`//label[contains(text(),'${value}')]`).click();
         await this.page.waitForTimeout(1000);
 
         const userNameElement=await this.page.locator("//div[@col-id='assigned_name' and @role='gridcell' ]").first();

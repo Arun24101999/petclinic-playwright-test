@@ -7,17 +7,17 @@ const { TimesheetPage } = require('../../POM_AdminPages/TimesheetPage');
 
 let page;
 let context;
-
+let pathone = "D:/excel/PetForAdmin.xlsx"
 
 test.describe('TS03 - Material Category', () => {
 
 
     test.beforeAll('Launch Browser', async ({ browser }) => {
-        context = await browser.newContext({ viewport: { width: 1366, height: 580 } });
+        context = await browser.newContext();  //{ viewport: { width: 1366, height: 580 } }
         page = await context.newPage();
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const url = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'URL');
+        const url = await excelReader.readExcel(pathone, 'URL');
         await loginPage.gotoLoginPage(url[0].URL);
         await page.waitForTimeout(2000);
     })
@@ -25,7 +25,7 @@ test.describe('TS03 - Material Category', () => {
     test('TC001 - Login with valid Credentials', async () => {
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const LoginDataset = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LoginTest');
+        const LoginDataset = await excelReader.readExcel(pathone, 'LoginTest');
         const { UserName, Password } = LoginDataset[0];
         await page.waitForTimeout(2000);
         await loginPage.login(UserName, Password);
@@ -48,12 +48,20 @@ test.describe('TS03 - Material Category', () => {
     test('TC004 - print the task details', async () => {
         const timesheetPage = new TimesheetPage(page);
         await page.waitForTimeout(1000);
-        await timesheetPage.searchValue('give a paracetomol for 5 piece');
+        //from excel
+        const excelReader = new ExcelReader();
+        const Timesheetdata = await excelReader.readExcel(pathone, 'TimesheetTest');
+        const { task, user } = Timesheetdata[0];
+
+        await timesheetPage.searchValue(task);
+        // await timesheetPage.searchValue('give a paracetomol for 5 piece');
         await page.waitForTimeout(1000);
-        await timesheetPage.selectUserDropdown('Arun Muthu Sukumar M ');
+
+        await timesheetPage.selectUserDropdown(user);
+        // await timesheetPage.selectUserDropdown('Arun Muthu Sukumar M ');
         await page.waitForTimeout(1000)
-        const getTaskDetails=await timesheetPage.getDetails();
-        console.log('Task Details are in Below: '+getTaskDetails);
+        const getTaskDetails = await timesheetPage.getDetails();
+        console.log('Task Details are in Below: ' + getTaskDetails);
 
     })
 
