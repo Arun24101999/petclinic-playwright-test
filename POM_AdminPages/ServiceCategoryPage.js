@@ -44,7 +44,7 @@ class ServiceCategoryPage {
         await this.downloadBtn.hover();
     }
 
-    async ClickAddServiceCategoryBtn() {
+    async ClickAddServiceCategoryBtn() { 
         await this.addServiceCategoryBtn.click();
        
 

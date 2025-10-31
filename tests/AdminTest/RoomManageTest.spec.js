@@ -7,17 +7,17 @@ const { RoomManagePage } = require('../../POM_AdminPages/RoomManagePage');
 
 let page;
 let context;
-
+let pathone = "D:/excel/PetForAdmin.xlsx"
 
 test.describe('TS03 - Room Type', () => {
 
 
     test.beforeAll('Launch Browser', async ({ browser }) => {
-        context = await browser.newContext({ viewport: { width: 1366, height: 580 } });
+        context = await browser.newContext();       //{ viewport: { width: 1366, height: 580 } }
         page = await context.newPage();
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const url = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'URL');
+        const url = await excelReader.readExcel(pathone, 'URL');
         await loginPage.gotoLoginPage(url[0].URL);
         await page.waitForTimeout(2000);
     })
@@ -25,7 +25,7 @@ test.describe('TS03 - Room Type', () => {
     test('TC001 - Login with valid Credentials', async () => {
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const LoginDataset = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LoginTest');
+        const LoginDataset = await excelReader.readExcel(pathone, 'LoginTest');
         const { UserName, Password } = LoginDataset[0];
         await page.waitForTimeout(2000);
         await loginPage.login(UserName, Password);
@@ -45,36 +45,51 @@ test.describe('TS03 - Room Type', () => {
 
 
 
-    // test('TC004 - add room manage valid data', async () => {
-    //     const roomManagePage = new RoomManagePage(page);
-    //     await page.waitForTimeout(1000);
-    //     const totalPets = await roomManagePage.getFacilityCount.textContent();
-    //     console.log(totalPets);
-    //     await roomManagePage.clickAddRoomBtn();
-    //     await roomManagePage.addRoomDetails('s123', 'Cow', 'yaan', 'ward1', 'floor1', '2');
-    //     await roomManagePage.clickSubmitBtn();
-    //     await roomManagePage.clickCloseIcon();
-    //     await roomManagePage.clickSubmitBtn();
-    //     await roomManagePage.clickConfirmationMessageNo();
-    //     await roomManagePage.clickSubmitBtn();
-    //     await roomManagePage.clickConfirmationMessageYes();
-    //     await page.waitForTimeout(1000)
-    //     const getToast = await roomManagePage.validatateToastMessage();
-    //     if (getToast === 'Room Created Successfully') {
-    //         console.log(getToast);
-    //     } else {
-    //         console.log('room name already exist');
+    test('TC004 - add room manage valid data', async () => {
+        const roomManagePage = new RoomManagePage(page);
+        await page.waitForTimeout(1000);
+        const totalPets = await roomManagePage.getFacilityCount.textContent();
+        console.log(totalPets);
+        await roomManagePage.clickAddRoomBtn();
 
-    //     }
+        //from excel
+        const excelReader = new ExcelReader();
+        const RoomManagedata = await excelReader.readExcel(pathone, 'RoomManageTest');
+        const { roomname, petspeciesroomtype, wardno, fllor, spaces, iftoast, elsetoast } = RoomManagedata[0];
+
+        await roomManagePage.addRoomDetails(roomname, petspeciesroomtype, wardno, fllor, spaces);
+        // await roomManagePage.addRoomDetails('s123', 'Cow', 'yaan', 'ward1', 'floor1', '2');
+        await roomManagePage.clickSubmitBtn();
+        await roomManagePage.clickCloseIcon();
+        await roomManagePage.clickSubmitBtn();
+        await roomManagePage.clickConfirmationMessageNo();
+        await roomManagePage.clickSubmitBtn();
+        await roomManagePage.clickConfirmationMessageYes();
+        await page.waitForTimeout(1000)
+        const getToast = await roomManagePage.validatateToastMessage();
+        if (getToast === iftoast) {     //Room Created Successfully
+            console.log(getToast);
+        } else {
+            console.log(elsetoast); //room name already exist
+
+        }
 
 
-    // })
+    })
 
     test('TC005 - Cancel room manage valid data', async () => {
         const roomManagePage = new RoomManagePage(page);
         await page.waitForTimeout(1000);
         await roomManagePage.clickAddRoomBtn();
-        await roomManagePage.addRoomDetails('newcancel', 'Cow', 'yaan', 'ward1', 'floor1', '2');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const RoomManagedata = await excelReader.readExcel(pathone, 'RoomManageTest');
+        const { roomname, petspeciesroomtype, wardno, fllor, spaces, iftoast, elsetoast } = RoomManagedata[0];
+
+        await roomManagePage.addRoomDetails(roomname, petspeciesroomtype, wardno, fllor, spaces);
+
+        // await roomManagePage.addRoomDetails('newcancel', 'Cow', 'yaan', 'ward1', 'floor1', '2');
         await roomManagePage.clickCancelBtn();
         await roomManagePage.clickCloseIcon();
         await roomManagePage.clickCancelBtn();
@@ -88,17 +103,17 @@ test.describe('TS03 - Room Type', () => {
     test('TC006 - edit room manage details', async () => {
         const roomManagePage = new RoomManagePage(page);
         await page.waitForTimeout(1000);
-        await roomManagePage.searchValue('s123')
-        await roomManagePage.clickEditBtn('s123', 'yaan', 'cow')
-        await roomManagePage.editRoomDetails('floor2', '4');
-        await roomManagePage.clickSubmitBtn();
+        await roomManagePage.searchValue('s123');       //s123
+        await roomManagePage.clickEditBtn('s123', 'yaan', 'cow');       //'s123', 'yaan', 'cow'
+        await roomManagePage.editRoomDetails('floor2', '4');        //'floor2', '4'
+        await roomManagePage.clickSubmitBtn();v  
         await roomManagePage.clickCloseIcon();
         await roomManagePage.clickSubmitBtn();
         await roomManagePage.clickConfirmationMessageNo();
         await roomManagePage.clickSubmitBtn();
         await roomManagePage.clickConfirmationMessageYes();
         await page.waitForTimeout(1000)
-        const getToast=await roomManagePage.validatateToastMessage();
+        const getToast = await roomManagePage.validatateToastMessage();
         if (getToast === 'Successfully updated room details') {
             console.log(getToast);
         } else {
