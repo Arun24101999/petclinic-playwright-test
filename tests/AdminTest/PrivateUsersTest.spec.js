@@ -7,26 +7,27 @@ const { PrivateUserPage } = require('../../POM_AdminPages/PrivateUserPage');
 
 let page;
 let context;
-
+let pathone = "D:/excel/PetForAdmin.xlsx";
 
 test.describe('TS08 - Private User', () => {
 
 
     test.beforeAll('Launch Browser', async ({ browser }) => {
 
-        context = await browser.newContext({ viewport: { width: 1366, height: 580 } });
+        context = await browser.newContext();       //{ viewport: { width: 1366, height: 580 } }
         page = await context.newPage();
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const url = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'URL');
+        const url = await excelReader.readExcel(pathone, 'URL');
         await loginPage.gotoLoginPage(url[0].URL);
         await page.waitForTimeout(2000);
     })
 
+
     test('TC001 - Login with valid Credentials', async () => {
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const LoginDataset = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LoginTest');
+        const LoginDataset = await excelReader.readExcel(pathone, 'LoginTest');
         const { UserName, Password } = LoginDataset[0];
         await page.waitForTimeout(2000);
         await loginPage.login(UserName, Password);
@@ -45,38 +46,58 @@ test.describe('TS08 - Private User', () => {
         await page.waitForTimeout(2000);
     })
 
-    // test('TC004 - add user', async () => {
-    //     const privateUserPage = new PrivateUserPage(page);
-    //     await privateUserPage.clickAddUserBtn();
-    //     await privateUserPage.addProfileImage();
-    //     await page.waitForTimeout(2000);
-    //     await privateUserPage.addUserWithValidData('Private Admin', 'arumugam', 'AutoFirstName', 'AutoLastName', 'Male', 'English', '9876543210', 'auto@gmail.com', 'Single', '9876543210', 'No 10, Street, City', '123456789012345', 'Ajman', '1234');
-    //     await privateUserPage.addUserPickCalender('24', 'Oct', '1999');
-    //     await privateUserPage.addIdProof();
-    //     await privateUserPage.addOthersImage();
-    //     await privateUserPage.clickSubmitBtn();
-    //     await privateUserPage.closeIcon.click();
-    //     await privateUserPage.clickSubmitBtn();
-    //     await privateUserPage.clickConfirmationNo();
-    //     await privateUserPage.clickSubmitBtn();
-    //     await privateUserPage.clickConfirmationYes();
-    //     await privateUserPage.validateToastMessage('Private user added successfully');
-    //     await page.waitForTimeout(2000);
-    // })
+    test('TC004 - add user', async () => {
+        const privateUserPage = new PrivateUserPage(page);
+        await privateUserPage.clickAddUserBtn();
+        await privateUserPage.addProfileImage();
+        await page.waitForTimeout(2000);
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const PrivateUserdata = await excelReader.readExcel(pathone, 'PrivateUserTest');
+        const { role, hospital, first, last, gender, language, mobile, email, marital, emergency, address, emirateid, emiratevalue, tnrno } = PrivateUserdata[0];
+
+        await privateUserPage.addUserWithValidData(role, hospital, first, last, gender, language, mobile, email, marital, emergency, address, emirateid, emiratevalue, tnrno);
+        // await privateUserPage.addUserWithValidData('Private Admin', 'arumugam', 'AutoFirstName', 'AutoLastName', 'Male', 'English', '9876543210', 'auto@gmail.com', 'Single', '9876543210', 'No 10, Street, City', '123456789012345', 'Ajman', '1234');
+
+        //from excel
+        const { date, month, year, toast } = PrivateUserdata[0];
+        await privateUserPage.addUserPickCalender(date, month, year);     //'24', 'Oct', '1999'
+        await privateUserPage.addIdProof();
+        await privateUserPage.addOthersImage();
+        await privateUserPage.clickSubmitBtn();
+        await privateUserPage.closeIcon.click();
+        await privateUserPage.clickSubmitBtn();
+        await privateUserPage.clickConfirmationNo();
+        await privateUserPage.clickSubmitBtn();
+        await privateUserPage.clickConfirmationYes();
+        await privateUserPage.validateToastMessage(toast);
+        // await privateUserPage.validateToastMessage('Private user added successfully');
+        await page.waitForTimeout(2000);
+    })
 
     // test('TC005 - Cancel add user', async () => {
     //     const privateUserPage = new PrivateUserPage(page);
     //     await privateUserPage.clickAddUserBtn();
     //     await privateUserPage.backBtn.click();
     //     await privateUserPage.clickAddUserBtn();
-    //      await privateUserPage.addUserPickCalender('24', 'Oct', '1999');
+
+    //     //from excel
+    //     const excelReader = new ExcelReader();
+    //     const PrivateUserdata = await excelReader.readExcel(pathone, 'PrivateUserTest');
+    //     const { date, month, year } = PrivateUserdata[0];
+
+    //     await privateUserPage.addUserPickCalender(date, month, year);        //'24', 'Oct', '1999'
     //     await privateUserPage.addProfileImage();
-    //     await privateUserPage.addUserWithValidData('Private Admin', 'arumugam', 'AutoFirstName', 'AutoLastName', 'Male', 'English', '9876543210', 'auto@gmail.com', 'Single', '9876543210', 'No 10, Street, City', '123456789012345', 'Ajman', '1234');
+    //     //from excel
+    //     const { role, hospital, first, last, gender, language, mobile, email, marital, emergency, address, emirateid, emiratevalue, tnrno } = PrivateUserdata[0];
+    //     await privateUserPage.addUserWithValidData(role, hospital, first, last, gender, language, mobile, email, marital, emergency, address, emirateid, emiratevalue, tnrno);
+    //     // await privateUserPage.addUserWithValidData('Private Admin', 'arumugam', 'AutoFirstName', 'AutoLastName', 'Male', 'English', '9876543210', 'auto@gmail.com', 'Single', '9876543210', 'No 10, Street, City', '123456789012345', 'Ajman', '1234');
     //     await privateUserPage.addIdProof();
     //     await privateUserPage.addOthersImage();
     //     await privateUserPage.clickCancelBtn();
-    //      await privateUserPage.closeIcon.click();
-    //      await privateUserPage.clickCancelBtn();
+    //     await privateUserPage.closeIcon.click();
+    //     await privateUserPage.clickCancelBtn();
     //     await privateUserPage.clickConfirmationNo();
     //     await privateUserPage.clickCancelBtn();
     //     await privateUserPage.clickConfirmationYes();
@@ -94,32 +115,54 @@ test.describe('TS08 - Private User', () => {
 
     test('TC007 - view the user details', async () => {
         const privateUserPage = new PrivateUserPage(page);
-        await privateUserPage.searchValue('9500285403');
-        await privateUserPage.clickViewBtn('9500285403');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const PrivateUserdata = await excelReader.readExcel(pathone, 'PrivateUserTest');
+        const { mobile } = PrivateUserdata[1];
+
+        await privateUserPage.searchValue(mobile);        //9500285403
+        await privateUserPage.clickViewBtn(mobile);       //9500285403
         await privateUserPage.backBtn.click();
 
 
 
     })
 
-    test('TC008 - edit the user details', async () => {
+    test.skip('TC008 - edit the user details', async () => {
         const privateUserPage = new PrivateUserPage(page);
-        await privateUserPage.searchValue('9500285403');
-        await privateUserPage.clickEditBtn('9500285403');
-        //  await privateUserPage.addProfileImage();
-        // await page.waitForTimeout(2000);
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const PrivateUserdata = await excelReader.readExcel(pathone, 'PrivateUserTest');
+        const { mobile } = PrivateUserdata[1];
+        const { role, hospital, first, last, gender, language, email, marital, emergency, address, emirateid, emiratevalue, tnrno } = PrivateUserdata[0];
+        const mobileno = (PrivateUserdata[0].mobile);
+
+        await privateUserPage.searchValue(mobile);    //9500285403
+        await privateUserPage.clickEditBtn(mobile);    //9500285403
+        await privateUserPage.addProfileImage();
+        await page.waitForTimeout(2000);
+        await privateUserPage.addUserWithValidData(role, hospital, first, last, gender, language, mobileno, email, marital, emergency, address, emirateid, emiratevalue, tnrno);
         // await privateUserPage.addUserWithValidData('Private Admin', 'arumugam', 'AutoFirstName', 'AutoLastName', 'Male', 'English', '9876543210', 'auto@gmail.com', 'Single', '9876543210', 'No 10, Street, City', '123456789012345', 'Ajman', '1234');
+
+        //from excel
+        const { date, month, year } = PrivateUserdata[0];
+        const { toast } = PrivateUserdata[1];
+
+        await privateUserPage.addUserPickCalender(date, month, year); //'24', 'Oct', '1999'
         // await privateUserPage.addUserPickCalender('24', 'Oct', '1999');
-        // await privateUserPage.addIdProof();
-        // await privateUserPage.addOthersImage();
-        // await privateUserPage.clickSubmitBtn();
-        // await privateUserPage.backBtn.click();
-        // await privateUserPage.clickSubmitBtn();
-        // await privateUserPage.clickConfirmationNo();
-        // await privateUserPage.clickSubmitBtn();
-        // await privateUserPage.clickConfirmationYes();
+        await privateUserPage.addIdProof();
+        await privateUserPage.addOthersImage();
+        await privateUserPage.clickSubmitBtn();
+        await privateUserPage.backBtn.click();
+        await privateUserPage.clickSubmitBtn();
+        await privateUserPage.clickConfirmationNo();
+        await privateUserPage.clickSubmitBtn();
+        await privateUserPage.clickConfirmationYes();
+        await privateUserPage.validateToastMessage(toast);
         // await privateUserPage.validateToastMessage('Private user updated successfully');
-        // await page.waitForTimeout(2000);
+        await page.waitForTimeout(2000);
         await privateUserPage.backBtn.click();
 
 
@@ -146,28 +189,28 @@ test.describe('TS08 - Private User', () => {
 
     })
 
-    // test('TC011 - edit the user details', async () => {
-    //     const privateUserPage = new PrivateUserPage(page);
-    //     await privateUserPage.searchValue('9500285403');
-    //     await privateUserPage.clickEditBtn('9500285403');
-        // await privateUserPage.addProfileImage();
-        // await page.waitForTimeout(2000);
-        // await privateUserPage.addUserWithValidData('Private Admin', 'arumugam', 'AutoFirstName', 'AutoLastName', 'Male', 'English', '9876543210', 'auto@gmail.com', 'Single', '9876543210', 'No 10, Street, City', '123456789012345', 'Ajman', '1234');
-        // await privateUserPage.addUserPickCalender('24', 'Oct', '1999');
-        // await privateUserPage.addIdProof();
-        // await privateUserPage.addOthersImage();
-        // await privateUserPage.clickSubmitBtn();
-        // await privateUserPage.backBtn.click();
-        // await privateUserPage.clickSubmitBtn();
-        // await privateUserPage.clickConfirmationNo();
-        // await privateUserPage.clickSubmitBtn();
-        // await privateUserPage.clickConfirmationYes();
-        // await privateUserPage.validateToastMessage('Private user updated successfully');
-        // await page.waitForTimeout(2000);
+    test('TC011 - edit the user details', async () => {
+        const privateUserPage = new PrivateUserPage(page);
+        await privateUserPage.searchValue('9500285403');
+        await privateUserPage.clickEditBtn('9500285403');
+        await privateUserPage.addProfileImage();
+        await page.waitForTimeout(2000);
+        await privateUserPage.addUserWithValidData('Private Admin', 'arumugam', 'AutoFirstName', 'AutoLastName', 'Male', 'English', '9876543210', 'auto@gmail.com', 'Single', '9876543210', 'No 10, Street, City', '123456789012345', 'Ajman', '1234');
+        await privateUserPage.addUserPickCalender('24', 'Oct', '1999');
+        await privateUserPage.addIdProof();
+        await privateUserPage.addOthersImage();
+        await privateUserPage.clickSubmitBtn();
+        await privateUserPage.backBtn.click();
+        await privateUserPage.clickSubmitBtn();
+        await privateUserPage.clickConfirmationNo();
+        await privateUserPage.clickSubmitBtn();
+        await privateUserPage.clickConfirmationYes();
+        await privateUserPage.validateToastMessage('Private user updated successfully');
+        await page.waitForTimeout(2000);
 
 
 
-    // })
+    })
 
     test('TC012 - filter the user with Roles', async () => {
         const privateUserPage = new PrivateUserPage(page);

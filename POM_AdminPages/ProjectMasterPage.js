@@ -80,6 +80,7 @@ class ProjectMasterPage {
         await this.description.fill(description);
         await this.page.waitForTimeout(1000);
 
+        await this.stage.scrollIntoViewIfNeeded();
         await this.stage.selectOption({label: stage1});
         await this.addBtn.click();
         await this.stage1.selectOption({label: stage2});

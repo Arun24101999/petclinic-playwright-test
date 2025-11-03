@@ -169,7 +169,7 @@ class PurchaseEntryPage {
     }
 
     async clickSaveBtn() {
-        await this.page.waitForTimeout(1000);
+        // await this.page.waitForTimeout(1000);
         await this.saveBtn.click();
     }
 

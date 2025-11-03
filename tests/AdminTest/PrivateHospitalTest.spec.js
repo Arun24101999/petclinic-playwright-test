@@ -7,17 +7,17 @@ const { PrivateHospitalPage } = require('../../POM_AdminPages/PrivateHospitalPag
 
 let page;
 let context;
-
+let pathone = "D:/excel/PetForAdmin.xlsx";
 
 test.describe('TS08 - Private Hospital', () => {
 
 
     test.beforeAll('Launch Browser', async ({ browser }) => {
-        context = await browser.newContext({ viewport: { width: 1366, height: 580 } });
+        context = await browser.newContext();       //{ viewport: { width: 1366, height: 580 } }
         page = await context.newPage();
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const url = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'URL');
+        const url = await excelReader.readExcel(pathone, 'URL');
         await loginPage.gotoLoginPage(url[0].URL);
         await page.waitForTimeout(2000);
     })
@@ -25,7 +25,7 @@ test.describe('TS08 - Private Hospital', () => {
     test('TC001 - Login with valid Credentials', async () => {
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const LoginDataset = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LoginTest');
+        const LoginDataset = await excelReader.readExcel(pathone, 'LoginTest');
         const { UserName, Password } = LoginDataset[0];
         await page.waitForTimeout(2000);
         await loginPage.login(UserName, Password);
@@ -48,12 +48,20 @@ test.describe('TS08 - Private Hospital', () => {
         const privateHospitalPage = new PrivateHospitalPage(page);
         await privateHospitalPage.clickAddHospitalBtn();
         await privateHospitalPage.addProfileImage();
-        await privateHospitalPage.addHospitalDetails('Arumugam', 'K', '8056221601', 'arumuganainar.k@medyaan.com', '123', 'Sharjah', 'SaudiArabia', "1", "2", "3", "4", 'No 12, Moulna Nagar,Tambaram, Chennai');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const PrivateHospitaldata = await excelReader.readExcel(pathone, 'PrivateHospitalTest');
+        const { hospitalName, prefix, hospitalContactNumber, hospitalEmail, hospitalTNR, emirate, country, privateAdmin, privateVeterinarian, privateNurse, privateFrontdesk, hospitalAddress, toast } = PrivateHospitaldata[0];
+
+        await privateHospitalPage.addHospitalDetails(hospitalName, prefix, hospitalContactNumber, hospitalEmail, hospitalTNR, emirate, country, privateAdmin, privateVeterinarian, privateNurse, privateFrontdesk, hospitalAddress);
+        // await privateHospitalPage.addHospitalDetails('Arumugam', 'K', '8056221601', 'arumuganainar.k@medyaan.com', '123', 'Sharjah', 'SaudiArabia', "1", "2", "3", "4", 'No 12, Moulna Nagar,Tambaram, Chennai');
         await privateHospitalPage.clickSubmitBtn();
         await privateHospitalPage.clickConfirmationMessageNo();
         await privateHospitalPage.clickSubmitBtn();
         await privateHospitalPage.clickConfirmationYes();
-        await privateHospitalPage.validateToastMessage("Hospital Detailes created successfully");
+        await privateHospitalPage.validateToastMessage(toast);
+        // await privateHospitalPage.validateToastMessage("Hospital Detailes created successfully");
         await page.waitForTimeout(2000);
         await privateHospitalPage.backBtn.click();
 
@@ -63,7 +71,15 @@ test.describe('TS08 - Private Hospital', () => {
     test('TC005 - Cancel Add hospital', async () => {
         const privateHospitalPage = new PrivateHospitalPage(page);
         await privateHospitalPage.clickAddHospitalBtn();
-        await privateHospitalPage.addHospitalDetails('Arumugam', 'K', '8056221601', 'arumuganainar.k@medyaan.com', '123', 'Sharjah', 'SaudiArabia', '1', '2', '3', '4', 'No 12, Moulna Nagar,Tambaram, Chennai');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const PrivateHospitaldata = await excelReader.readExcel(pathone, 'PrivateHospitalTest');
+        const { hospitalName, prefix, hospitalContactNumber, hospitalEmail, hospitalTNR, emirate, country, privateAdmin, privateVeterinarian, privateNurse, privateFrontdesk, hospitalAddress, toast } = PrivateHospitaldata[0];
+
+        await privateHospitalPage.addHospitalDetails(hospitalName, prefix, hospitalContactNumber, hospitalEmail, hospitalTNR, emirate, country, privateAdmin, privateVeterinarian, privateNurse, privateFrontdesk, hospitalAddress);
+
+        // await privateHospitalPage.addHospitalDetails('Arumugam', 'K', '8056221601', 'arumuganainar.k@medyaan.com', '123', 'Sharjah', 'SaudiArabia', '1', '2', '3', '4', 'No 12, Moulna Nagar,Tambaram, Chennai');
         await privateHospitalPage.clickCancelBtn();
         await privateHospitalPage.clickConfirmationNo();
         await privateHospitalPage.clickCancelBtn();
@@ -84,22 +100,39 @@ test.describe('TS08 - Private Hospital', () => {
     })
     test('TC006 - view Hospital in active tab', async () => {
         const privateHospitalPage = new PrivateHospitalPage(page);
-        await privateHospitalPage.searchValue('Medyaans');
-        await privateHospitalPage.clickViewBtn('Medyaans');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const PrivateHospitaldata = await excelReader.readExcel(pathone, 'PrivateHospitalTest');
+        const { hospitalname } = PrivateHospitaldata[1];
+
+        await privateHospitalPage.searchValue(hospitalname);  //Medyaans
+        await privateHospitalPage.clickViewBtn(hospitalname);    //Medyaans
         await privateHospitalPage.backBtn.click();
         await page.waitForTimeout(2000);
     })
 
     test('TC007 - edit Hospital in active tab', async () => {
         const privateHospitalPage = new PrivateHospitalPage(page);
-        await privateHospitalPage.searchValue('Medyaans');
-        await privateHospitalPage.clickEditBtn('Medyaans');
-        await privateHospitalPage.addHospitalDetails('Arumugam', 'K', '8056221601','arumuganainar.k@medyaan.com', '123', 'Sharjah', 'SaudiArabia', '1', '2', '3', '4', 'No 12, Moulna Nagar,Tambaram, Chennai');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const PrivateHospitaldata = await excelReader.readExcel(pathone, 'PrivateHospitalTest');
+        const { hospitalname } = PrivateHospitaldata[1];
+        const { hospitalName, prefix, hospitalContactNumber, hospitalEmail, hospitalTNR, emirate, country, privateAdmin, privateVeterinarian, privateNurse, privateFrontdesk, hospitalAddress } = PrivateHospitaldata[0];
+        const { toast } = PrivateHospitaldata[1];
+
+
+        await privateHospitalPage.searchValue(hospitalname);  //Medyaans
+        await privateHospitalPage.clickEditBtn(hospitalname); //Medyaans
+        await privateHospitalPage.addHospitalDetails(hospitalName, prefix, hospitalContactNumber, hospitalEmail, hospitalTNR, emirate, country, privateAdmin, privateVeterinarian, privateNurse, privateFrontdesk, hospitalAddress);
+        // await privateHospitalPage.addHospitalDetails('Arumugam', 'K', '8056221601', 'arumuganainar.k@medyaan.com', '123', 'Sharjah', 'SaudiArabia', '1', '2', '3', '4', 'No 12, Moulna Nagar,Tambaram, Chennai');
         await privateHospitalPage.clickSubmitBtn();
         await privateHospitalPage.clickConfirmationYes();
-        await privateHospitalPage.validateToastMessage("Hospital Detailes updated successfully");
+        await privateHospitalPage.validateToastMessage(toast);
+        // await privateHospitalPage.validateToastMessage("Hospital Detailes updated successfully");
         await page.waitForTimeout(2000);
-      
+
     })
 
 
@@ -113,22 +146,38 @@ test.describe('TS08 - Private Hospital', () => {
 
     test('TC009 - view Hospital in Inactive tab', async () => {
         const privateHospitalPage = new PrivateHospitalPage(page);
-        await privateHospitalPage.searchValue('RAK');
-        await privateHospitalPage.clickViewBtn('RAK');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const PrivateHospitaldata = await excelReader.readExcel(pathone, 'PrivateHospitalTest');
+        const { hospitalname } = PrivateHospitaldata[2];
+
+        await privateHospitalPage.searchValue(hospitalname);       //RAK
+        await privateHospitalPage.clickViewBtn(hospitalname);      //RAK
         await privateHospitalPage.backBtn.click();
         await page.waitForTimeout(2000);
     })
 
     test('TC0010 - edit Hospital in Inactive tab', async () => {
         const privateHospitalPage = new PrivateHospitalPage(page);
-        await privateHospitalPage.searchValue('RAK');
-        await privateHospitalPage.clickEditBtn('RAK');
-        await privateHospitalPage.addHospitalDetails('Arumugam', 'K', '8056221601', 'arumuganainar.k@medyaan.com', '123', 'Sharjah', 'SaudiArabia', '1', '2', '3', '4', 'No 12, Moulna Nagar,Tambaram, Chennai');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const PrivateHospitaldata = await excelReader.readExcel(pathone, 'PrivateHospitalTest');
+        const { hospitalname } = PrivateHospitaldata[2];
+        const { hospitalName, prefix, hospitalContactNumber, hospitalEmail, hospitalTNR, emirate, country, privateAdmin, privateVeterinarian, privateNurse, privateFrontdesk, hospitalAddress } = PrivateHospitaldata[0];
+        const { toast } = PrivateHospitaldata[1];
+
+        await privateHospitalPage.searchValue(hospitalname);   //RAK
+        await privateHospitalPage.clickEditBtn(hospitalname);  //RAK
+        await privateHospitalPage.addHospitalDetails(hospitalName, prefix, hospitalContactNumber, hospitalEmail, hospitalTNR, emirate, country, privateAdmin, privateVeterinarian, privateNurse, privateFrontdesk, hospitalAddress);
+        // await privateHospitalPage.addHospitalDetails('Arumugam', 'K', '8056221601', 'arumuganainar.k@medyaan.com', '123', 'Sharjah', 'SaudiArabia', '1', '2', '3', '4', 'No 12, Moulna Nagar,Tambaram, Chennai');
         await privateHospitalPage.clickSubmitBtn();
         await privateHospitalPage.clickConfirmationYes();
-        await privateHospitalPage.validateToastMessage("Hospital Detailes updated successfully");
+        await privateHospitalPage.validateToastMessage(toast);
+        // await privateHospitalPage.validateToastMessage("Hospital Detailes updated successfully");
         await page.waitForTimeout(2000);
-         
+
     })
 
 

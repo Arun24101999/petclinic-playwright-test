@@ -1,51 +1,85 @@
-<testsuites id="" name="" tests="9" failures="1" skipped="3" errors="0" time="78.56759699999999">
-<testsuite name="AdminTest\TaskStageTest.spec.js" timestamp="2025-10-30T12:47:16.502Z" hostname="chromium" tests="9" failures="1" skipped="3" time="56.191" errors="0">
-<testcase name="TS03 - Task Stage › TC001 - Login with valid Credentials" classname="AdminTest\TaskStageTest.spec.js" time="6.395">
+<testsuites id="" name="" tests="11" failures="2" skipped="6" errors="0" time="67.383318">
+<testsuite name="AdminTest\PrivateUsersTest.spec.js" timestamp="2025-11-03T11:38:29.587Z" hostname="chromium" tests="11" failures="2" skipped="6" time="52.941" errors="0">
+<testcase name="TS08 - Private User › TC001 - Login with valid Credentials" classname="AdminTest\PrivateUsersTest.spec.js" time="6.156">
 </testcase>
-<testcase name="TS03 - Task Stage › TC002 - Select User Role" classname="AdminTest\TaskStageTest.spec.js" time="8.947">
+<testcase name="TS08 - Private User › TC002 - Select User Role" classname="AdminTest\PrivateUsersTest.spec.js" time="7.244">
 </testcase>
-<testcase name="TS03 - Task Stage › TC003 - Navigate to Task Management" classname="AdminTest\TaskStageTest.spec.js" time="5.98">
+<testcase name="TS08 - Private User › TC003 - Navigate to private user" classname="AdminTest\PrivateUsersTest.spec.js" time="9.531">
 </testcase>
-<testcase name="TS03 - Task Stage › TC004 - Add task stage with valid data" classname="AdminTest\TaskStageTest.spec.js" time="17.634">
-</testcase>
-<testcase name="TS03 - Task Stage › TC005 - Cancel task stage with valid data" classname="AdminTest\TaskStageTest.spec.js" time="16.15">
-</testcase>
-<testcase name="TS03 - Task Stage › TC006 - edit task stage details" classname="AdminTest\TaskStageTest.spec.js" time="1.084">
-<failure message="TaskStageTest.spec.js:107:5 TC006 - edit task stage details" type="FAILURE">
-<![CDATA[  [chromium] › AdminTest\TaskStageTest.spec.js:107:5 › TS03 - Task Stage › TC006 - edit task stage details 
+<testcase name="TS08 - Private User › TC004 - add user" classname="AdminTest\PrivateUsersTest.spec.js" time="30.01">
+<failure message="PrivateUsersTest.spec.js:49:5 TC004 - add user" type="FAILURE">
+<![CDATA[  [chromium] › AdminTest\PrivateUsersTest.spec.js:49:5 › TS08 - Private User › TC004 - add user ────
 
-    Error: locator.type: text: expected string, got undefined
+    Test timeout of 30000ms exceeded.
 
-       at ..\POM_AdminPages\TaskStagePage.js:177
+    Error: page.waitForTimeout: Test ended.
 
-      175 |
-      176 |     async searchTheValue(searchValue) {
-    > 177 |         await this.search.type(searchValue);
-          |                           ^
-      178 |         await this.page.waitForTimeout(1000);
-      179 |
-      180 |     }
-        at TaskStagePage.searchTheValue (C:\PetClinic_ArunKumar\petclinic-playwright-test\POM_AdminPages\TaskStagePage.js:177:27)
-        at C:\PetClinic_ArunKumar\petclinic-playwright-test\tests\AdminTest\TaskStageTest.spec.js:116:29
+       at ..\POM_AdminPages\PrivateUserPage.js:102
 
-    Error Context: ..\test-results\AdminTest-TaskStageTest-TS-8277e-6---edit-task-stage-details-chromium\error-context.md
+      100 |     async clickSubmitBtn() {
+      101 |         await this.submitBtn.click();
+    > 102 |         await this.page.waitForTimeout(2000);
+          |                         ^
+      103 |     }
+      104 |
+      105 |     async clickCancelBtn() {
+        at PrivateUserPage.clickSubmitBtn (C:\PetClinic_ArunKumar\petclinic-playwright-test\POM_AdminPages\PrivateUserPage.js:102:25)
+        at C:\PetClinic_ArunKumar\petclinic-playwright-test\tests\AdminTest\PrivateUsersTest.spec.js:68:9
+
+    Error Context: ..\test-results\AdminTest-PrivateUsersTest-bcda7-ivate-User-TC004---add-user-chromium\error-context.md
 ]]>
 </failure>
 <system-out>
-<![CDATA[
-[[ATTACHMENT|..\test-results\AdminTest-TaskStageTest-TS-8277e-6---edit-task-stage-details-chromium\error-context.md]]
+<![CDATA[Veterinarian Role is not selected
+
+[[ATTACHMENT|..\test-results\AdminTest-PrivateUsersTest-bcda7-ivate-User-TC004---add-user-chromium\error-context.md]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="TS03 - Task Stage › TC007 - view task stage" classname="AdminTest\TaskStageTest.spec.js" time="0.001">
+<testcase name="TS08 - Private User › TC006 - Select Active Tab" classname="AdminTest\PrivateUsersTest.spec.js" time="0">
+<failure message="PrivateUsersTest.spec.js:108:5 TC006 - Select Active Tab" type="FAILURE">
+<![CDATA[  [chromium] › AdminTest\PrivateUsersTest.spec.js:108:5 › TS08 - Private User › TC006 - Select Active Tab 
+
+    Error: page.goto: Target page, context or browser has been closed
+    Call log:
+      - navigating to "https://pms-dev.medyaan.com/home/", waiting until "load"
+
+
+       at ..\POM_AdminPages\LoginPage.js:24
+
+      22 |
+      23 |   async gotoLoginPage(Url) {
+    > 24 |     await this.page.goto(Url);
+         |                     ^
+      25 |     await this.SignInButton.click();
+      26 |     
+      27 |   }
+        at LoginPage.gotoLoginPage (C:\PetClinic_ArunKumar\petclinic-playwright-test\POM_AdminPages\LoginPage.js:24:21)
+        at C:\PetClinic_ArunKumar\petclinic-playwright-test\tests\AdminTest\PrivateUsersTest.spec.js:22:25
+]]>
+</failure>
+</testcase>
+<testcase name="TS08 - Private User › TC007 - view the user details" classname="AdminTest\PrivateUsersTest.spec.js" time="0">
 <skipped>
 </skipped>
 </testcase>
-<testcase name="TS03 - Task Stage › TC008 - delete task stage details" classname="AdminTest\TaskStageTest.spec.js" time="0">
+<testcase name="TS08 - Private User › TC008 - edit the user details" classname="AdminTest\PrivateUsersTest.spec.js" time="0">
 <skipped>
 </skipped>
 </testcase>
-<testcase name="TS03 - Task Stage › TC009 - Add task stage with Invalid data" classname="AdminTest\TaskStageTest.spec.js" time="0">
+<testcase name="TS08 - Private User › TC009 - Select InActive Tab" classname="AdminTest\PrivateUsersTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS08 - Private User › TC010 - view the user details" classname="AdminTest\PrivateUsersTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS08 - Private User › TC011 - edit the user details" classname="AdminTest\PrivateUsersTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS08 - Private User › TC012 - filter the user with Roles" classname="AdminTest\PrivateUsersTest.spec.js" time="0">
 <skipped>
 </skipped>
 </testcase>

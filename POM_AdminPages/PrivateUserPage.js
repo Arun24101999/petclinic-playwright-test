@@ -99,8 +99,7 @@ class PrivateUserPage {
 
     async clickSubmitBtn() {
         await this.submitBtn.click();
-         await page.waitForTimeout(2000);
-
+        await this.page.waitForTimeout(2000);
     }
 
     async clickCancelBtn() {
@@ -146,7 +145,7 @@ class PrivateUserPage {
         await this.otherDocumentImage.click();
         const fileChooser = await fileChooserPromise;
         await fileChooser.setFiles('./Images/profilepic.jpg');
-        await this.page.waitForTimeout(3000);
+        // await this.page.waitForTimeout(3000);
        
 
     }

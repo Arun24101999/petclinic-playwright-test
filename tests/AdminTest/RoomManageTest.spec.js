@@ -55,9 +55,9 @@ test.describe('TS03 - Room Type', () => {
         //from excel
         const excelReader = new ExcelReader();
         const RoomManagedata = await excelReader.readExcel(pathone, 'RoomManageTest');
-        const { roomname, petspeciesroomtype, wardno, fllor, spaces, iftoast, elsetoast } = RoomManagedata[0];
+        const { roomname, petspecies, roomtype, wardno, floor, spaces, iftoast, elsetoast } = RoomManagedata[0];
 
-        await roomManagePage.addRoomDetails(roomname, petspeciesroomtype, wardno, fllor, spaces);
+        await roomManagePage.addRoomDetails(roomname, petspecies, roomtype, wardno, floor, spaces);
         // await roomManagePage.addRoomDetails('s123', 'Cow', 'yaan', 'ward1', 'floor1', '2');
         await roomManagePage.clickSubmitBtn();
         await roomManagePage.clickCloseIcon();
@@ -85,9 +85,9 @@ test.describe('TS03 - Room Type', () => {
         //from excel
         const excelReader = new ExcelReader();
         const RoomManagedata = await excelReader.readExcel(pathone, 'RoomManageTest');
-        const { roomname, petspeciesroomtype, wardno, fllor, spaces, iftoast, elsetoast } = RoomManagedata[0];
+        const { roomname, petspecies, roomtype, wardno, floor, spaces, iftoast, elsetoast } = RoomManagedata[0];
 
-        await roomManagePage.addRoomDetails(roomname, petspeciesroomtype, wardno, fllor, spaces);
+        await roomManagePage.addRoomDetails(roomname, petspecies, roomtype, wardno, floor, spaces);
 
         // await roomManagePage.addRoomDetails('newcancel', 'Cow', 'yaan', 'ward1', 'floor1', '2');
         await roomManagePage.clickCancelBtn();
@@ -103,10 +103,21 @@ test.describe('TS03 - Room Type', () => {
     test('TC006 - edit room manage details', async () => {
         const roomManagePage = new RoomManagePage(page);
         await page.waitForTimeout(1000);
-        await roomManagePage.searchValue('s123');       //s123
-        await roomManagePage.clickEditBtn('s123', 'yaan', 'cow');       //'s123', 'yaan', 'cow'
-        await roomManagePage.editRoomDetails('floor2', '4');        //'floor2', '4'
-        await roomManagePage.clickSubmitBtn();v  
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const RoomManagedata = await excelReader.readExcel(pathone, 'RoomManageTest');
+        const { roomname, roomtype } = RoomManagedata[0];
+        const petspec = (RoomManagedata[1].petspecies);
+
+        await roomManagePage.searchValue(roomname);       //s123
+        await roomManagePage.clickEditBtn(roomname, roomtype, petspec);       //'s123', 'yaan', 'cow'
+
+        //from excel
+        const { floor, spaces, iftoast, elsetoast } = RoomManagedata[1];
+
+        await roomManagePage.editRoomDetails(floor, spaces);        //'floor2', '4'
+        await roomManagePage.clickSubmitBtn();
         await roomManagePage.clickCloseIcon();
         await roomManagePage.clickSubmitBtn();
         await roomManagePage.clickConfirmationMessageNo();
@@ -114,10 +125,10 @@ test.describe('TS03 - Room Type', () => {
         await roomManagePage.clickConfirmationMessageYes();
         await page.waitForTimeout(1000)
         const getToast = await roomManagePage.validatateToastMessage();
-        if (getToast === 'Successfully updated room details') {
+        if (getToast === iftoast) {     //Successfully updated room details
             console.log(getToast);
         } else {
-            console.log('room is not updated');
+            console.log(elsetoast);         //room is not updated
 
         }
 
@@ -126,8 +137,15 @@ test.describe('TS03 - Room Type', () => {
     test('TC007 - view room Type details', async () => {
         const roomManagePage = new RoomManagePage(page);
         await page.waitForTimeout(1000);
-        await roomManagePage.searchValue('s123')
-        await roomManagePage.clickViewBtn('s123', 'yaan', 'cow');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const RoomManagedata = await excelReader.readExcel(pathone, 'RoomManageTest');
+        const { roomname, roomtype } = RoomManagedata[0];
+        const petspec = (RoomManagedata[1].petspecies);
+
+        await roomManagePage.searchValue(roomname)      //s123
+        await roomManagePage.clickViewBtn(roomname, roomtype, petspec);       //'s123', 'yaan', 'cow'
         await roomManagePage.clickCloseBtn();
 
 
@@ -137,20 +155,28 @@ test.describe('TS03 - Room Type', () => {
     test('TC008 - delete room Type details', async () => {
         const roomManagePage = new RoomManagePage(page);
         await page.waitForTimeout(1000);
-        await roomManagePage.searchValue('s123');
-        await roomManagePage.clickDeleteBtn('s123', 'yaan', 'cow');
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const RoomManagedata = await excelReader.readExcel(pathone, 'RoomManageTest');
+        const { roomname, roomtype } = RoomManagedata[0];
+        const { iftoast, elsetoast } = RoomManagedata[2];
+        const petspec = (RoomManagedata[1].petspecies);
+
+        await roomManagePage.searchValue(roomname);   //s123
+        await roomManagePage.clickDeleteBtn(roomname, roomtype, petspec);      //'s123', 'yaan', 'cow'
         await roomManagePage.clickCloseIcon();
-        await roomManagePage.clickDeleteBtn('s123', 'yaan', 'cow');
+        await roomManagePage.clickDeleteBtn(roomname, roomtype, petspec);      //'s123', 'yaan', 'cow'
         await roomManagePage.clickConfirmationMessageNo();
-        await roomManagePage.clickDeleteBtn('s123', 'yaan', 'cow');
+        await roomManagePage.clickDeleteBtn(roomname, roomtype, petspec);          //'s123', 'yaan', 'cow'
         await roomManagePage.clickConfirmationMessageYes();
         await page.waitForTimeout(1000)
         const expectedMessage = await roomManagePage.validatateToastMessage();
-        if (expectedMessage === 'Room details deleted successfully') {
+        if (expectedMessage === iftoast) {      //Room details deleted successfully
             console.log(expectedMessage);
 
         } else {
-            console.log('Room already booked');
+            console.log(elsetoast);     //Room already booked
 
         }
 
