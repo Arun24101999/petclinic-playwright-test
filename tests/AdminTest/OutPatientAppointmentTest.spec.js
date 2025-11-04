@@ -7,7 +7,7 @@ const { OPAppointmentPage } = require('../../POM_AdminPages/OutPatientAppointmen
 
 let page;
 let context;
-
+let pathone = "D:/excel/PetForAdmin.xlsx";
 
 test.describe('TS03 - OP Appointment', () => {
 
@@ -17,7 +17,7 @@ test.describe('TS03 - OP Appointment', () => {
         page = await context.newPage();
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const url = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'URL');
+        const url = await excelReader.readExcel(pathone, 'URL');
         await loginPage.gotoLoginPage(url[0].URL);
         await page.waitForTimeout(2000);
     })
@@ -25,7 +25,7 @@ test.describe('TS03 - OP Appointment', () => {
     test('TC001 - Login with valid Credentials', async () => {
         const loginPage = new LoginPage(page);
         const excelReader = new ExcelReader();
-        const LoginDataset = await excelReader.readExcel('C:/Users/ArunkumarRagavan/Desktop/Book1.xlsx', 'LoginTest');
+        const LoginDataset = await excelReader.readExcel(pathone, 'LoginTest');
         const { UserName, Password } = LoginDataset[0];
         await page.waitForTimeout(2000);
         await loginPage.login(UserName, Password);
@@ -50,8 +50,14 @@ test.describe('TS03 - OP Appointment', () => {
 
         await opAppointmentPage.selectAllTab();
         await page.waitForTimeout(2000);
-        // await opAppointmentPage.searchValue('238');
-        // await page.waitForTimeout(2000);
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const OPAppointmentdata = await excelReader.readExcel(pathone, 'OPAppointmentTest');
+        const { searchvalue } = OPAppointmentdata[0];
+
+        await opAppointmentPage.searchValue(searchvalue);     //238
+        await page.waitForTimeout(2000);
         await opAppointmentPage.clickViewBtn();
         await page.waitForTimeout(1000);
         await opAppointmentPage.clickCloseIcon();
@@ -64,8 +70,14 @@ test.describe('TS03 - OP Appointment', () => {
 
         await opAppointmentPage.selectPendingTab();
         await page.waitForTimeout(2000);
-        // await opAppointmentPage.searchValue('238');
-        // await page.waitForTimeout(2000);
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const OPAppointmentdata = await excelReader.readExcel(pathone, 'OPAppointmentTest');
+        const { searchvalue } = OPAppointmentdata[0];
+
+        await opAppointmentPage.searchValue(searchvalue);     //238
+        await page.waitForTimeout(2000);
         await opAppointmentPage.clickViewBtn();
         await page.waitForTimeout(1000);
         await opAppointmentPage.clickCloseIcon();
@@ -79,8 +91,14 @@ test.describe('TS03 - OP Appointment', () => {
 
         await opAppointmentPage.selectOngoingTab();
         await page.waitForTimeout(2000);
-        // await opAppointmentPage.searchValue('238');
-        // await page.waitForTimeout(2000);
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const OPAppointmentdata = await excelReader.readExcel(pathone, 'OPAppointmentTest');
+        const { searchvalue } = OPAppointmentdata[0];
+
+        await opAppointmentPage.searchValue(searchvalue);     //238
+        await page.waitForTimeout(2000);
         await opAppointmentPage.clickViewBtn();
         await page.waitForTimeout(1000);
         await opAppointmentPage.clickCloseIcon();
@@ -94,8 +112,14 @@ test.describe('TS03 - OP Appointment', () => {
 
         await opAppointmentPage.selectWrapUpTab();
         await page.waitForTimeout(2000);
-        // await opAppointmentPage.searchValue('238');
-        // await page.waitForTimeout(2000);
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const OPAppointmentdata = await excelReader.readExcel(pathone, 'OPAppointmentTest');
+        const { searchvalue } = OPAppointmentdata[0];
+
+        await opAppointmentPage.searchValue(searchvalue);       //238
+        await page.waitForTimeout(2000);
         await opAppointmentPage.clickViewBtn();
         await page.waitForTimeout(1000);
         await opAppointmentPage.clickCloseIcon();
@@ -108,8 +132,14 @@ test.describe('TS03 - OP Appointment', () => {
 
         await opAppointmentPage.selectInvoiceTab();
         await page.waitForTimeout(2000);
-        // await opAppointmentPage.searchValue('238');
-        // await page.waitForTimeout(2000);
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const OPAppointmentdata = await excelReader.readExcel(pathone, 'OPAppointmentTest');
+        const { searchvalue } = OPAppointmentdata[0];
+
+        await opAppointmentPage.searchValue(searchvalue);     //238
+        await page.waitForTimeout(2000);
 
 
     })
@@ -119,8 +149,14 @@ test.describe('TS03 - OP Appointment', () => {
 
         await opAppointmentPage.selectPaymentPendingTab();
         await page.waitForTimeout(2000);
-        // await opAppointmentPage.searchValue('238');
-        // await page.waitForTimeout(2000);
+
+        //from excel
+        const excelReader = new ExcelReader();
+        const OPAppointmentdata = await excelReader.readExcel(pathone, 'OPAppointmentTest');
+        const { searchvalue } = OPAppointmentdata[0];
+
+        await opAppointmentPage.searchValue(searchvalue);     //238
+        await page.waitForTimeout(2000);
 
 
     })
@@ -129,8 +165,14 @@ test.describe('TS03 - OP Appointment', () => {
 
         await opAppointmentPage.selectCompletedTab();
         await page.waitForTimeout(2000);
-        // await opAppointmentPage.searchValue('238');
-        // await page.waitForTimeout(2000);
+
+         //from excel
+        const excelReader = new ExcelReader();
+        const OPAppointmentdata = await excelReader.readExcel(pathone, 'OPAppointmentTest');
+        const { searchvalue } = OPAppointmentdata[0];
+
+        await opAppointmentPage.searchValue(searchvalue);     //238
+        await page.waitForTimeout(2000);
         await opAppointmentPage.clickViewBtn();
         await page.waitForTimeout(1000);
         await opAppointmentPage.clickCloseIcon();
@@ -142,8 +184,14 @@ test.describe('TS03 - OP Appointment', () => {
 
         await opAppointmentPage.selectCancelledTab();
         await page.waitForTimeout(2000);
-        // await opAppointmentPage.searchValue('238');
-        // await page.waitForTimeout(2000);
+
+             //from excel
+        const excelReader = new ExcelReader();
+        const OPAppointmentdata = await excelReader.readExcel(pathone, 'OPAppointmentTest');
+        const { searchvalue } = OPAppointmentdata[0];
+
+        await opAppointmentPage.searchValue(searchvalue);       //238
+        await page.waitForTimeout(2000);
         await opAppointmentPage.clickViewBtn();
         await page.waitForTimeout(1000);
         await opAppointmentPage.clickCloseIcon();

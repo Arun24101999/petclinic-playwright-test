@@ -164,12 +164,11 @@ test.describe('TS05 - Service Category', () => {
 
         } else {
             console.log(await petSpeciesPage.getToastMessage.textContent());
-
+          
         }
 
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(2000);  
     })
-
 
 
 })
