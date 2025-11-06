@@ -76,33 +76,33 @@ test.describe('TS08 - Private User', () => {
         await page.waitForTimeout(2000);
     })
 
-    // test('TC005 - Cancel add user', async () => {
-    //     const privateUserPage = new PrivateUserPage(page);
-    //     await privateUserPage.clickAddUserBtn();
-    //     await privateUserPage.backBtn.click();
-    //     await privateUserPage.clickAddUserBtn();
+    test('TC005 - Cancel add user', async () => {
+        const privateUserPage = new PrivateUserPage(page);
+        await privateUserPage.clickAddUserBtn();
+        await privateUserPage.backBtn.click();
+        await privateUserPage.clickAddUserBtn();
 
-    //     //from excel
-    //     const excelReader = new ExcelReader();
-    //     const PrivateUserdata = await excelReader.readExcel(pathone, 'PrivateUserTest');
-    //     const { date, month, year } = PrivateUserdata[0];
+        //from excel
+        const excelReader = new ExcelReader();
+        const PrivateUserdata = await excelReader.readExcel(pathone, 'PrivateUserTest');
+        const { date, month, year } = PrivateUserdata[0];
 
-    //     await privateUserPage.addUserPickCalender(date, month, year);        //'24', 'Oct', '1999'
-    //     await privateUserPage.addProfileImage();
-    //     //from excel
-    //     const { role, hospital, first, last, gender, language, mobile, email, marital, emergency, address, emirateid, emiratevalue, tnrno } = PrivateUserdata[0];
-    //     await privateUserPage.addUserWithValidData(role, hospital, first, last, gender, language, mobile, email, marital, emergency, address, emirateid, emiratevalue, tnrno);
-    //     // await privateUserPage.addUserWithValidData('Private Admin', 'arumugam', 'AutoFirstName', 'AutoLastName', 'Male', 'English', '9876543210', 'auto@gmail.com', 'Single', '9876543210', 'No 10, Street, City', '123456789012345', 'Ajman', '1234');
-    //     await privateUserPage.addIdProof();
-    //     await privateUserPage.addOthersImage();
-    //     await privateUserPage.clickCancelBtn();
-    //     await privateUserPage.closeIcon.click();
-    //     await privateUserPage.clickCancelBtn();
-    //     await privateUserPage.clickConfirmationNo();
-    //     await privateUserPage.clickCancelBtn();
-    //     await privateUserPage.clickConfirmationYes();
-    //     await page.waitForTimeout(2000);
-    // })
+        await privateUserPage.addUserPickCalender(date, month, year);        //'24', 'Oct', '1999'
+        await privateUserPage.addProfileImage();
+        //from excel
+        const { role, hospital, first, last, gender, language, mobile, email, marital, emergency, address, emirateid, emiratevalue, tnrno } = PrivateUserdata[0];
+        await privateUserPage.addUserWithValidData(role, hospital, first, last, gender, language, mobile, email, marital, emergency, address, emirateid, emiratevalue, tnrno);
+        // await privateUserPage.addUserWithValidData('Private Admin', 'arumugam', 'AutoFirstName', 'AutoLastName', 'Male', 'English', '9876543210', 'auto@gmail.com', 'Single', '9876543210', 'No 10, Street, City', '123456789012345', 'Ajman', '1234');
+        await privateUserPage.addIdProof();
+        await privateUserPage.addOthersImage();
+        await privateUserPage.clickCancelBtn();
+        await privateUserPage.closeIcon.click();
+        await privateUserPage.clickCancelBtn();
+        await privateUserPage.clickConfirmationNo();
+        await privateUserPage.clickCancelBtn();
+        await privateUserPage.clickConfirmationYes();
+        await page.waitForTimeout(2000);
+    })
 
     //Active Tab
     test('TC006 - Select Active Tab', async () => {

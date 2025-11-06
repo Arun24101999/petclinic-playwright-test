@@ -57,8 +57,9 @@ test.describe('TS08 - Private Hospital', () => {
         await privateHospitalPage.addHospitalDetails(hospitalName, prefix, hospitalContactNumber, hospitalEmail, hospitalTNR, emirate, country, privateAdmin, privateVeterinarian, privateNurse, privateFrontdesk, hospitalAddress);
         // await privateHospitalPage.addHospitalDetails('Arumugam', 'K', '8056221601', 'arumuganainar.k@medyaan.com', '123', 'Sharjah', 'SaudiArabia', "1", "2", "3", "4", 'No 12, Moulna Nagar,Tambaram, Chennai');
         await privateHospitalPage.clickSubmitBtn();
-        await privateHospitalPage.clickConfirmationMessageNo();
-        await privateHospitalPage.clickSubmitBtn();
+        // await privateHospitalPage.clickConfirmationNo();
+        // await privateHospitalPage.clickConfirmationMessageNo();
+        // await privateHospitalPage.clickSubmitBtn();
         await privateHospitalPage.clickConfirmationYes();
         await privateHospitalPage.validateToastMessage(toast);
         // await privateHospitalPage.validateToastMessage("Hospital Detailes created successfully");

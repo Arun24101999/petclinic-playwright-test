@@ -7,7 +7,7 @@ const { PetBreedPage } = require('../../POM_AdminPages/PetBreedPage');
 
 let page;
 let context;
-let pathone = "D:/excel/PetForAdmin.xlsx";
+let pathone = "D:/excel/PetForAdmin.xlsx";    //finished
 
 test.describe('TS05 - Service Category', () => {
 

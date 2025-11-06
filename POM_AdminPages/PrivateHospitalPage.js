@@ -68,7 +68,7 @@ class PrivateHospitalPage {
 
     async clickSubmitBtn() {
         await this.submitBtn.click();
-        await this.page.waitForTimeout(2000);
+        // await this.page.waitForTimeout(2000);
     }
 
     async clickCancelBtn() {

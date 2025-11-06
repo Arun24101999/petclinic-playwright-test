@@ -183,8 +183,8 @@ test.describe('TS03 - Material Category', () => {
         await purchaseEntryPage.clickCancelBtn();
         await purchaseEntryPage.clickConfirmationMessageNo();
         await purchaseEntryPage.clickCancelBtn();
-        await purchaseEntryPage.clickConfirmationMessageYes();
-
+        await purchaseEntryPage.clickConfirmationMessageYes();  
+                                
     })
 
     test('TC009 - delete material order', async () => {

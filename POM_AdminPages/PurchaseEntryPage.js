@@ -40,15 +40,15 @@ class PurchaseEntryPage {
         this.editBtn = page.locator("//button[contains(text(),'Edit')]");
 
         //Received goods
-        this.receivedGoodsBtn=page.locator("//b[text()='Goods Received']/../../following-sibling::div/button");
-        this.materialDropDown=page.locator("#materialName");
-        this.batch=page.locator("//label[contains(text(),'Batch')]/following-sibling::div//input[@class='input-field-cls form-control']");
-        this.storageLocation=page.locator("#storageVal");
-        this.expiryDate=page.locator("#expiryDate");
-        
+        this.receivedGoodsBtn = page.locator("//b[text()='Goods Received']/../../following-sibling::div/button");
+        this.materialDropDown = page.locator("#materialName");
+        this.batch = page.locator("//label[contains(text(),'Batch')]/following-sibling::div//input[@class='input-field-cls form-control']");
+        this.storageLocation = page.locator("#storageVal");
+        this.expiryDate = page.locator("#expiryDate");
+
         //Return
-        this.returnBtn=page.locator("//button[contains(text(),'Return')]");
-       
+        this.returnBtn = page.locator("//button[contains(text(),'Return')]");
+
         //confirmation message
         this.confirmationMessageYes = page.locator("button[class='el-button el-button--default el-button--small el-button--primary ']");
         this.confirmationMessageNo = page.locator("button[class='el-button el-button--default el-button--small']");
@@ -99,7 +99,7 @@ class PurchaseEntryPage {
 
     async receivedGoodsDetails(material, quantity, batch, storageLocation) {
 
-        await this.materialDropDown.selectOption({label: material });
+        await this.materialDropDown.selectOption({ label: material });
         await this.page.waitForTimeout(1000);
 
         await this.quantity.fill(quantity);
@@ -108,7 +108,7 @@ class PurchaseEntryPage {
         await this.batch.fill(batch);
         await this.page.waitForTimeout(1000);
 
-        await this.storageLocation.selectOption({label: storageLocation });
+        await this.storageLocation.selectOption({ label: storageLocation });
         await this.page.waitForTimeout(1000);
 
     }
@@ -135,12 +135,12 @@ class PurchaseEntryPage {
 
     async clickSubmitBtn() {
         await this.submitBtn.click();
-       
+
     }
 
     async clickCancelBtn() {
         await this.cancelBtn.click();
-        
+
     }
 
     async clickBackBtn() {
@@ -149,13 +149,13 @@ class PurchaseEntryPage {
 
     async clickConfirmationMessageYes() {
         await this.confirmationMessageYes.click();
-        
+
     }
 
     async clickConfirmationMessageNo() {
         await this.confirmationMessageNo.click();
-      
-        
+
+
 
     }
 
@@ -171,6 +171,7 @@ class PurchaseEntryPage {
     async clickSaveBtn() {
         // await this.page.waitForTimeout(1000);
         await this.saveBtn.click();
+        await this.page.waitForTimeout(800);
     }
 
     async validatateToastMessage(expectedMessage) {
@@ -204,7 +205,7 @@ class PurchaseEntryPage {
     }
 
     async clickEditBtn() {
-         await this.page.waitForTimeout(1000);
+        await this.page.waitForTimeout(1000);
         await this.editBtn.click();
         await this.page.waitForTimeout(1000);
     }
@@ -220,17 +221,11 @@ class PurchaseEntryPage {
     }
 
     async returnDetails(material, value) {
-          await this.page.waitForTimeout(2000);
+        await this.page.waitForTimeout(2000);
         await this.page.locator(`//div[text()='${material}']/following-sibling::div[@col-id='quantityupdate']`).hover();
         await this.page.locator(`//div[text()='${material}']/following-sibling::div[@col-id='quantityupdate']`).type(value);
         await this.page.waitForTimeout(1000);
     }
-
-
-
-
-
-
 
 
 }
