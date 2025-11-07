@@ -91,11 +91,11 @@ test.describe('TS03 - Storage Location', () => {
         await materialSubCategoryPage.clickConfirmationNo();
         await materialSubCategoryPage.clickSubmitBtn();
         await materialSubCategoryPage.clickConfirmationYes();
-        await page.waitForTimeout(1000)
+        await page.waitForTimeout(1000);
         await materialSubCategoryPage.validateToastMessage(toast);
         // await materialSubCategoryPage.validateToastMessage('Material sub category updated successfully');
 
-    })
+    });
 
     test('TC006 - view sub material category', async () => {
         const materialSubCategoryPage = new MaterialSubCategoryPage(page);

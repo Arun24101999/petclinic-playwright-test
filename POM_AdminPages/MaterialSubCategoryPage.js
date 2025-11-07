@@ -91,7 +91,7 @@ class MaterialSubCategoryPage {
         await this.page.waitForTimeout(1000);
     }
 
-    async clickConfirm  ationNo() {
+    async clickConfirmationNo() {
         await this.confirmationMessageNo.click();
         await this.page.waitForTimeout(1000);
     }
