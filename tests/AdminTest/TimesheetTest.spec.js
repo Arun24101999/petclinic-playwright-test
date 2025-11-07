@@ -55,9 +55,11 @@ test.describe('TS03 - Material Category', () => {
 
         await timesheetPage.searchValue(task);
         // await timesheetPage.searchValue('give a paracetomol for 5 piece');
+        // await timesheetPage.searchValue('give a paracetomol for 5 piece');
         await page.waitForTimeout(1000);
 
         await timesheetPage.selectUserDropdown(user);
+        // await timesheetPage.selectUserDropdown('Arun Muthu Sukumar M ');
         // await timesheetPage.selectUserDropdown('Arun Muthu Sukumar M ');
         await page.waitForTimeout(1000)
         const getTaskDetails = await timesheetPage.getDetails();

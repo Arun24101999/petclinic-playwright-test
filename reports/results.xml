@@ -1,71 +1,20 @@
-<testsuites id="" name="" tests="11" failures="1" skipped="7" errors="0" time="72.35936699999999">
-<testsuite name="AdminTest\PurchaseEntryTest.spec.js" timestamp="2025-11-05T12:34:14.811Z" hostname="chromium" tests="11" failures="1" skipped="7" time="54.625" errors="0">
-<testcase name="TS03 - Material Category › TC001 - Login with valid Credentials" classname="AdminTest\PurchaseEntryTest.spec.js" time="6.331">
+<testsuites id="" name="" tests="8" failures="0" skipped="0" errors="0" time="107.785452">
+<testsuite name="AdminTest\TreatmentMasterTest.spec.js" timestamp="2025-11-07T05:20:45.328Z" hostname="chromium" tests="8" failures="0" skipped="0" time="99.43" errors="0">
+<testcase name="TS05 - Service Category › TC001 - Login with valid Credentials" classname="AdminTest\TreatmentMasterTest.spec.js" time="6.156">
 </testcase>
-<testcase name="TS03 - Material Category › TC002 - Select User Role" classname="AdminTest\PurchaseEntryTest.spec.js" time="9.135">
+<testcase name="TS05 - Service Category › TC002 - Select User Role" classname="AdminTest\TreatmentMasterTest.spec.js" time="7.182">
 </testcase>
-<testcase name="TS03 - Material Category › TC003 - Navigate to Purchase order" classname="AdminTest\PurchaseEntryTest.spec.js" time="9.147">
+<testcase name="TS05 - Service Category › TC003 - Navigate to TreatmentMaster " classname="AdminTest\TreatmentMasterTest.spec.js" time="5.294">
 </testcase>
-<testcase name="TS03 - Material Category › TC004 - add Purchase order" classname="AdminTest\PurchaseEntryTest.spec.js" time="30.011">
-<failure message="PurchaseEntryTest.spec.js:47:5 TC004 - add Purchase order" type="FAILURE">
-<![CDATA[  [chromium] › AdminTest\PurchaseEntryTest.spec.js:47:5 › TS03 - Material Category › TC004 - add Purchase order 
-
-    Test timeout of 30000ms exceeded.
-
-    Error: locator.click: Test ended.
-    Call log:
-      - waiting for locator('button[class=\'el-button el-button--default el-button--small\']')
-        - locator resolved to <button type="button" class="el-button el-button--default el-button--small">…</button>
-
-
-       at ..\POM_AdminPages\PurchaseEntryPage.js:156
-
-      154 |
-      155 |     async clickConfirmationMessageNo() {
-    > 156 |         await this.confirmationMessageNo.click();
-          |                                          ^
-      157 |
-      158 |
-      159 |
-        at PurchaseEntryPage.clickConfirmationMessageNo (C:\PetClinic_ArunKumar\petclinic-playwright-test\POM_AdminPages\PurchaseEntryPage.js:156:42)
-        at C:\PetClinic_ArunKumar\petclinic-playwright-test\tests\AdminTest\PurchaseEntryTest.spec.js:74:33
-
-    Error Context: ..\test-results\AdminTest-PurchaseEntryTes-33c6f--TC004---add-Purchase-order-chromium\error-context.md
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|..\test-results\AdminTest-PurchaseEntryTes-33c6f--TC004---add-Purchase-order-chromium\error-context.md]]
-]]>
-</system-out>
+<testcase name="TS05 - Service Category › TC004 - Add Treatment Master" classname="AdminTest\TreatmentMasterTest.spec.js" time="18.92">
 </testcase>
-<testcase name="TS03 - Material Category › TC005 - edit Purchase order" classname="AdminTest\PurchaseEntryTest.spec.js" time="0.001">
-<skipped>
-</skipped>
+<testcase name="TS05 - Service Category › TC005 - Cancel the add Treatment Master" classname="AdminTest\TreatmentMasterTest.spec.js" time="22.972">
 </testcase>
-<testcase name="TS03 - Material Category › TC006 - delete Purchase order" classname="AdminTest\PurchaseEntryTest.spec.js" time="0">
-<skipped>
-</skipped>
+<testcase name="TS05 - Service Category › TC006 - edit Treatment Master" classname="AdminTest\TreatmentMasterTest.spec.js" time="23.065">
 </testcase>
-<testcase name="TS03 - Material Category › TC007 - Back to Purchase order dashboard" classname="AdminTest\PurchaseEntryTest.spec.js" time="0">
-<skipped>
-</skipped>
+<testcase name="TS05 - Service Category › TC007 - view Treatment Master" classname="AdminTest\TreatmentMasterTest.spec.js" time="6.262">
 </testcase>
-<testcase name="TS03 - Material Category › TC008 - cancel Purchase order" classname="AdminTest\PurchaseEntryTest.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="TS03 - Material Category › TC009 - delete material order" classname="AdminTest\PurchaseEntryTest.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="TS03 - Material Category › TC010 - received goods" classname="AdminTest\PurchaseEntryTest.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="TS03 - Material Category › TC011 - return goods" classname="AdminTest\PurchaseEntryTest.spec.js" time="0">
-<skipped>
-</skipped>
+<testcase name="TS05 - Service Category › TC008 - delete Treatment Master" classname="AdminTest\TreatmentMasterTest.spec.js" time="9.579">
 </testcase>
 </testsuite>
 </testsuites>
