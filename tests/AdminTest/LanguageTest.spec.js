@@ -56,7 +56,8 @@ test.describe('TS03 - Material Category', () => {
         await page.waitForTimeout(1000);
         await languagePage.clickSubmitBtn();
         await page.waitForTimeout(1000);
-        await languagePage.validateToastMessage(languageData[0].ToastMessage);
+        await languagePage.validateToastMessage(languageData[0].Toast);
+        await console.log(languageData[0].Toast);
 
     })
 
